@@ -1,10 +1,10 @@
 import './App.module.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Login from "./Pages/Login";
-import Register from "./Pages/Register";
-import Forget from "./Pages/Forget";
-import Reset from "./Pages/Reset";
-import Layout from "./Pages/Layout";
+import Login from "./Pages/Login/Login.jsx";
+import Register from "./Pages/Register/Register.jsx";
+import Forget from "./Pages/Forget/Forget.jsx";
+import Reset from "./Pages/Reset/Reset.jsx";
+import Layout from "./Pages/Layout/Layout.jsx";
 
 function App() {
 
@@ -12,10 +12,10 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout/>}>
-          <Route index element={<Register />} />
+          <Route path="Register" element={<Register />} />
           <Route path="Forget" element={<Forget />} />
           <Route path="Reset" element={<Reset />} />
-          <Route path="Login" element={<Login />} />
+          <Route path="Login" index element={<Login />} />
         </Route>
       </Routes>
     </BrowserRouter>
