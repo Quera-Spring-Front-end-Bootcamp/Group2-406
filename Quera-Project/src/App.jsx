@@ -2,9 +2,9 @@
 import './App.css';
 import { Routes, Route} from "react-router-dom";
 import { Login } from './Pages/Login/Login';
-import {Register} from "./Pages/Register/Register";
 import {Forget} from "./Pages/Forget/Forget";
 import {Reset} from "./Pages/Reset/Reset";
+import {Register} from "./Pages/Register/Register";
 
 function App() {
 
