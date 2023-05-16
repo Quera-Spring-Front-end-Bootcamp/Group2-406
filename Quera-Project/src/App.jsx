@@ -1,13 +1,10 @@
 
 import './App.css';
-import { Routes, Route,Link} from "react-router-dom";
-// import { Login } from './Pages/Login/login';
-import {Register} from "./Pages/Register/register";
-
-// import Forget from "./Pages/Forget";
-// import Reset from "./Pages/Reset";
-
-
+import { Routes, Route} from "react-router-dom";
+import { Login } from './Pages/Login/Login';
+import {Register} from "./Pages/Register/Register";
+import {Forget} from "./Pages/Forget/Forget";
+import {Reset} from "./Pages/Reset/Reset";
 
 function App() {
 
@@ -20,9 +17,9 @@ function App() {
       <Routes >
           
           <Route path='/' element={<Register />}  />
-          {/* <Route path="Forget" element={<Forget />} />
-          <Route path="Reset" element={<Reset />} /> */}
-          {/* <Route path="Login" element={<Login />} /> */}
+          <Route path="/" element={<Forget />} />
+          <Route path="/" element={<Reset />} /> 
+          <Route path="/" element={<Login />} />
         
 
       </Routes>
