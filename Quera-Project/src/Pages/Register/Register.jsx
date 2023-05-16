@@ -1,12 +1,22 @@
+
 import { useForm } from "react-hook-form";
 import { Button } from "../../components/Bottons/Button";
 
-export function Register(){
+
     
+
+
+
+
+
+export function Register(){
+   
+
     const  {register,handleSubmit,formState:{errors}}= useForm()
    let onSubmit=data=>console.log(data)
     
    
+
     return <><Button />
     <div className="h-screen w-screen z-20 flex justify-center  mb-11 items-center fixed">
         <div dir="rtl" className={`  w-registerw max-h-maxh bg-white flex flex-col justify-center align-middle rounded-registerRad shadow-registerShadow `}>
@@ -37,11 +47,18 @@ w-5 h-5 border border-uncheck rounded checked:bg-check checked:after:content-[''
     <input className=" mb-6 cursor-pointer w-full h-12 text-sm rounded-md font-dana bg-submitColor text-white  "   type="submit" value="ثبت‌نام"/>
     </div>
 
+
+ 
+
 </form>
+
 
 
 
     </div>
     </div>
     </>
+
+
+
 }
