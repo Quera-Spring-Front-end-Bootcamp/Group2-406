@@ -1,3 +1,4 @@
+
 import './App.css';
 import { Routes, Route,Link} from "react-router-dom";
 // import { Login } from './Pages/Login/login';
@@ -7,9 +8,11 @@ import {Register} from "./Pages/Register/register";
 // import Reset from "./Pages/Reset";
 
 
+
 function App() {
 
   return (
+
     <div className='bg-white'>
       
       <div >
@@ -21,6 +24,7 @@ function App() {
           <Route path="Reset" element={<Reset />} /> */}
           {/* <Route path="Login" element={<Login />} /> */}
         
+
       </Routes>
    
     
