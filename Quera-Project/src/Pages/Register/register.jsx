@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+
 import { useForm } from "react-hook-form";
 
 
 export function Register(){
-    const [h,seth]=useState("5")
+    
     const  {register,handleSubmit,formState:{errors}}= useForm()
    let onSubmit=data=>console.log(data)
     
