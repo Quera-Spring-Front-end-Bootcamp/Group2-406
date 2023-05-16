@@ -14,7 +14,8 @@ export default {
       width:{
         'registerw':"402px",
         "inputW":"354px",
-        "checkw":"5px"
+        "checkw":"5px",
+        "23":"95px"
       }
       ,
       ringColor:{
@@ -60,7 +61,7 @@ export default {
       },
       spacing:{
         "7%":"7.8vh"
-      }
+      },
       
       
      
