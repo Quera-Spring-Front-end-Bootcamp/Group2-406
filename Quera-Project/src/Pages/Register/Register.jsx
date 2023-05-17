@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { Button } from "../../components/Bottons/Button";
+import { LinkButton } from "../../components/Bottons/LinkButtons";
 
 export function Register(){
     
@@ -7,7 +7,7 @@ export function Register(){
    let onSubmit=data=>console.log(data)
     
    
-    return <><Button />
+    return <><LinkButton/>
     <div className="h-screen w-screen z-20 flex justify-center  mb-11 items-center fixed">
         <div dir="rtl" className={`  w-registerw max-h-maxh bg-white flex flex-col justify-center align-middle rounded-registerRad shadow-registerShadow `}>
 <p className="text-center text-headerSize font-dana font-bold mt-6 ">ثبت‌نام در کوئرا تسک منیجر</p>
