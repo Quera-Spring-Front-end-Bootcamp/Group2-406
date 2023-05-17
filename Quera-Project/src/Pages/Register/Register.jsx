@@ -1,8 +1,17 @@
+
 import { useForm } from "react-hook-form";
 import { LinkButton } from "../../components/Bottons/LinkButtons";
 
-export function Register(){
+
     
+
+
+
+
+
+export function Register(){
+   
+
     const  {register,handleSubmit,formState:{errors}}= useForm()
    let onSubmit=data=>console.log(data)
     
@@ -37,11 +46,18 @@ w-5 h-5 border border-uncheck rounded checked:bg-check checked:after:content-[''
     <input className=" mb-6 cursor-pointer w-full h-12 text-sm rounded-md font-dana bg-submitColor text-white  "   type="submit" value="ثبت‌نام"/>
     </div>
 
+
+ 
+
 </form>
+
 
 
 
     </div>
     </div>
     </>
+
+
+
 }
