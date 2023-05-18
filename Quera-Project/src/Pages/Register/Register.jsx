@@ -14,17 +14,17 @@ export function Register(){
 
 <div className="flex flex-col  mb-6 mt-6 mr-6">
     <label htmlFor="name" className="mb-2 text-sm font-dana">نام کامل</label>
-<input id="name"   {...register("fullname",{required:{value:true,message:"وارد کردن نام الزامی است"}})} className="   px-2  border border-inputBorder font-dana focus-visible:outline-none rounded-md ml-6 h-10 "/>
+<input id="name" type="text"  {...register("fullname",{required:{value:true,message:"وارد کردن نام الزامی است"},pattern:{value:/^[\u0621-\u0628\u062A-\u063A\u0641-\u0642\u0644-\u0648\u064E-\u0651\u0655\u067E\u0686\u0698\u0020\u2000-\u200F\u2028-\u202F\u06A9\u06AF\u06BE\u06CC\u0629\u0643\u0649-\u064B\u064D\u06D5\sa-zA-Z]+$/,message:"نام وارد شده صحیح نمی باشد"}})} className="   px-2  border border-inputBorder font-dana focus-visible:outline-none rounded-md ml-6 h-10 "/>
 <p className="text-xxs mt-1 font-dana text-red-700">{errors.fullname?.message}</p></div>
 <div className="flex flex-col mb-6 mr-6">
     <label htmlFor="email" className="  mb-2 text-sm font-dana">ایمیل</label>
-<input id="email" dir="ltr"  type="email" {...register("Email",{required:{value:true,message:"وارد کردن ایمیل الزامی است"},pattern:{value:/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,message:"ایمیل وارد شده صحیح نمی باشد"}})} className=" font-dana px-2 border border-inputBorder focus-visible:outline-none rounded-md ml-6 h-10"/>
-<p className=" text-xxs mt-1 font-dana text-red-700">{errors.Email?.message}</p>
+<input id="email" dir="ltr"  type="email" {...register("email",{required:{value:true,message:"وارد کردن ایمیل الزامی است"},pattern:{value:/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,message:"ایمیل وارد شده صحیح نمی باشد"}})} className=" font-dana px-2 border border-inputBorder focus-visible:outline-none rounded-md ml-6 h-10"/>
+<p className=" text-xxs mt-1 font-dana text-red-700">{errors.email?.message}</p>
 </div>
 <div className="flex flex-col mb-6 mr-6">
     <label htmlFor="password" className="mb-2 text-sm font-dana">رمز عبور</label>
-<input id="password" dir="ltr"  type="password" {...register("Password",{required:{value:true,message:"وارد کردن رمز عبور الزامی است"},minLength:{ value:8 ,message:" رمز عبور باید حداقل ۸ کاراکتر باشد "}},)}  className=" px-2  border border-inputBorder focus-visible:outline-none  rounded-md ml-6 h-10"/>
-<p className=" mt-1 text-xxs font-dana  text-red-700">{errors.Password?.message}</p>
+<input id="password" dir="ltr"  type="password" {...register("password",{required:{value:true,message:"وارد کردن رمز عبور الزامی است"},minLength:{ value:8 ,message:" رمز عبور باید حداقل ۸ کاراکتر باشد "}},)}  className=" px-2  border border-inputBorder focus-visible:outline-none  rounded-md ml-6 h-10"/>
+<p className=" mt-1 text-xxs font-dana  text-red-700">{errors.password?.message}</p>
 </div>
 <div className="mr-6 mb-2" >
 <div className="flex flex-row   items-center  text-base">
