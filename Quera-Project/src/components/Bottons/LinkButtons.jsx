@@ -5,6 +5,6 @@ export function LinkButton(){
     <div className="ml-20 text-center flex items-center ">
     <Link to={"/Login"}><button className="   cursor-pointer h-10 text-sm rounded-md font-dana bg-submitColor text-white w-23  ">ورود</button></Link>
     <span className="ml-2 font-dana text-base">قبلا ثبت‌نام کرده‌ای؟</span></div>
-    <div className=" bg-namegradient bg-clip-text text-transparent mr-20 font-dana font-extrabold text-headerSize">کوئرا تسک منیجر</div>
+    <div className=" bg-namegradient bg-clip-text text-transparent mr-20 font-dana font-extrabold tracking-tight text-headerSize">کوئرا تسک منیجر</div>
     </div></>
 }

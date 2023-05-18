@@ -57,7 +57,7 @@ export default {
         "dana":"dana"
       },
       maxHeight:{
-        'maxh':"520px",
+        'maxh':"530px",
       },
       spacing:{
         "7%":"7.8vh"
