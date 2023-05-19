@@ -1,14 +1,16 @@
 /* eslint-disable react/no-unknown-property */
 import { useForm } from "react-hook-form";
 import { LinkButton } from "../../components/Bottons/LinkButtons";
+import { useNavigate } from "react-router";
 //import {toast} from "react-toastify"
 
 export const Login = () => {
+    const navigate = useNavigate();
     const handleRedirectToRegister = () => {
-        window.location.href = '/register'
+        navigate("/Register");
     }
     const handleRedirectToForget = () => {
-        window.location.href = '/forget'
+        navigate("/Forget");
     }
 
     const { register, handleSubmit, formState: { errors } } = useForm()
