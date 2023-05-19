@@ -13,20 +13,20 @@ export const Login = () => {
         navigate("/Forget");
     }
 
-    const { register, handleSubmit, formState: { errors } } = useForm()
+    const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = (data) => {
 
-        const userData = JSON.parse(localStorage.getItem(data.email))
+        const userData = JSON.parse(localStorage.getItem(data.email));
         if (userData) {
             if (userData.password === data.password) {
-                console.log(userData.fullname + " You Are Successfully Logged In")
-                window.location.href = '/board'
+                //console.log(userData.fullname + " You Are Successfully Logged In")
+                navigate("/Board");
             } else {
-                alert("ایمیل یا رمز عبور اشتباه می باشد")
+                alert("ایمیل یا رمز عبور اشتباه می باشد");
             }
         } else {
-            alert("ایمیل یا رمز عبور اشتباه می باشد")
+            alert("ایمیل یا رمز عبور اشتباه می باشد");
         }
     };
 
