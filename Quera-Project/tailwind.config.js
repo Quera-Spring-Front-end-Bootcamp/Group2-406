@@ -14,7 +14,8 @@ export default {
       width:{
         'registerw':"402px",
         "inputW":"354px",
-        "checkw":"5px"
+        "checkw":"5px",
+        "23":"95px"
       }
       ,
       ringColor:{
@@ -46,7 +47,8 @@ export default {
       },
       
       backgroundImage:{
-        "bggradient":" linear-gradient(269.55deg, #06846F 0.35%, #54BEE8 103.4%);"
+        "bggradient":" linear-gradient(269.55deg, #06846F 0.35%, #54BEE8 103.4%);",
+        "namegradient":"linear-gradient(90deg, #118C80 0%, #4AB7D8 120%);"
       },
       skew:{
         "7":"7deg"
@@ -55,8 +57,11 @@ export default {
         "dana":"dana"
       },
       maxHeight:{
-        'maxh':"520px",
-      }
+        'maxh':"530px",
+      },
+      spacing:{
+        "7%":"7.8vh"
+      },
       
       
      
