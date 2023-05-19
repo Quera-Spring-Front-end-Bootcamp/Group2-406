@@ -1,10 +1,10 @@
+/* eslint-disable no-undef */
 import { useForm } from "react-hook-form";
+import { LinkButton } from "../../components/Bottons/LinkButtons";
+import { useNavigate } from "react-router";
 
 export const Forget = () => {
-  const redirectToRegister = () => {
-    window.location.href = "/Login";
-  };
-
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -12,37 +12,20 @@ export const Forget = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    const userData = JSON.parse(localStorage.getItem(data.email));
-    if (userData.email === data.email) {
-      window.location.href = "/Reset";
+    //const userData = JSON.parse(localStorage.getItem(data.email));
+    if (data) {
+      navigate("/Reset");
     } else {
       alert("اینجاست؟؟؟؟؟مشکل کجاست؟؟؟");
     }
   };
 
-  return (
+  return (<>
+    <LinkButton buttoncontent={"ثبت نام"} question={"ثبت نام نکرده ای؟"} path={"/"} />
+    
     <div dir="rtl">
-      <div className="  flex   flex-row p-1 justify-between font-dana font-bold py-7 px-7 ">
-        <h1
-          className="bg-gradient-to-r from-teal-500 to-blue-500 bg-clip-text text-transparent
-"
-        >
-          کوئرا تسک منیجر
-        </h1>
-        <div className="flex  text-xs text-center h-full">
-          <p className=" py-3">قبلا ثبتنام کرده ای؟</p>
-          <button
-            className="m-1 rounded text-sx font-dana bg-submitColor justify-center mt-1 text-center text-white h-full w-30 px-9 py-2"
-            onClick={redirectToRegister}
-          >
-            ورود
-          </button>
-        </div>
-      </div>
-      <div className="h-screen w-screen z-20 flex flex-col mt-45 items-center fixed ">
-        <div
-          className={`  w-registerw  bg-white flex flex-col justify-center rounded-registerRad shadow-registerShadow `}
-        >
+      <div className="h-screen w-screen z-20 flex flex-col items-center fixed mt-45 justify-center">
+        <div className={`  w-registerw  bg-white flex flex-col justify-center rounded-registerRad shadow-registerShadow `}>
           <p className="text-center text-headerSize font-dana font-bold mt-6 ">
             فراموشی رمز عبور
           </p>
@@ -84,5 +67,6 @@ export const Forget = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };

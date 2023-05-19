@@ -13,10 +13,10 @@ function App() {
     
       <Routes >
           <Route path='/' element={<Layout />}>
+            <Route index element={<Login />} />
             <Route path='register' element={<Register />}  />
             <Route path="Forget" element={<Forget />} />
             <Route path="Reset" element={<Reset />} /> 
-            <Route path="Login" index element={<Login />} />
             <Route path="Board" element={<Board />} />
           </Route>
 

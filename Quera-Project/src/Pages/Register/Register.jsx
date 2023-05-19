@@ -18,7 +18,7 @@ export function Register() {
 
   return (
     <>
-      <LinkButton />
+      <LinkButton buttoncontent={"ورود"} question={"قبلا ثبت نام کرده ای؟"} path={"/"} />
       <div className="h-screen w-screen z-20 flex justify-center  mb-11 items-center fixed">
         <div
           dir="rtl"
