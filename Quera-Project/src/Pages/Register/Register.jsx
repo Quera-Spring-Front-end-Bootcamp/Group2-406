@@ -130,6 +130,7 @@ w-5 h-5 border border-uncheck rounded checked:bg-check checked:after:content-[''
                 className=" mb-6 cursor-pointer w-full h-12 text-sm rounded-md font-dana bg-submitColor text-white  "
                 type="submit"
                 value="ثبت‌نام"
+                
               />
             </div>
           </form>
