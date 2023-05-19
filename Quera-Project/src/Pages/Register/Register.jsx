@@ -4,7 +4,12 @@ import { LinkButton } from "../../components/Bottons/LinkButtons";
 
 export function Register(){
     const  {register,handleSubmit,formState:{errors}}= useForm()
-   let onSubmit=data=>console.log(data)
+   let onSubmit=(data)=>{
+    localStorage.setItem(data.email,JSON.stringify({fullname:data.fullname,password:data.password
+    }));
+    console.log(JSON.parse(localStorage.getItem(data.email)));
+   };
+
    
     return <><LinkButton/>
     <div className="h-screen w-screen z-20 flex justify-center  mb-11 items-center fixed">
