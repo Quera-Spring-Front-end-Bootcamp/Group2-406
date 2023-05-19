@@ -21,7 +21,7 @@ export const Forget = () => {
   };
 
   return (<>
-    <LinkButton buttoncontent={"ثبت نام"} question={"ثبت نام نکرده ای؟"} path={"/"} />
+    <LinkButton buttoncontent={"ورود"} question={"قبلا ثبت نام کرده ای؟"} path={"/"} />
     
     <div dir="rtl">
       <div className="h-screen w-screen z-20 flex flex-col items-center fixed mt-45 justify-center">
