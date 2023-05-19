@@ -1,3 +1,4 @@
+/* eslint-disable no-misleading-character-class */
 import { useForm } from "react-hook-form";
 import { LinkButton } from "../../components/Bottons/LinkButtons";
 

@@ -1,10 +1,7 @@
 import './App.css';
 import { Routes, Route} from "react-router-dom";
-import { Login } from './Pages/Login/Login';
-import {Forget} from "./Pages/Forget/Forget";
-import {Reset} from "./Pages/Reset/Reset";
-import {Register} from "./Pages/Register/Register";
-import {Board} from "./Pages/Board/Board";
+import { Forget, Login, Reset, Register, Board } from "./Pages";
+import {Layout} from "./components/Layout/Layout";
 
 function App() {
 
@@ -15,13 +12,13 @@ function App() {
       <div >
     
       <Routes >
-          
-          <Route path='/register' element={<Register />}  />
-          <Route path="/" element={<Forget />} />
-          <Route path="/" element={<Reset />} /> 
-          <Route path="/login" element={<Login />} />
-          <Route path="/board" element={<Board />} />
-        
+          <Route path='/' element={<Layout />}>
+            <Route path='register' element={<Register />}  />
+            <Route path="Forget" element={<Forget />} />
+            <Route path="Reset" element={<Reset />} /> 
+            <Route path="Login" index element={<Login />} />
+            <Route path="Board" element={<Board />} />
+          </Route>
 
       </Routes>
    

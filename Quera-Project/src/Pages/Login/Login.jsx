@@ -1,5 +1,6 @@
+/* eslint-disable react/no-unknown-property */
 import { useForm } from "react-hook-form";
-import {toast} from "react-toastify"
+//import {toast} from "react-toastify"
 
 export const Login = () => {
     const handleRedirectToRegister = () => {
@@ -28,7 +29,7 @@ export const Login = () => {
 
     return <div className=" h-screen w-screen z-20 flex justify-center items-center fixed">
         {/* top div  */}
-        <div class="h-51 w-1280 absolute inset-x-20 top-20 rounded-0 gap-240 flex flex-row justify-between items-center p-0">
+        <div className="h-51 w-1280 absolute inset-x-20 top-20 rounded-0 gap-240 flex flex-row justify-between items-center p-0">
             <label className="w-223 h-51 font-dana font-semibold text-2xl text-right bg-gradient-to-r from-teal-500 to-blue-500 bg-clip-text text-transparent flex-none order-1 flex-grow-0" >کوئرا تسک منیجر</label>
             <div className="flex flex-row-reverse justify-end items-center gap-x-1.5 w-53 h-10 flex-none order-0 flex-grow-0">
                 <label className="font-dana font-normal text-right text-black text-base not-italic">ثبت‌نام نکرده‌ای؟</label>
@@ -37,12 +38,13 @@ export const Login = () => {
         </div>
 
         <div dir="rtl" className=" bg-white flex flex-col justify-center align-middle rounded-registerRad shadow-registerShadow p-6 gap-7">
-            <p className="h-50 font-dana font-semibold text-3xl leading-50 text-right text-black flex-none order-0 ">به کوئرا تسک منیجر خوش برگشتی :)</p>
+            <p className="h-50 font-dana font-semibold text-3xl leading-50 text-right text-black flex-none order-0 ">به کوئرا تسک منیجر خوش برگشتی </p>
             <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)} >
 
                 {/* Email */}
                 <div className="flex flex-col mb-6"><label htmlFor="email" className="  mb-2 text-sm font-dana">ایمیل</label>
-                    <input id="email" dir="ltr" type="email" {...register("email", { required: { value: true, message: "وارد کردن ایمیل الزامی است" }, pattern: { value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, message: "ایمیل وارد شده صحیح نمی باشد" } })} className=" font-dana px-2 border border-inputBorder focus-visible:outline-none rounded-md h-10" />
+                    <input id="email" dir="ltr" type="email" {...register("email", { required: { value: true, message: "وارد کردن ایمیل الزامی است" },
+                    pattern: { value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, message: "ایمیل وارد شده صحیح نمی باشد" } })} className=" font-dana px-2 border border-inputBorder focus-visible:outline-none rounded-md h-10" />
                     <p className=" text-xxs mt-1 font-dana text-red-700">{errors.email?.message}</p></div>
 
                 {/* Password */}
