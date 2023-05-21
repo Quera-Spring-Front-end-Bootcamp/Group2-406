@@ -1,4 +1,4 @@
-import './App.css';
+import './App.module.css';
 import { Routes, Route} from "react-router-dom";
 import { Forget, Login, Reset, Register, Board } from "./Pages";
 import {Layout} from "./components/Layout/Layout";
