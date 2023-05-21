@@ -21,7 +21,7 @@ export const Login = () => {
         if (userData) {
             if (userData.password === data.password) {
                 //console.log(userData.fullname + " You Are Successfully Logged In")
-                navigate("/Board");
+                navigate("/Main");
             } else {
                 alert("ایمیل یا رمز عبور اشتباه می باشد");
             }

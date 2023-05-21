@@ -17,9 +17,6 @@ export function Register() {
       JSON.stringify({ fullname: data.fullname, password: data.password })
     );
     console.log(JSON.parse(localStorage.getItem(data.email)));
-  };
-
-  const handleClick = () => {
     navigate("/");
   };
 
@@ -138,7 +135,6 @@ export function Register() {
                 className=" mb-6 cursor-pointer w-full h-12 text-sm rounded-md font-dana bg-submitColor text-white  "
                 type="submit"
                 value="ثبت‌نام"
-                onClick={handleClick}
               />
             </div>
           </form>
