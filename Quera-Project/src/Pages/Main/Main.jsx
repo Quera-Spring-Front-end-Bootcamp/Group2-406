@@ -1,11 +1,8 @@
-import { Header } from "../../components/Main/Header/Header";
-import { Aside } from "../../components/Main/Aside.jsx/Aside";
-import { Footer } from "../../components/Main/Footer/Footer";
-import { MainComponent } from "../../components/Main/MainComponent/MainComponent";
+import { Aside, Footer, MainComponent, Header } from "../../components";
 
 export const Main = () => {
     return(
-        <div className='w-[1440px] h-[500px] mx-auto my-0 flex'>
+        <div className='w-[1440px] h-[1024px] mx-auto my-0 flex'>
            <Header />
             <MainComponent />
             <Aside />
