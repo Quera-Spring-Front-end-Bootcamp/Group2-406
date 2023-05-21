@@ -21,6 +21,9 @@ export const Forget = () => {
   };
 
   return (<>
+    <div className=' h-bgh z-0 absolute flex overflow-hidden bottom-0 '>
+      <div className='w-screen h-bgh bg-bggradient origin-top-right -skew-y-7 '></div>
+    </div>
     <LinkButton buttoncontent={"ورود"} question={"قبلا ثبت نام کرده ای؟"} path={"/"} />
     
     <div dir="rtl">

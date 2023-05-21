@@ -22,6 +22,9 @@ export function Register() {
 
   return (
     <>
+      <div className=' h-bgh z-0 absolute flex overflow-hidden bottom-0 '>
+        <div className='w-screen h-bgh bg-bggradient origin-top-right -skew-y-7 '></div>
+      </div>
       <LinkButton buttoncontent={"ورود"} question={"قبلا ثبت نام کرده ای؟"} path={"/"} />
       <div className="h-screen w-screen z-20 flex justify-center  mb-11 items-center fixed">
         <div

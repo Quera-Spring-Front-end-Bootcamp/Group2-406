@@ -14,10 +14,10 @@ function App() {
               <Route path='register' element={<Register />}  />
               <Route path="Forget" element={<Forget />} />
               <Route path="Reset" element={<Reset />} /> 
+              <Route path="Main" element={<Main />} /> 
             </Route>
         </Routes>
       </div>
-      <Main />
     </>
   )
 }
