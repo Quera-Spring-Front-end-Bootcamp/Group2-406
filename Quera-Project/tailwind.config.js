@@ -33,7 +33,9 @@ export default {
       backgroundColor:{
         "submitColor":"#208D8E",
         "check":"#B4DFDF",
-        "footBtn":"rgba(32, 141, 142, 1)"
+        "footBtn":"rgba(32, 141, 142, 1)",
+        "makeWorkspace":"rgba(211, 211, 211, 1)",
+        "asideProject":"rgba(233, 249, 255, 1)"
       },
       borderRadius:{
         "registerRad":"20px"
@@ -61,6 +63,12 @@ export default {
       },
       spacing:{
         "7%":"7.8vh"
+      },
+      textColor:{
+        "squareG1":"rgba(113, 253, 169, 1)",
+        "squareG2":"rgba(146, 255, 7, 1)",
+        "squareP":"rgba(222, 136, 253, 1)",
+        "squareR":"rgba(252, 7, 51, 1)",
       },
       
     },
