@@ -2,7 +2,7 @@
 export const MainComponent = () => {
 
     return(
-        <main>
+        <main className="w-full h-[844px]">
             <header>
                 
             </header>

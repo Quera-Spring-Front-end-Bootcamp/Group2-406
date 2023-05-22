@@ -32,8 +32,8 @@ export default {
       },
       backgroundColor:{
         "submitColor":"#208D8E",
-        "check":"#B4DFDF"
-        
+        "check":"#B4DFDF",
+        "footBtn":"rgba(32, 141, 142, 1)"
       },
       borderRadius:{
         "registerRad":"20px"
@@ -63,12 +63,6 @@ export default {
         "7%":"7.8vh"
       },
       
-      
-     
-      
-      
-      
-
     },
   },
   plugins: [],

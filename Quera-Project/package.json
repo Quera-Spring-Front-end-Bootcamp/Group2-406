@@ -16,7 +16,8 @@
     "@mui/material": "^5.13.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-hook-form": "^7.43.9"
+    "react-hook-form": "^7.43.9",
+    "set-default-browser": "^1.1.2"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",
