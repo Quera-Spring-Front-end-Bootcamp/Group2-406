@@ -1,25 +1,23 @@
-/* eslint-disable react/jsx-key */
 /* eslint-disable no-unused-vars */
 
 import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
 import SquareRoundedIcon from '@mui/icons-material/SquareRounded';
+import MeetingRoomOutlinedIcon from '@mui/icons-material/MeetingRoomOutlined';
 import { Lessons } from './lessons';
-import { MyWork } from './MyWork';
 import { useState } from 'react';
+import { ProfileAside } from './ProfileAside';
 
 export const Aside = () => {
+
     const Lesson = [
         {id : 1, nameLesson: "درس مدیریت پروژه", colorSquare: <SquareRoundedIcon className="text-squareG1"></SquareRoundedIcon>},
         {id : 2, nameLesson: "درس کامپایلر", colorSquare: <SquareRoundedIcon className="text-squareR"></SquareRoundedIcon>},
         {id : 3, nameLesson: "درس طراحی الگوریتم", colorSquare: <SquareRoundedIcon className="text-squareG2"></SquareRoundedIcon>},
-    ]
-    const WorkS = [
-        {id : 1, colorSquare: <SquareRoundedIcon className="text-squareP"></SquareRoundedIcon>},
-    ]
-    const [Mylesson, setMYlesson] = useState(Lesson);
-    const [WorkSpace, setWorkSpace] = useState(WorkS);
+        {id : 4, nameLesson: "کارهای شخصی", colorSquare: <SquareRoundedIcon className="text-squareP"></SquareRoundedIcon>},
+    ];
+    const [Mylesson, setMylesson] = useState(Lesson);
     
     return(
         <aside className='w-[330px] border-solid border-l-2 border-gray-200 h-[1024px] flex flex-col justify-start items-end'>
@@ -52,26 +50,22 @@ export const Aside = () => {
                 </article>
 
                 {/* lessons & projects */}
-                <article className="h-[650px] bg-sky-100">
+                <article className="h-[650px]">
                     {Mylesson.map((item)=>{
                         return (<Lessons key={item.id} lessonName={item.nameLesson} squareColor={item.colorSquare} />)
-                    })}
-                    {WorkSpace.map((item)=>{
-                        return (<MyWork key={item.id} squareColor={item.colorSquare}/>)
                     })}
                 </article>
             </section>
 
             {/* exit & profile */}
-            <section>
+            <section className='w-full h-[70px] mt-2'>
                 {/* profile */}
-                <article>
-                    
-                </article>
-                
-                {/* exit */}
-                <article>
+                <ProfileAside Name="نیلوفر موجودی" Abb="NM" />
 
+                {/* exit */}
+                <article className="text-stone-500 flex flex-row w-full justify-end items-end mt-2 cursor-pointer">
+                    <span className='mr-2'>خروج</span>
+                    <span><MeetingRoomOutlinedIcon></MeetingRoomOutlinedIcon></span>
                 </article>
             </section>
         </aside>
