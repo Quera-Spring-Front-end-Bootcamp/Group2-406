@@ -5,12 +5,9 @@ import { useState } from 'react';
 import { Projects } from './Projects';
 
 export function Lessons({lessonName, squareColor}) {
-    const project = [
-        {id: 1, nameProject: "پروژه اول"},
-        {id: 2, nameProject: "پروژه دوم"},
-    ];
+    const project = [];
 
-    const [Projects, setProjects] = useState(project);
+    const [projects, setprojects] = useState(project);
 
     return (
         <div>
@@ -23,10 +20,10 @@ export function Lessons({lessonName, squareColor}) {
 
             {/* projects */}
             <div className="flex flex-col mr-7">
-                {Projects.map((item) => {
+                {projects.map((item) => {
                     return(<Projects key={item.id} projectName={item.nameProject} />
                     );
-                })};
+                })}
             </div>
         </div>
     );
