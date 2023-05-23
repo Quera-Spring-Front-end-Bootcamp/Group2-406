@@ -5,21 +5,17 @@ import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
 import SquareRoundedIcon from '@mui/icons-material/SquareRounded';
 import MeetingRoomOutlinedIcon from '@mui/icons-material/MeetingRoomOutlined';
-import { Lessons } from './lessons';
+import { Lessons} from './Lessons';
 import { useState } from 'react';
 import { ProfileAside } from './ProfileAside';
+;
+export const Aside = ({setWork,Mylesson}) => {
 
-export const Aside = () => {
-
-    const Lesson = [
-        {id : 1, nameLesson: "درس مدیریت پروژه", colorSquare: <SquareRoundedIcon className="text-squareG1"></SquareRoundedIcon>},
-        {id : 2, nameLesson: "کارهای شخصی", colorSquare: <SquareRoundedIcon className="text-squareP"></SquareRoundedIcon>},
-        {id : 3, nameLesson: "درس کامپایلر", colorSquare: <SquareRoundedIcon className="text-squareR"></SquareRoundedIcon>},
-        {id : 4, nameLesson: "درس طراحی الگوریتم", colorSquare: <SquareRoundedIcon className="text-squareG2"></SquareRoundedIcon>},
-        ];
-    const [Mylesson, setMylesson] = useState(Lesson);
     
-    return(
+    
+    
+    return(<>
+       
         <aside className='w-[330px] border-solid border-l-2 border-gray-200 h-[1024px] flex flex-col justify-start items-end'>
             {/* Quera task manager name */}
             <section className="ml-16 mt-14 w-full bg-namegradient bg-clip-text text-transparent text-4xl font-dana font-extrabold tracking-tight text-headerSize text-end">کوئرا تسک منیجر</section>
@@ -42,17 +38,22 @@ export const Aside = () => {
 
                 {/* new workspace */}
                 <article className="flex flex-row justify-center items-center mt-4 h-[32px] rounded-md bg-makeWorkspace">
-                    <button className="font-dana font-semibold text-xs h-[32px] bg-makeWorkspace">
+                    <button onClick={()=>{setWork(true)}} className="font-dana font-semibold text-xs h-[32px] bg-makeWorkspace">
                         ساختن اسپیس جدید
                         <span className="text-xs"><AddBoxOutlinedIcon></AddBoxOutlinedIcon></span>
+                       
+                        
                     </button>
                     
                 </article>
-
+             
                 {/* lessons & projects */}
-                <article className="h-[650px]">
+                <article className="h-[650px] overflow-y-scroll bg-scroll">
                     {Mylesson.map((item)=>{
-                        return (<Lessons key={item.id} lessonName={item.nameLesson} squareColor={item.colorSquare} />)
+                     
+                            return (<Lessons key={item.id} lessonName={item.nameLesson} projectname={item.projects}  squareColor={<SquareRoundedIcon style={{color:item.colorSquare}}/>} />)
+                        
+                        
                     })}
                 </article>
             </section>
@@ -69,5 +70,5 @@ export const Aside = () => {
                 </article>
             </section>
         </aside>
-    );
+        </>);
 }

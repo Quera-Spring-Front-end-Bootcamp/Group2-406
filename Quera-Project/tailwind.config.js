@@ -15,7 +15,8 @@ export default {
         'registerw':"402px",
         "inputW":"354px",
         "checkw":"5px",
-        "23":"95px"
+        "23":"95px",
+        "100":"500px"
       }
       ,
       ringColor:{
@@ -55,6 +56,9 @@ export default {
       skew:{
         "7":"7deg"
       },
+      borderWidth:{
+        "1":"1px"
+      },
       fontFamily:{
         "dana":"dana"
       },
@@ -62,7 +66,8 @@ export default {
         'maxh':"530px",
       },
       spacing:{
-        "7%":"7.8vh"
+        "7%":"7.8vh",
+        "15":"60px"
       },
       textColor:{
         "squareG1":"rgba(113, 253, 169, 1)",
@@ -70,7 +75,9 @@ export default {
         "squareP":"rgba(222, 136, 253, 1)",
         "squareR":"rgba(252, 7, 51, 1)",
       },
-      
+      transitionProperty:{
+        "height":"height"
+      }
     },
   },
   plugins: [],
