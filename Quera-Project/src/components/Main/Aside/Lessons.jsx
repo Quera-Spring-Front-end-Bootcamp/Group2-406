@@ -6,14 +6,20 @@ import { Projects } from './Projects';
 import { Dropdown } from '../../Dropdown/Dropdown';
 import { ManageProjects } from './ManageProject';
 
-export function Lessons({lessonName, squareColor,projectname}) {
+export function Lessons({id,Mylesson,setMylesson,lessonName, squareColor,projectname}) {
     
 
     const [projects, setprojects] = useState(projectname);
-    const [value,setvalue]=useState("")
+    
     const [showInner,setInner]=useState(false)
     const [show,setShow]=useState(false)
-    const Addhandle=(id)=>{
+    const Removehandler=()=>{
+        setMylesson(Mylesson.filter((item)=>{
+            return id!=item.id
+        }))
+        
+    }
+    const Addhandle=(id,value,setvalue)=>{
         
       setprojects(projects.map((item)=>{
           return {id:item.id, nameProject: id== item.id ? value:item.nameProject }
@@ -28,14 +34,14 @@ export function Lessons({lessonName, squareColor,projectname}) {
                 <span>{squareColor}</span>
                 <span onClick={()=>{setInner(!showInner)}} className="font-dana mr-2 font-medium text-base mt-1 w-[260px] text-end cursor-default">{lessonName}</span>
                 <span className='relative'><span className=" text-start opacity-0 group-hover/lesson:opacity-100 transition-all duration-300">{<MoreHorizRoundedIcon onClick={()=>{setShow(!show)}} className="!text-base text-gray-600"></MoreHorizRoundedIcon>}</span>
-            <Dropdown dropdown={show} setInner={setInner} setShow={setShow} projects={projects} setprojects={setprojects} /></span>
+            <Dropdown dropdown={show} Removehandler={Removehandler} setInner={setInner} setShow={setShow} projects={projects} setprojects={setprojects} /></span>
             </div>
 
 
             {/* projects */}
             <div className="flex flex-col mr-7">
                 {projects.map((item) => {
-                    return(item.nameProject != "" ?<Projects key={item.id} showInner={showInner} projectName={item.nameProject} />:<ManageProjects Addhandle={Addhandle} id={item.id} value={value} setvalue={setvalue} key={item.id} showInner={showInner} />
+                    return(item.nameProject != "" ?<Projects key={item.id} showInner={showInner} projectName={item.nameProject} />:<ManageProjects Addhandle={Addhandle} id={item.id}   key={item.id} showInner={showInner} />
                     );
                 })}
             </div>

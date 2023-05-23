@@ -9,7 +9,7 @@ import { Lessons} from './Lessons';
 import { useState } from 'react';
 import { ProfileAside } from './ProfileAside';
 ;
-export const Aside = ({setWork,Mylesson}) => {
+export const Aside = ({setWork,Mylesson,setMylesson}) => {
 
     
     
@@ -51,7 +51,7 @@ export const Aside = ({setWork,Mylesson}) => {
                 <article className="h-[650px] overflow-y-scroll bg-scroll">
                     {Mylesson.map((item)=>{
                      
-                            return (<Lessons key={item.id} lessonName={item.nameLesson} projectname={item.projects}  squareColor={<SquareRoundedIcon style={{color:item.colorSquare}}/>} />)
+                            return (<Lessons Mylesson={Mylesson} id={item.id} setMylesson={setMylesson} key={item.id} lessonName={item.nameLesson} projectname={item.projects}  squareColor={<SquareRoundedIcon style={{color:item.colorSquare}}/>} />)
                         
                         
                     })}

@@ -25,7 +25,7 @@ export const Main = () => {
             </div>
             {/* right content */}
             <div className="w-[330] h-auto">
-            <Aside Mylesson={Mylesson}  setWork={setWork}/>
+            <Aside Mylesson={Mylesson} setMylesson={setMylesson}  setWork={setWork}/>
             </div>
         </div></>
     );
