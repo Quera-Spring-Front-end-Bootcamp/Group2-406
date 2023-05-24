@@ -1,4 +1,5 @@
 import { StatusHeader } from "./StatusHeader/StatusHeader";
+import { ProjectsBoard } from "./ProjectsBoard/ProjectsBoard";
 
 export const MainComponent = () => {
 
@@ -8,7 +9,7 @@ export const MainComponent = () => {
                 <StatusHeader/>
             </header>
             <section>
-                
+                <ProjectsBoard/>
             </section>
         </main>
     );
