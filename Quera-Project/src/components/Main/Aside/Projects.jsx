@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded';
-import { ProjectDropdown } from '../../ProjectDropdown/ProjectDropdown';
+import { ProjectDropdown } from './ProjectDropdown/ProjectDropdown';
 import { useState } from 'react';
 
 export const Projects = ({projectName,showInner,RemoveProject,id}) => {

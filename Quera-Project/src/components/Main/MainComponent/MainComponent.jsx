@@ -1,4 +1,5 @@
-import {StatusHeader} from '../StatusHeader/StatusHeader'
+import { StatusHeader } from "./StatusHeader/StatusHeader";
+
 export const MainComponent = () => {
 
     return(
