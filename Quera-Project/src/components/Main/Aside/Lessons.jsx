@@ -19,6 +19,11 @@ export function Lessons({id,Mylesson,setMylesson,lessonName, squareColor,project
         }))
         
     }
+    const RemoveProject=(id)=>{
+        setprojects(projects.filter((item)=>{
+            return id!=item.id
+        }))
+    }
     const Addhandle=(id,value,setvalue)=>{
         
       setprojects(projects.map((item)=>{
@@ -41,7 +46,7 @@ export function Lessons({id,Mylesson,setMylesson,lessonName, squareColor,project
             {/* projects */}
             <div className="flex flex-col mr-7">
                 {projects.map((item) => {
-                    return(item.nameProject != "" ?<Projects key={item.id} showInner={showInner} projectName={item.nameProject} />:<ManageProjects Addhandle={Addhandle} id={item.id}   key={item.id} showInner={showInner} />
+                    return(item.nameProject != "" ?<Projects key={item.id} RemoveProject={RemoveProject} showInner={showInner} id={item.id} projectName={item.nameProject} />:<ManageProjects Addhandle={Addhandle} id={item.id} RemoveProject={RemoveProject}   key={item.id} showInner={showInner} />
                     );
                 })}
             </div>
