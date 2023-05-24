@@ -35,7 +35,8 @@ export default {
         "check":"#B4DFDF",
         "footBtn":"rgba(32, 141, 142, 1)",
         "makeWorkspace":"rgba(211, 211, 211, 1)",
-        "asideProject":"rgba(233, 249, 255, 1)"
+        "asideProject":"rgba(233, 249, 255, 1)",
+        "shareProject":"rgb(100,100,101,0.3)"
       },
       borderRadius:{
         "registerRad":"20px"

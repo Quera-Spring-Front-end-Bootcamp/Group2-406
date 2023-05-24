@@ -16,7 +16,7 @@ export const Aside = () => {
         {id : 2, nameLesson: "کارهای شخصی", colorSquare: <SquareRoundedIcon className="text-squareP"></SquareRoundedIcon>},
         {id : 3, nameLesson: "درس کامپایلر", colorSquare: <SquareRoundedIcon className="text-squareR"></SquareRoundedIcon>},
         {id : 4, nameLesson: "درس طراحی الگوریتم", colorSquare: <SquareRoundedIcon className="text-squareG2"></SquareRoundedIcon>},
-        ];
+    ];
     const [Mylesson, setMylesson] = useState(Lesson);
     
     return(
