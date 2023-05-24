@@ -14,7 +14,8 @@ export const Main = () => {
     const [showProject,setnew]=useState(false)
     const [Mylesson, setMylesson] = useState(Lesson);
     
-    return(<>    <Newworkspace Mylesson={Mylesson} setMylesson={setMylesson}  show={showWork} setshow={setWork}/>
+    return(<>    
+    <Newworkspace Mylesson={Mylesson} setMylesson={setMylesson}  show={showWork} setshow={setWork}/>
         <div className='w-[1440px] h-[1024px] mx-auto my-0 flex flex-row'>
             {/* left content */}
             <div className="flex flex-col justify-start w-[1080px] h-auto mr-5">

@@ -3,10 +3,3 @@
 @import "tailwindcss/utilities";
 @import url('https://fonts.cdnfonts.com/css/dana');
 
-*{
-    scrollbar-width: thin;
-    
-}
-*::-webkit-scrollbar {
-    width: 15px;
-  }
