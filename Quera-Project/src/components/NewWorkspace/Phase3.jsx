@@ -1,9 +1,9 @@
 import CloseIcon from '@mui/icons-material/Close';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 export const Phase3=({setshow,setphase,watch})=>{
-    return <><div className="w-full flex flex-row mb-10"><CloseIcon onClick={()=>{setshow(false)}} />
+    return <><div className="w-full flex flex-row mb-10"><CloseIcon className=' cursor-pointer' onClick={()=>{setshow(false)}} />
     <div className="inline-flex justify-center w-full flex-row ">
-        <span className="  justify-self-center font-extrabold text-2xl tracking-tight font-dana  self-center">مرور اطلاعات</span></div><KeyboardBackspaceIcon onClick={()=>{setphase(2)}} /></div>
+        <span className="  justify-self-center font-extrabold text-2xl tracking-tight font-dana  self-center">مرور اطلاعات</span></div><KeyboardBackspaceIcon className=' cursor-pointer' onClick={()=>{setphase(2)}} /></div>
     <div className=" flex  flex-col w-full mb-15 px-1 "><p className="mb-2 font-dana text-sm"></p>
     <div style={{height:"158px",border: "0.5px solid #AAAAAA"}} className=" flex flex-col gap-6 px-3  py-4 rounded-md"><div className="flex flex-row justify-between  ">
         <p className="font-dana font-semibold  tracking-tight text-sm">نام ورک‌اسپیس</p><p className="font-dana text-sm tracking-tight font-semibold">{watch("name")}</p></div>
