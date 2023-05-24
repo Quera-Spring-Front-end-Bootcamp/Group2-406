@@ -1,4 +1,5 @@
-import { Aside, Footer,Newworkspace ,MainComponent, Header } from "../../components";
+/* eslint-disable no-unused-vars */
+import { Aside, Footer,Newworkspace ,MainComponent, Header, ShareProject } from "../../components";
 
 
 import { useState } from "react";
@@ -14,20 +15,27 @@ export const Main = () => {
     const [showProject,setnew]=useState(false)
     const [Mylesson, setMylesson] = useState(Lesson);
     
-    return(<>    
-    <Newworkspace Mylesson={Mylesson} setMylesson={setMylesson}  show={showWork} setshow={setWork}/>
-        <div className='w-[1440px] h-[1024px] mx-auto my-0 flex flex-row'>
+    return(
+    <>    
+        {/*  */}
+        <Newworkspace Mylesson={Mylesson} setMylesson={setMylesson}  show={showWork} setshow={setWork}/>
+
+        <div className='w-[1440px] h-[1024px] mx-auto my-0 flex flex-row justify-center'>
+            
+            {/* show share project page */}
+            {/* <ShareProject /> */}
+
             {/* left content */}
             <div className="flex flex-col justify-start w-[1080px] h-auto mr-5">
                 <Header />
                 <MainComponent />
                 <Footer />
-            
             </div>
+
             {/* right content */}
             <div className="w-[330] h-auto">
-            <Aside Mylesson={Mylesson} setMylesson={setMylesson}  setWork={setWork}/>
+                <Aside Mylesson={Mylesson} setMylesson={setMylesson}  setWork={setWork}/>
             </div>
-        </div></>
-    );
+        </div>
+    </>);
 }

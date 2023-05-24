@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form"
 
 export const Newworkspace=({show,setshow,setMylesson,Mylesson})=>{
     const {watch,register,reset,formState:{errors},handleSubmit}=useForm({defaultValues:{color:"#7D828C"}});
-    const[phase,setphase]=useState(1);
+    const [phase,setphase]=useState(1);
 
     const onsubmit=(data)=>{
         console.log(data)
@@ -20,7 +20,6 @@ export const Newworkspace=({show,setshow,setMylesson,Mylesson})=>{
             reset()
             setshow(false)
         }
-        
     };
 
     return (
