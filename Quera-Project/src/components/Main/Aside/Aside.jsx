@@ -41,7 +41,7 @@ export const Aside = ({setWork,Mylesson,setMylesson}) => {
                 </article>
              
                 {/* lessons & projects */}
-                <article className="h-[650px] overflow-y-scroll bg-scroll">
+                <article id='Lessons' className="h-[650px] overflow-y-scroll bg-scroll">
                     {Mylesson.map((item)=>{
                             return (<Lessons Mylesson={Mylesson} id={item.id} setMylesson={setMylesson} key={item.id} lessonName={item.nameLesson} 
                             projectname={item.projects}  squareColor={<SquareRoundedIcon style={{color:item.colorSquare}}/>} />)

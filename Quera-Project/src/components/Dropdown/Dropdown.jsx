@@ -14,7 +14,7 @@ export const Dropdown=({dropdown,setShow,setprojects,setInner,projects,Removehan
      function Remove(){
           Removehandler()
      }
- return <div dir="rtl" style={{visibility:dropdown ? "visible":"hidden",width:'190px',height:dropdown ? "220px":"0",}}  className=" z-10 overflow-hidden flex transition-all flex-col absolute  gap-3  shadow-lg rounded-lg p-3 bg-white">
+ return <div dir="rtl" onMouseDown={(e)=>{e.preventDefault()}} style={{visibility:dropdown ? "visible":"hidden",width:'190px',height:dropdown ? "220px":"0",}}  className=" z-10 overflow-hidden flex transition-all flex-col absolute  gap-3  shadow-lg rounded-lg p-3 bg-white">
       <div onClick={Addhandler}  className=" flex flex-row  cursor-pointer items-center gap-2">
       <AddCircleOutlineIcon className='!text-xl'/><div className=" my-auto font-dana  text-sm">ساختن پروژه جدید</div>
       </div>

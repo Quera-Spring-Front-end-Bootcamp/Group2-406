@@ -12,13 +12,14 @@ export const Main = () => {
         {id : 4, nameLesson: "درس طراحی الگوریتم", colorSquare:"rgba(252, 7, 51, 1)",projects:[] },
         ];
     const [showWork,setWork]=useState(false)
-    const [showProject,setnew]=useState(false)
+    
     const [Mylesson, setMylesson] = useState(Lesson);
     
     return(
     <>    
         {/*  */}
         <Newworkspace Mylesson={Mylesson} setMylesson={setMylesson}  show={showWork} setshow={setWork}/>
+        
 
         <div className='w-[1440px] h-[1024px] mx-auto my-0 flex flex-row justify-center'>
             

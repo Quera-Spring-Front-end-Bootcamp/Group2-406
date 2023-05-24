@@ -9,7 +9,7 @@ import ShareIcon from '@mui/icons-material/Share';
 export const ProjectDropdown=({show,setShow,id,RemoveProject})=>{
     
      return (
-          <div dir="rtl" style={{visibility:show ? "visible":"hidden",width:'190px',height:show ? "190px":"0",}}  className=" overflow-hidden flex transition-all flex-col absolute  gap-3  shadow-lg rounded-lg p-3 bg-white">
+          <div dir="rtl" onMouseDown={(e)=>{e.preventDefault()}} style={{visibility:show ? "visible":"hidden",width:'190px',height:show ? "190px":"0",}}  className=" overflow-hidden flex transition-all flex-col absolute  gap-3  shadow-lg rounded-lg p-3 bg-white">
                <div className=" flex flex-row  cursor-pointer items-center gap-2">
                     <AddCircleOutlineIcon className='!text-xl'/>
                     <span className=" my-auto font-dana  text-sm">ساختن تسک جدید</span>
