@@ -10,14 +10,13 @@ export function Lessons({id,Mylesson,setMylesson,lessonName, squareColor,project
     
 
     const [projects, setprojects] = useState(projectname);
-    
-    const [showInner,setInner]=useState(false)
-    const [show,setShow]=useState(false)
+    const [showInner,setInner]=useState(false);
+    const [show,setShow]=useState(false);
+
     const Removehandler=()=>{
         setMylesson(Mylesson.filter((item)=>{
             return id!=item.id
-        }))
-        
+        }))   
     }
     const RemoveProject=(id)=>{
         setprojects(projects.filter((item)=>{
@@ -25,13 +24,12 @@ export function Lessons({id,Mylesson,setMylesson,lessonName, squareColor,project
         }))
     }
     const Addhandle=(id,value,setvalue)=>{
-        
       setprojects(projects.map((item)=>{
           return {id:item.id, nameProject: id== item.id ? value:item.nameProject }
-        
       }))
       setvalue("")
     }
+    
     return (
         <div>
             {/* workSpace */}
