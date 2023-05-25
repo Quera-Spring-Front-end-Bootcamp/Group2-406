@@ -36,8 +36,10 @@ export function Lessons({id,Mylesson,setMylesson,lessonName, squareColor,project
             <div className="flex flex-row-reverse justify-start mt-4 group/lesson">
                 <span>{squareColor}</span>
                 <span onClick={()=>{setInner(!showInner)}} className="font-dana mr-2 font-medium text-base mt-1 w-[260px] text-end cursor-default">{lessonName}</span>
-                <span className='relative'><span className=" text-start opacity-0 group-hover/lesson:opacity-100 transition-all duration-300">{<MoreHorizRoundedIcon onClick={()=>{setShow(!show)}} className="!text-base text-gray-600"></MoreHorizRoundedIcon>}</span>
-            <Dropdown dropdown={show} Removehandler={Removehandler} setInner={setInner} setShow={setShow} projects={projects} setprojects={setprojects} /></span>
+                <span className='relative'>
+                    <span className=" text-start opacity-0 group-hover/lesson:opacity-100 transition-all duration-300">{<MoreHorizRoundedIcon onClick={()=>{setShow(!show)}} className="!text-base text-gray-600"></MoreHorizRoundedIcon>}</span>
+                    <Dropdown dropdown={show} Removehandler={Removehandler} setInner={setInner} setShow={setShow} projects={projects} setprojects={setprojects} />
+                </span>
             </div>
 
 
