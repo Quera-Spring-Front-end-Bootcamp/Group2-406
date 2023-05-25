@@ -1,4 +1,4 @@
-
+import { BoardView } from "./BoardView/BoardView";
 export const MainComponent = () => {
 
     return(
@@ -7,7 +7,7 @@ export const MainComponent = () => {
                 
             </header>
             <section>
-                
+                <BoardView></BoardView>
             </section>
         </main>
     );
