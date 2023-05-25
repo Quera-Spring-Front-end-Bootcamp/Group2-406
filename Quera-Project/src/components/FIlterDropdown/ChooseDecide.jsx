@@ -1,12 +1,12 @@
 export const ChooseDecide=({showDecide,setShowDecide,selectDecide,id})=>{
     return <div className="relative  flex flex-col items-center">
     <span className="absolute">
-      <ul
-      onMouseDown={(e)=>{e.preventDefault()}}
+      <ul  onMouseDown={(e)=>{e.preventDefault()}}
+      
         style={
           showDecide
-            ? { opacity: "1", height: "66px" }
-            : { opacity: "0", height: "0px" }
+            ? {display:"flex"}
+            : { display:"none"}
         }
         className="w-[107px] transition-all text-xs  flex flex-col gap-[14px]  rounded-lg bg-white drop-shadow-lg   p-2 "
       >

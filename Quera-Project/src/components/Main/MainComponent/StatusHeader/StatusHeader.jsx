@@ -14,7 +14,7 @@ export const StatusHeader = () => {
       </article>
 
       <article className=" mr-10 flex flex-row-reverse items-center justify-end">
-        <button tabIndex="0" onBlur={()=>{setShow(false)}} onClick={()=>{setShow(!show)}} className="flex flex-row-reverse items-center">
+        <button  onClick={()=>{setShow(!show)}} className="flex flex-row-reverse items-center">
           <span className="w-auto flex items-center">{<SyncAltOutlinedIcon></SyncAltOutlinedIcon>}</span>
 
           <span  className="  mr-2  flex items-center font-semibold text-[13px] font-dana">فیلترها</span>
