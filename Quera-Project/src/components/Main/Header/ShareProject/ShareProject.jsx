@@ -1,13 +1,15 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import { SharedWith } from "./SharedWith";
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import LinkOutlinedIcon from '@mui/icons-material/LinkOutlined';
 import myProfile from"../../../../assets/images/p2.jpg";
 import otherProfile from"../../../../assets/images/p1.jpg";
 
-export const ShareProject = () => {
+export const ShareProject = ({show,setShow}) => {
 
     return(
-        <div className="w-full h-[740px] bg-shareProject flex justify-center items-center absolute">{/* entire page */}
+        <div className="w-screen h-screen bg-gray-600 bg-opacity-50 z-20 fixed flex justify-center items-center" style={{visibility:show ? "visible":"hidden"}}>{/* entire page */}
 
             {/* shareProject component */}
             <section className="rounded-2xl bg-white w-[470px] h-[365px] flex flex-col items-center">
@@ -15,7 +17,7 @@ export const ShareProject = () => {
                 {/* share project name & exit */}
                 <article className="w-[90%] h-[50px] flex flex-row justify-end items-end">
                     <span className="font-dana font-medium text-xl my-0 mx-auto pl-6">به اشتراک گذاری پروژه</span>
-                    <span className=" mb-1"><CloseOutlinedIcon className="!text-base"></CloseOutlinedIcon></span>
+                    <span className=" mb-1 cursor-pointer" onClick={()=>{setShow(!show)}}><CloseOutlinedIcon className="!text-base"></CloseOutlinedIcon></span>
                 </article>
 
                 {/* email input & button */}

@@ -1,6 +1,18 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
+import { useState } from "react";
+import {AccessLevel} from "./AccessLevel";
 
 export const SharedWith = ({profileImg, userName}) => {
+
+    const accessLevel = [
+        {id:1, levelAccess:"دسترسی کامل", description:"توانایی ساختن تسک در این پروژه، ویرایش تنظیمات پروژه و حذف پروژه"},
+        {id:2, levelAccess:"دسترسی ویرایش", description:"توانایی ویرایش تسک در این پروژه و ویرایش تنظیمات پروژه. نمی‌تواند پروژه را حذف یا تسک جدید بسازد."},
+        {id:3, levelAccess:"دسترسی کامنت", description:"توانایی کامنت گذاشتن دارد. می‌تواند ستون تسک‌ها را تغییر دهد اما توانایی ویرایش تنظیمات پروژه را ندارد."},
+        {id:4, levelAccess:"فقط دسترسی مشاهده", description:"توانایی گذاشتن کامنت یا ویرایش تسک‌ها را ندارد."},
+    ];
+
+    const [Show,setShow] = useState(false);
 
     return(
         <div className="flex flex-row-reverse justify-between mt-4">
@@ -12,27 +24,8 @@ export const SharedWith = ({profileImg, userName}) => {
             </div>
 
             <div>
-                <button>
-                    
-                </button>
+                <AccessLevel show={Show} setShow={setShow} />
             </div>
-            {/* <select name="accessLevel">
-                <optgroup label="دسترسی کامل">
-                    <option value="دسترسی کامل" name="دسترسی کامل">توانایی ساختن تسک در این پروژه، ویرایش تنظیمات پروژه و حذف پروژه</option>
-                </optgroup>
-
-                <optgroup label="دسترسی ویرایش">
-                    <option>توانایی ویرایش تسک در این پروژه و ویرایش تنظیمات پروژه. نمی‌تواند پروژه را حذف یا تسک جدید بسازد.</option>
-                </optgroup>
-
-                <optgroup label="دسترسی کامنت">
-                    <option>توانایی کامنت گذاشتن دارد. می‌تواند ستون تسک‌ها را تغییر دهد اما توانایی ویرایش تنظیمات پروژه را ندارد.</option>
-                </optgroup>
-
-                <optgroup label="فقط دسترسی مشاهده">
-                    <option>توانایی گذاشتن کامنت یا ویرایش تسک‌ها را ندارد.</option>
-                </optgroup>
-            </select> */}
         </div>
     );
 }

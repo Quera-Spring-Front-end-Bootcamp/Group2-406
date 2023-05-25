@@ -3,7 +3,7 @@
 import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded';
 import { useState } from 'react';
 import { Projects } from './Projects';
-import { Dropdown } from '../../Dropdown/Dropdown';
+import { Dropdown } from './Dropdown/Dropdown';
 import { ManageProjects } from './ManageProject';
 
 export function Lessons({id,Mylesson,setMylesson,lessonName, squareColor,projectname}) {
