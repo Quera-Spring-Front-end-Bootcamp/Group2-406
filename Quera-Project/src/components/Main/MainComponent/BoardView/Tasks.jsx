@@ -4,9 +4,11 @@ import CheckBoxOutlinedIcon from '@mui/icons-material/CheckBoxOutlined';
 import OutlinedFlagRoundedIcon from '@mui/icons-material/OutlinedFlagRounded';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import TaskAltOutlinedIcon from '@mui/icons-material/TaskAltOutlined';
+import EditModal from './EditModal'
 import { useState } from 'react';
+import projectPic from "../../../../assets/images/tasks/project.jpg"
 
-export const Tasks = ({ numTasks, imageExist, projectCategory, lessonsCategory }) => {
+export const Tasks = ({ imageExist, projectCategory, lessonsCategory }) => {
 
     const [hovered, setHovered] = useState(false);
 
@@ -18,15 +20,19 @@ export const Tasks = ({ numTasks, imageExist, projectCategory, lessonsCategory }
         setHovered(false);
     };
 
-    const tasks = Array.from({ length: numTasks }, (_, i) => (
-        <div key={i}
-            className="bg-white w-[250px] h-[133px p-[10px] mb-3 box-border flex flex-col items-end border border-gray-100 shadow-md rounded-md hover:shadow-lg"
+    const [showModal, setShowModal] = useState(false);
+
+    function openModal() {
+        setShowModal(true);
+    }
+
+    return (
+        <div className="bg-white w-[250px] p-[10px] box-border flex flex-col items-end border border-gray-100 shadow-md rounded-md hover:shadow-lg"
             onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-        >
+            onMouseLeave={handleMouseLeave}>
 
             <div className={imageExist ? 'bg-black w-[230px] h-[134px] mb-[18px]' : ''}>
-                <img className={imageExist ? 'bg-black w-[230px] h-[134px] mb-[18px]' : ' invisible w-0 h-0'} src="https://s3-alpha-sig.figma.com/img/1ff2/08fc/84a00a92e59b4eaa4703234f3437659c?Expires=1685923200&Signature=UeMOqkV1w38scmGxoFI04AHpQNG969oOeo869JXVvs9qwUd5Z~9cnu0qaoNrXLzyV0vXqNm50lRfH3KS57MhgiinTWMWB3Typ8Xc1HLJmUv9FmfTMeNhfVbh6ej3~OA5Gy6CKy52bA0t8UtrcYw080a1oBBII6YvxRnX1Czhgjp77Q5h~mViPGynuTzd4qgYfaxI-fyEUVgoGm4FUfr2FGGifRe8qyhTRPjgrCcA1E5Pz7kJoes1qv~j5wec-u4WhpwzOHXaMo7Tf5x1a-u3X1ekHhsbbvXENOxUUUmAqnD8Nww-2iHjDJlDc5qAg5SGyyL-ryhXgM8yi4bfBuMUJA__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4"></img>
+                <img className={imageExist ? 'bg-black w-[230px] h-[134px] mb-[18px]' : ' invisible w-0 h-0'} src={projectPic}></img>
             </div>
 
 
@@ -70,12 +76,11 @@ export const Tasks = ({ numTasks, imageExist, projectCategory, lessonsCategory }
             </div>
 
             {/* Hidden  */}
-            <div className={hovered ? ' w-[230px] h-[28px] mt-[18px] order-5 border-t border-gray-200  flex flex-row justify-between items-center pt-4' : "invisible w-0 h-0"}>
-                <MoreHorizIcon fontSize='small' htmlColor='#323232'></MoreHorizIcon>
-                <TaskAltOutlinedIcon fontSize='small' htmlColor='#323232'></TaskAltOutlinedIcon>
+            <div className={hovered ? 'transition ease-in-out delay-150 duration-300 opacity-100 w-[230px] h-[28px] mt-[18px] order-5 border-t border-gray-200 flex flex-row justify-between items-center pt-4' : "transition ease-in-out delay-150 duration-300 opacity-0 h-[0px]"}>
+                <button onClick={openModal}><MoreHorizIcon fontSize='small' htmlColor='#323232' className={hovered ? "opacity-100" : "opacity-0"}></MoreHorizIcon></button>
+                {showModal && <EditModal className={!hovered ? setShowModal(false) : null} />}
+                <TaskAltOutlinedIcon fontSize='small' htmlColor='#323232' className={hovered ? "opacity-100" : "opacity-0"}></TaskAltOutlinedIcon>
             </div>
         </div>
-    ))
-
-    return <div>{tasks}</div>
+    )
 }

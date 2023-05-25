@@ -5,10 +5,10 @@ import { Tooltip, Button, Fade } from '@mui/material';
 
 export const BoardColumns = ({ name, children, color }) => {
     return (
-        <div className="bg-white w-[250px] h-[599px] left-[788px] gap-5 flex flex-col items-start p-0 flex-none order-5 flex-grow-0 mr-5">
+        <div className="w-[250px] h-[599px] left-[788px] gap-5 flex flex-col items-start p-0 flex-none order-5 flex-grow-0">
 
             {/* column header  */}
-            <div className={`bg-white w-[250px] h-[41px] flex flex-row items-center justify-between border-t-[1px] border-${color}-400 shadow-md rounded p-2 gap-1`}>
+            <div className={`bg-white w-[250px] h-[41px] flex flex-row items-center justify-between border-t-[1px] ${color} shadow-md rounded p-2 gap-1`}>
                 <div className="bg-white max-w-[140px] h-[25px] gap-1 flex flex-row-reverse items-center p-0 flex-none order-1 flex-grow-0">
                     <label className="w-fit font-dana font-medium text-base text-right text-gray-800">
                         {name}
@@ -19,7 +19,7 @@ export const BoardColumns = ({ name, children, color }) => {
                 </div>
 
                 {/* hidden  */}
-                <div className="w-[48px] h-[24px] gap-1 flex flex-row items-center p-0 flex-none flex-grow-0 opacity-0 hover:opacity-100">
+                <div className="w-[48px] h-[24px] gap-1 flex flex-row items-center p-0 flex-none flex-grow-0 transition ease-in-out delay-150 duration-300 opacity-0 hover:opacity-100">
                     <Tooltip title="افزودن تسک جدید" TransitionComponent={Fade} TransitionProps={{ timeout: 600 }} placement="top" arrow >
                         <AddIcon fontSize='' className="w-[24px] h-[24px] flex-none order-0 flex-grow-0"></AddIcon>
                     </Tooltip>
@@ -28,7 +28,7 @@ export const BoardColumns = ({ name, children, color }) => {
             </div>
 
             {/* tasks */}
-            <div className=" bg-red300 w-[250px] gap-[12px] flex flex-col items-start p-0 flex-none order-1 flex-grow-0">
+            <div className="w-[250px] max-h-[770px] gap-[12px] flex flex-col items-start p-0 flex-none order-1 flex-grow-0">
                 {children}
             </div>
 

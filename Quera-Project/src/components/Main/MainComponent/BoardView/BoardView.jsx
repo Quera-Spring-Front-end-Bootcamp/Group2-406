@@ -7,27 +7,28 @@ export const BoardView = () => {
 
     return (
         <Draggable handle=".my-draggable-handle" cancel=".my-draggable-container p" axis="x" >
-            <div className="my-draggable-handle absolute top-[140px] right-[379px] gap-5 flex flex-row justify-end items-start p-0 flex-none order-3 flex-grow-0 z-10"> {/*overflow*/}
+            <div className="my-draggable-handle h-[840px] absolute top-[185px] right-[395px] gap-5 flex flex-row justify-end items-start p-0 flex-none order-3 flex-grow-0 z-10"> {/*overflow*/}
 
-                <BoardColumns name={"Done"} color={"green"}>
+                <BoardColumns name={"Done"} color={"border-green-400"}>
                 </BoardColumns>
 
-                <BoardColumns name={"To Do"} color={"orange"}>
-                    <Tasks numTasks={1} imageExist={false} projectCategory={true} lessonsCategory={true} />
+                <BoardColumns name={"To Do"} color={"border-orange-400"}>
+                    <Tasks imageExist={false} projectCategory={true} lessonsCategory={true} />
                 </BoardColumns>
 
-                <BoardColumns name={"Pending"} color={"yellow"}>
-                    <Tasks numTasks={1} imageExist={false} projectCategory={true} lessonsCategory={true} />
-                    <Tasks numTasks={1} imageExist={true} projectCategory={true} lessonsCategory={false} />
-                    <Tasks numTasks={2} imageExist={false} projectCategory={true} lessonsCategory={true} />
+                <BoardColumns name={"Pending"} color={"border-yellow-400"}>
+                    <Tasks imageExist={false} projectCategory={true} lessonsCategory={true} />
+                    <Tasks imageExist={true} projectCategory={true} lessonsCategory={false} />
+                    <Tasks imageExist={false} projectCategory={true} lessonsCategory={true} />
+                    <Tasks imageExist={false} projectCategory={true} lessonsCategory={true} />
                 </BoardColumns>
 
-                <BoardColumns name={"In progress"} color={"blue"}>
+                <BoardColumns name={"In progress"} color={"border-blue-400"}>
                 </BoardColumns>
 
-                <BoardColumns name={"Open"} color={"orange"}>
-                    <Tasks numTasks={1} imageExist={false} projectCategory={true} lessonsCategory={true} />
-                    <Tasks numTasks={1} imageExist={true} projectCategory={true} lessonsCategory={false} />
+                <BoardColumns name={"Open"} color={"border-orange-400"}>
+                    <Tasks imageExist={false} projectCategory={true} lessonsCategory={true} />
+                    <Tasks imageExist={true} projectCategory={true} lessonsCategory={false} />
                 </BoardColumns>
 
                 {/* ساختن برد جدید */}
