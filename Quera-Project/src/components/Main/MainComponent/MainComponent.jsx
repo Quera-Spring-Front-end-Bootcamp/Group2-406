@@ -1,5 +1,5 @@
 import { StatusHeader } from "./StatusHeader/StatusHeader";
-import { ProjectsBoard } from "./ProjectsBoard/ProjectsBoard";
+import { ProjectsBoard } from "./ProjectsBoardParent/ProjectsBoard";
 
 export const MainComponent = () => {
 
