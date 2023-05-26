@@ -10,10 +10,12 @@ export const Main = () => {
         {id : 2, nameLesson: "کارهای شخصی", colorSquare:"rgba(146, 255, 7, 1)",projects:[] },
         {id : 3, nameLesson: "درس کامپایلر", colorSquare:"rgba(222, 136, 253, 1)",projects:[] },
         {id : 4, nameLesson: "درس طراحی الگوریتم", colorSquare:"rgba(252, 7, 51, 1)",projects:[] },
-        ];
-    const [showWork,setWork]=useState(false)
-    const [showProject,setnew]=useState(false)
+    ];
+    const [showWork,setWork]=useState(false);
+    const [showProject,setnew]=useState(false);
     const [Mylesson, setMylesson] = useState(Lesson);
+    const [showShareProject,setShareProject]=useState(false);
+    const [showShareWorkspace,setShareWorkspace]=useState(false);
 
     const [boardViewVisible, setBoardViewVisible] = useState(false);
     const [listViewVisible, setListViewVisible] = useState(false);
@@ -40,14 +42,17 @@ export const Main = () => {
         {/*  */}
         <Newworkspace Mylesson={Mylesson} setMylesson={setMylesson}  show={showWork} setshow={setWork}/>
 
+        {/* show share project page */}
+        <ShareProject show={showShareProject} setShow={setShareProject}/>
+
         <div className='w-[1440px] h-[1024px] mx-auto my-0 flex flex-row justify-center'>
-            
-            {/* show share project page */}
-            {/* <ShareProject /> */}
+
+            {/* show share workspace page */}
+            {/* <ShareWorkspace /> */}
 
             {/* left content */}
             <div className="flex flex-col justify-start w-[1080px] h-auto mr-5">
-                <Header onBoardViewClick={handleBoardViewClick} onListViewClick={handleListViewClick} onCalenderViewClick={handleCalenderViewClick} boardViewVisible={boardViewVisible} listViewVisible={listViewVisible} calenderViewVisible={calenderViewVisible} />
+                <Header show={showShareProject} setShow={setShareProject} onBoardViewClick={handleBoardViewClick} onListViewClick={handleListViewClick} onCalenderViewClick={handleCalenderViewClick} boardViewVisible={boardViewVisible} listViewVisible={listViewVisible} calenderViewVisible={calenderViewVisible} />
                 <MainComponent boardViewVisible={boardViewVisible} listViewVisible={listViewVisible} calenderViewVisible={calenderViewVisible} />
                 <Footer />
             </div>
