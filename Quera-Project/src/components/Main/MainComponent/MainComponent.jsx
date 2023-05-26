@@ -1,7 +1,8 @@
 import { StatusHeader } from "./StatusHeader/StatusHeader";
 import { BoardView } from "./BoardView/BoardView";
 
-export const MainComponent = () => {
+
+export const MainComponent = ({ boardViewVisible, listViewVisible, calenderViewVisible }) => {
 
     return(
         <main className="w-full h-[844px]">
@@ -9,7 +10,7 @@ export const MainComponent = () => {
                 <StatusHeader/>
             </header>
             <section>
-                <BoardView></BoardView>
+                {boardViewVisible && <BoardView />}  
             </section>
         </main>
     );

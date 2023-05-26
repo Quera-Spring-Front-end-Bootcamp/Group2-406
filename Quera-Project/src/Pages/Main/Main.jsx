@@ -14,7 +14,27 @@ export const Main = () => {
     const [showWork,setWork]=useState(false)
     const [showProject,setnew]=useState(false)
     const [Mylesson, setMylesson] = useState(Lesson);
-    
+
+    const [boardViewVisible, setBoardViewVisible] = useState(false);
+    const [listViewVisible, setListViewVisible] = useState(false);
+    const [calenderViewVisible, setCalenderViewVisible] = useState(false);
+
+    const handleBoardViewClick = () => {
+      setBoardViewVisible(true)
+      setListViewVisible(false)
+      setCalenderViewVisible(false)
+    }
+    const handleListViewClick = () => {
+      setBoardViewVisible(false)
+      setListViewVisible(true)
+      setCalenderViewVisible(false)
+    }
+    const handleCalenderViewClick = () => {
+      setBoardViewVisible(false)
+      setListViewVisible(false)
+      setCalenderViewVisible(true)
+    }
+
     return(
     <>    
         {/*  */}
@@ -27,8 +47,8 @@ export const Main = () => {
 
             {/* left content */}
             <div className="flex flex-col justify-start w-[1080px] h-auto mr-5">
-                <Header />
-                <MainComponent />
+                <Header onBoardViewClick={handleBoardViewClick} onListViewClick={handleListViewClick} onCalenderViewClick={handleCalenderViewClick} boardViewVisible={boardViewVisible} listViewVisible={listViewVisible} calenderViewVisible={calenderViewVisible} />
+                <MainComponent boardViewVisible={boardViewVisible} listViewVisible={listViewVisible} calenderViewVisible={calenderViewVisible} />
                 <Footer />
             </div>
 
