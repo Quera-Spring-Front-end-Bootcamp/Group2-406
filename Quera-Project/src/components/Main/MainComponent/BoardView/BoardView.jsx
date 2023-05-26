@@ -21,6 +21,8 @@ export const BoardView = () => {
                     <Tasks imageExist={true} projectCategory={true} lessonsCategory={false} />
                     <Tasks imageExist={false} projectCategory={true} lessonsCategory={true} />
                     <Tasks imageExist={false} projectCategory={true} lessonsCategory={true} />
+                    <Tasks imageExist={false} projectCategory={true} lessonsCategory={true} />
+                    <Tasks imageExist={false} projectCategory={true} lessonsCategory={true} />
                 </BoardColumns>
 
                 <BoardColumns name={"In progress"} color={"border-blue-400"}>

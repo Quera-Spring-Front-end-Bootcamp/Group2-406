@@ -28,7 +28,7 @@ export const BoardColumns = ({ name, children, color }) => {
             </div>
 
             {/* tasks */}
-            <div className="w-[250px] max-h-[770px] gap-[12px] flex flex-col items-start p-0 flex-none order-1 flex-grow-0">
+            <div className="w-[250px] max-h-[770px] gap-[12px] flex flex-col items-start p-0 flex-none order-1 flex-grow-0 overflow-y-scroll scrollbar-hide">
                 {children}
             </div>
 
