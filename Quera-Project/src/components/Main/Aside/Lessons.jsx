@@ -6,7 +6,7 @@ import { Projects } from './Projects';
 import { Dropdown } from '../../Dropdown/Dropdown';
 import { ManageProjects } from './ManageProject';
 
-export function Lessons({id,Mylesson,setMylesson,lessonName, squareColor,projectname}) {
+export function Lessons({id,Mylesson,setMylesson,lessonName,showLessons, squareColor,projectname}) {
     
 
     const [projects, setprojects] = useState(projectname);
@@ -31,7 +31,7 @@ export function Lessons({id,Mylesson,setMylesson,lessonName, squareColor,project
     }
     
     return (
-        <div>
+        <div style={{display:showLessons ? "block":"none"}}>
             {/* workSpace */}
             <div className="flex flex-row-reverse justify-start mt-4 group/lesson">
                 <span>{squareColor}</span>
