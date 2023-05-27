@@ -1,16 +1,23 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import { StatusHeader } from "./StatusHeader/StatusHeader";
 import { ProjectsBoard } from "./ProjectsBoardParent/ProjectsBoard";
+import { BoardView } from "./BoardView/BoardView";
 
-export const MainComponent = () => {
-
-    return(
-        <main className="w-full h-[844px]">
-            <header>
-                <StatusHeader/>
-            </header>
-            <section>
-                <ProjectsBoard/>
-            </section>
-        </main>
-    );
-}
+export const MainComponent = ({
+  boardViewVisible,
+  listViewVisible,
+  calenderViewVisible,
+}) => {
+  return (
+    <main className="w-full h-[844px]">
+      <header>
+        <StatusHeader />
+      </header>
+      <section>
+        {listViewVisible && <ProjectsBoard />}
+        {boardViewVisible && <BoardView />}
+      </section>
+    </main>
+  );
+};
