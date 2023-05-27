@@ -11,8 +11,8 @@ export const Less=({lessonName, squareColor,projectname})=> {
     
 
     const [projects, setprojects] = useState(projectname);
-    const [show,setShow]=useState(false)
-    const [showInner,setInner]= useState(false)
+    const [show,setShow]=useState(false);
+    const [showInner,setInner]= useState(false);
 
     return (
         <div>
@@ -29,7 +29,8 @@ export const Less=({lessonName, squareColor,projectname})=> {
             {/* projects */}
             <div className="flex flex-col mr-7">
                 {projects.map((item) => {
-                    return(item.nameProject!= ""?<Projects showInner={showInner} key={item.id} projectName={item.nameProject} />:<NewProject  showInner={showInner} key={item.id} />
+                    return(item.nameProject!= ""?<Projects showInner={showInner} key={item.id} projectName={item.nameProject} />
+                    :<NewProject  showInner={showInner} key={item.id} />
                     );
                 })}
             </div>
