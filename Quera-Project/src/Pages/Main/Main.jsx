@@ -41,8 +41,10 @@ export const Main = () => {
     <>    
         {/*  */}
         <Newworkspace Mylesson={Mylesson} setMylesson={setMylesson}  show={showWork} setshow={setWork}/>
-
+         <ShareProject show={showShareProject} setShow={setShareProject}/>
+         <ShareWorkspace show={showShareWorkspace} setShow={setShareWorkspace}/>
         <div className='w-[1440px] h-[1024px] mx-auto my-0 flex flex-row justify-center'>
+
 
             {/* left content */}
             <div className="flex flex-col justify-start w-[1080px] h-auto mr-5">
@@ -53,7 +55,7 @@ export const Main = () => {
 
             {/* right content */}
             <div className="w-[330] h-auto">
-                <Aside Mylesson={Mylesson} setMylesson={setMylesson}  setWork={setWork}/>
+                <Aside Mylesson={Mylesson} setMylesson={setMylesson} setShareProject={setShareProject} setShareWorkspace={setShareWorkspace}  setWork={setWork}/>
             </div>
         </div>
     </>);

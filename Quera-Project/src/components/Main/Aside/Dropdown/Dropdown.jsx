@@ -5,7 +5,7 @@ import InsertLinkRoundedIcon from '@mui/icons-material/InsertLinkRounded';
 import DeleteTwoToneIcon from '@mui/icons-material/DeleteTwoTone';
 import ShareIcon from '@mui/icons-material/Share';
 
-export const Dropdown=({dropdown,setShow,setprojects,setInner,projects,Removehandler})=>{
+export const Dropdown=({dropdown,setShow,setprojects,setInner,projects,Removehandler,setShareW})=>{
      const Addhandler=()=>{
           setShow(false),setInner(true)
           setprojects([...projects,{id:Date.now(),nameProject:""}])
@@ -30,7 +30,7 @@ export const Dropdown=({dropdown,setShow,setprojects,setInner,projects,Removehan
       <div onClick={Removehandler} className=" flex flex-row   cursor-pointer items-center gap-2">
       <DeleteTwoToneIcon  className=' text-red-600 !text-lg'/><div className=" text-red-600 font-dana text-sm">حذف</div>
       </div>
-      <div className=" flex flex-row  cursor-pointer bg-submitColor h-9 items-center px-3  rounded-md   gap-2">
+      <div onClick={()=>{setShow(false),setShareW(true)}} className=" flex flex-row  cursor-pointer bg-submitColor h-9 items-center px-3  rounded-md   gap-2">
       <ShareIcon className='text-white !text-lg '/><div className=" font-dana text-white text-sm">اشتراک‌گذاری </div>
       </div>
 
