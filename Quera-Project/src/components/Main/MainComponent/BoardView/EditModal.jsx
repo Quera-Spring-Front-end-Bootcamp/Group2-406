@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
 import AddIcon from '@mui/icons-material/Add';
 import ArchiveOutlinedIcon from '@mui/icons-material/ArchiveOutlined';
@@ -30,4 +31,4 @@ function EditModal(onClose) {
         </div>
     );
 }
-export default EditModal
+export default EditModal;

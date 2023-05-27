@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import { StatusHeader } from "./StatusHeader/StatusHeader";
 import { BoardView } from "./BoardView/BoardView";
 

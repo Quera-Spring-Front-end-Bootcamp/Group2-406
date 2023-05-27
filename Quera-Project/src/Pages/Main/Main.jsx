@@ -22,19 +22,19 @@ export const Main = () => {
     const [calenderViewVisible, setCalenderViewVisible] = useState(false);
 
     const handleBoardViewClick = () => {
-      setBoardViewVisible(true)
-      setListViewVisible(false)
-      setCalenderViewVisible(false)
+      setBoardViewVisible(true);
+      setListViewVisible(false);
+      setCalenderViewVisible(false);
     }
     const handleListViewClick = () => {
-      setBoardViewVisible(false)
-      setListViewVisible(true)
-      setCalenderViewVisible(false)
+      setBoardViewVisible(false);
+      setListViewVisible(true);
+      setCalenderViewVisible(false);
     }
     const handleCalenderViewClick = () => {
-      setBoardViewVisible(false)
-      setListViewVisible(false)
-      setCalenderViewVisible(true)
+      setBoardViewVisible(false);
+      setListViewVisible(false);
+      setCalenderViewVisible(true);
     }
 
     return(
