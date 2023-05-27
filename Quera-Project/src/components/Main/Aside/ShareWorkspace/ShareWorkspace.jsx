@@ -1,18 +1,18 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import { SharedWith } from "./SharedWith";
+import { SharedWithOther } from "./SharedWithOther";
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import LinkOutlinedIcon from '@mui/icons-material/LinkOutlined';
 import myProfile from"../../../../assets/images/p2.jpg";
 import otherProfile from"../../../../assets/images/p1.jpg";
 
-export const ShareProject = ({show,setShow}) => {
+export const ShareWorkspace = ({show,setShow}) => {
 
     return(
         <div className="w-screen h-screen bg-gray-600 bg-opacity-50 z-40 fixed flex justify-center items-center" style={{visibility:show ? "visible":"hidden"}}>{/* entire page */}
 
             {/* shareProject component */}
-            <section className="rounded-2xl bg-white w-[470px] h-[365px] flex flex-col items-center">
+            <section className="rounded-2xl bg-white w-[547px] h-[402px] flex flex-col items-center mb-20">
 
                 {/* share project name & exit */}
                 <article className="w-[90%] h-[50px] flex flex-row justify-end items-end">
@@ -23,8 +23,8 @@ export const ShareProject = ({show,setShow}) => {
                 {/* email input & button */}
                 <article className="w-[90%] h-auto flex flex-row mt-10 justify-center">
                     <form>
-                        <button className="text-sm font-medium font-dana text-white bg-sendEmailBtn w-[80px] h-[40px] rounded-s-md">ارسال</button>
-                        <input  dir="rtl" className="font-dana outline-none pr-2 rounded-r-md border-none bg-neutral-100 w-[340px] h-[40px]" type="email" placeholder="دعوت با ایمیل"/>
+                        <button className="text-sm font-medium font-dana text-white bg-sendEmailBtn w-[90px] h-[40px] rounded-s-md">ارسال</button>
+                        <input  dir="rtl" className="font-dana outline-none pr-2 rounded-r-md border-none bg-neutral-100 w-[400px] h-[40px]" type="email" placeholder="دعوت با ایمیل"/>
                     </form>
                 </article>
 
@@ -54,11 +54,12 @@ export const ShareProject = ({show,setShow}) => {
                                 <span className="font-dana font-normal text-sm ml-2 flex items-center">من</span>
                                 <span className="font-normal text-xs font-dana w-[109px] h-[26px] bg-cyan-200 rounded-md flex items-center justify-center">workspace owner</span>
                             </div>
-                            <button className="font-dana font-normal text-xs w-[83px] h-[27px] border-1 border-gray-200 rounded-md ">دسترسی کامل</button>
+                            <button className="font-dana font-normal text-xs w-[83px] h-[27px] border-1 border-gray-200 rounded-md" disabled>دسترسی کامل</button>
                         </div>
 
                         {/* shared with other */}
-                        <SharedWith profileImg={otherProfile} userName="sararahimi@gmail.com" />
+                        <SharedWithOther profileImg={otherProfile} userName="sararahimi@gmail.com" />
+                        <SharedWithOther profileImg={otherProfile} userName="sararahimi@gmail.com" />
                     </div>
                 </article>
             </section>

@@ -30,7 +30,7 @@ export const ProjectDropdown=({show,setShow,id,RemoveProject})=>{
                     <span className=" text-red-600 font-dana text-sm">حذف</span>
                </div>
 
-               <div className=" flex flex-row  cursor-pointer bg-submitColor h-9 items-center px-3  rounded-md   gap-2">
+               <div className=" flex flex-row  cursor-pointer bg-submitColor h-9 items-center px-3 rounded-md gap-2">
                     <ShareIcon className='text-white !text-lg '/>
                     <span className=" font-dana text-white text-sm">اشتراک‌گذاری </span>
                </div>

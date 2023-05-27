@@ -3,7 +3,7 @@
 import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded';
 import { useState } from 'react';
 import { Projects } from './Projects';
-import { Dropdown } from '../../Dropdown/Dropdown';
+import { Dropdown } from './Dropdown/Dropdown';
 import { ManageProjects } from './ManageProject';
 
 export function Lessons({id,Mylesson,setMylesson,lessonName,showLessons, squareColor,projectname}) {
@@ -44,7 +44,8 @@ export function Lessons({id,Mylesson,setMylesson,lessonName,showLessons, squareC
             {/* projects */}
             <div className="flex flex-col mr-7">
                 {projects.map((item) => {
-                    return(item.nameProject != "" ?<Projects key={item.id} RemoveProject={RemoveProject} showInner={showInner} id={item.id} projectName={item.nameProject} />:<ManageProjects Addhandle={Addhandle} id={item.id} RemoveProject={RemoveProject}   key={item.id} showInner={showInner} />
+                    return(item.nameProject != "" ?<Projects key={item.id} RemoveProject={RemoveProject} showInner={showInner} id={item.id} projectName={item.nameProject} />
+                    :<ManageProjects Addhandle={Addhandle} id={item.id} RemoveProject={RemoveProject}   key={item.id} showInner={showInner} />
                     );
                 })}
             </div>
