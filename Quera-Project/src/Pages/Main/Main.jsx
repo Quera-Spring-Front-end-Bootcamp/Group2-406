@@ -18,7 +18,7 @@ export const Main = () => {
     const [showShareWorkspace,setShareWorkspace]=useState(false);
 
     const [boardViewVisible, setBoardViewVisible] = useState(false);
-    const [listViewVisible, setListViewVisible] = useState(false);
+    const [listViewVisible, setListViewVisible] = useState(true);
     const [calenderViewVisible, setCalenderViewVisible] = useState(false);
 
     const handleBoardViewClick = () => {
