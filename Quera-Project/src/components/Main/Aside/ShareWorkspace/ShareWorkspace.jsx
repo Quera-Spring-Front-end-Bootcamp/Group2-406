@@ -6,7 +6,7 @@ import LinkOutlinedIcon from '@mui/icons-material/LinkOutlined';
 import myProfile from"../../../../assets/images/p2.jpg";
 import otherProfile from"../../../../assets/images/p1.jpg";
 
-export const ShareWorkspace = ({show,setShow}) => {
+export const ShareWorkspace = ({show, setShow, Projects}) => {
 
     return(
         <div className="w-screen h-screen bg-gray-600 bg-opacity-50 z-40 fixed flex justify-center items-center" style={{visibility:show ? "visible":"hidden"}}>{/* entire page */}
@@ -58,8 +58,8 @@ export const ShareWorkspace = ({show,setShow}) => {
                         </div>
 
                         {/* shared with other */}
-                        <SharedWithOther profileImg={otherProfile} userName="sararahimi@gmail.com" />
-                        <SharedWithOther profileImg={otherProfile} userName="sararahimi@gmail.com" />
+                        <SharedWithOther profileImg={otherProfile} userName="sararahimi@gmail.com" Projects={Projects} />
+                        <SharedWithOther profileImg={otherProfile} userName="sararahimi@gmail.com" Projects={Projects} />
                     </div>
                 </article>
             </section>

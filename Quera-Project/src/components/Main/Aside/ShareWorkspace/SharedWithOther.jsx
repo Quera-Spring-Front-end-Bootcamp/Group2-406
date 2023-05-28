@@ -5,7 +5,7 @@ import { AccessLevel } from "../../Header/ShareProject/AccessLevel";
 import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
 import { AccessProject } from "./AccessProject";
 
-export const SharedWithOther = ({profileImg, userName}) => {
+export const SharedWithOther = ({profileImg, userName, Projects}) => {
     const accessLevel = [
         {id:1, levelAccess:"دسترسی کامل", description:"توانایی ساختن تسک در این پروژه، ویرایش تنظیمات پروژه و حذف پروژه"},
         {id:2, levelAccess:"دسترسی ویرایش", description:"توانایی ویرایش تسک در این پروژه و ویرایش تنظیمات پروژه. نمی‌تواند پروژه را حذف یا تسک جدید بسازد."},
@@ -18,7 +18,6 @@ export const SharedWithOther = ({profileImg, userName}) => {
     ];
 
     const [Project, setProject] = useState(projectLevel);
-    const [Access, setAccess] = useState(accessLevel);
     const [ShowAcc,setShowAcc] = useState(false);
     const [ShowPro,setShowPro] = useState(false);
     const [Acc, setAcc] = useState("دسترسی کامل");
@@ -32,6 +31,11 @@ export const SharedWithOther = ({profileImg, userName}) => {
         setShowPro(!ShowPro);
         setPro(value);
     }
+
+    Projects.map((item) => {
+        setProject(...Project,{id: Date.now(), levelProject: toString(item)});
+    });
+        
 
     return(
         <div className="flex flex-row-reverse mt-4 items-start justify-between relative">
@@ -58,7 +62,7 @@ export const SharedWithOther = ({profileImg, userName}) => {
 
             {/* access level div */}
             <div className="w-[252px] h-[277px] z-20 flex flex-col gap-3 shadow-lg rounded-lg p-3 bg-white absolute left-0" style={{visibility: ShowAcc ? "visible":"hidden"}}>
-                {Access.map((item) => {
+                {accessLevel.map((item) => {
                     return(
                         <AccessLevel AccValue={AccValue} key={item.id} levelaccess={item.levelAccess} description={item.description}/>
                     );

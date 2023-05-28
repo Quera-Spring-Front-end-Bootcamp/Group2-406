@@ -12,13 +12,13 @@ export const Newworkspace=({show,setshow,setMylesson,Mylesson})=>{
     const onsubmit=(data)=>{
         console.log(data)
         if(phase<3){
-            setphase(phase+1)
+            setphase(phase+1);
         }
         else{
-            setMylesson([...Mylesson,{id:Date.now(),nameLesson:watch("name"),colorSquare:watch("color"),projects:[]}])
-            setphase(1)
-            reset()
-            setshow(false)
+            setMylesson([...Mylesson,{id:Date.now(),nameLesson:watch("name"),colorSquare:watch("color"),projects:[]}]);
+            setphase(1);
+            reset();
+            setshow(false);
         }
     };
 

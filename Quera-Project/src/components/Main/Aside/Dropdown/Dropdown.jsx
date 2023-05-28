@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
 import ColorLensRoundedIcon from '@mui/icons-material/ColorLensRounded';
