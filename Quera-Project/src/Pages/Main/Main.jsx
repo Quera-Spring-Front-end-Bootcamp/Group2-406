@@ -18,7 +18,7 @@ export const Main = () => {
     const [showShareWorkspace,setShareWorkspace]=useState(false);
 
     const [boardViewVisible, setBoardViewVisible] = useState(false);
-    const [listViewVisible, setListViewVisible] = useState(false);
+    const [listViewVisible, setListViewVisible] = useState(true);
     const [calenderViewVisible, setCalenderViewVisible] = useState(false);
 
     const handleBoardViewClick = () => {
@@ -41,17 +41,14 @@ export const Main = () => {
     <>    
         {/*  */}
         <Newworkspace Mylesson={Mylesson} setMylesson={setMylesson}  show={showWork} setshow={setWork}/>
-
-        {/* show share project page */}
-        <ShareProject show={showShareProject} setShow={setShareProject}/>
-
-        {/* show share workspace page */}
-        <ShareWorkspace show={showShareWorkspace} setShow={setShareWorkspace} />
-
+         <ShareProject show={showShareProject} setShow={setShareProject}/>
+         <ShareWorkspace show={showShareWorkspace} setShow={setShareWorkspace}/>
         <div className='w-[1440px] h-[1024px] mx-auto my-0 flex flex-row justify-center'>
+
 
             {/* left content */}
             <div className="flex flex-col justify-start w-[1080px] h-auto mr-5">
+              
                 <Header show={showShareProject} setShow={setShareProject} onBoardViewClick={handleBoardViewClick} onListViewClick={handleListViewClick} onCalenderViewClick={handleCalenderViewClick} boardViewVisible={boardViewVisible} listViewVisible={listViewVisible} calenderViewVisible={calenderViewVisible} />
                 <MainComponent boardViewVisible={boardViewVisible} listViewVisible={listViewVisible} calenderViewVisible={calenderViewVisible} />
                 <Footer />
@@ -59,7 +56,7 @@ export const Main = () => {
 
             {/* right content */}
             <div className="w-[330] h-auto">
-                <Aside Mylesson={Mylesson} setMylesson={setMylesson}  setWork={setWork}/>
+                <Aside Mylesson={Mylesson} setMylesson={setMylesson} setShareProject={setShareProject} setShareWorkspace={setShareWorkspace}  setWork={setWork}/>
             </div>
         </div>
     </>);

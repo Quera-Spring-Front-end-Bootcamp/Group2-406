@@ -6,7 +6,9 @@ import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined
 import SpaceDashboardOutlinedIcon from '@mui/icons-material/SpaceDashboardOutlined';
 import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
 
+
 export const Header = ({show, setShow, onBoardViewClick, onListViewClick, onCalenderViewClick, boardViewVisible, listViewVisible, calenderViewVisible }) => {
+
 
     return (
         <header className='w-full h-[110px] flex flex-row justify-end border-solid border-b-2 border-gray-200'>
