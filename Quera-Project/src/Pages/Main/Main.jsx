@@ -1,7 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { Aside, Footer,Newworkspace ,MainComponent, Header, ShareProject, ShareWorkspace } from "../../components";
-
-
+import { Aside, Footer,Newworkspace ,MainComponent, Header, ShareProject, ShareWorkspace, ShareTask } from "../../components";
 import { useState } from "react";
 
 export const Main = () => {
@@ -16,6 +14,7 @@ export const Main = () => {
 
     const [showShareProject,setShareProject]=useState(false);
     const [showShareWorkspace,setShareWorkspace]=useState(false);
+    const [showShareTask,setShareTask]=useState(false);
 
     const [boardViewVisible, setBoardViewVisible] = useState(false);
     const [listViewVisible, setListViewVisible] = useState(true);
@@ -55,6 +54,9 @@ export const Main = () => {
       })}
       <ShareWorkspace show={showShareWorkspace} setShow={setShareWorkspace} Projects={Projects} />
 
+      {/* share task page*/}
+      <ShareTask show={showShareTask} setShow={setShareTask} />
+
       <div className='w-[1440px] h-[1024px] mx-auto my-0 flex flex-row justify-center'>
           {/* left content */}
           <div className="flex flex-col justify-start w-[1080px] h-auto mr-5">
@@ -62,7 +64,7 @@ export const Main = () => {
               onCalenderViewClick={handleCalenderViewClick} boardViewVisible={boardViewVisible} listViewVisible={listViewVisible} calenderViewVisible={calenderViewVisible} />
 
               <MainComponent boardViewVisible={boardViewVisible} listViewVisible={listViewVisible} calenderViewVisible={calenderViewVisible} />
-              
+
               <Footer />
           </div>
 

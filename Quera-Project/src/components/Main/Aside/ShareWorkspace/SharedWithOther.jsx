@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import { AccessLevel } from "../../Header/ShareProject/AccessLevel";
+import { AccessLevel } from "./AccessLevel";
 import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
 import { AccessProject } from "./AccessProject";
 
