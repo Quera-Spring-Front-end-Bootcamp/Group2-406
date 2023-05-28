@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { Aside, Footer,Newworkspace ,MainComponent, Header, ShareProject, ShareWorkspace, ShareTask } from "../../components";
+import { Aside, Footer,Newworkspace ,MainComponent, Header, ShareProject, ShareWorkspace, ShareTask, NewTask } from "../../components";
 import { useState } from "react";
 
 export const Main = () => {
@@ -12,9 +12,11 @@ export const Main = () => {
     const [showWork,setWork]=useState(false);
     const [Mylesson, setMylesson] = useState(Lesson);
 
-    const [showShareProject,setShareProject]=useState(false);
-    const [showShareWorkspace,setShareWorkspace]=useState(false);
-    const [showShareTask,setShareTask]=useState(false);
+    const [showShareProject,setShareProject] = useState(false);
+    const [showShareWorkspace,setShareWorkspace] = useState(false);
+    const [showShareTask,setShareTask] = useState(false);
+
+    const [newTask,setNewTask] = useState(false);
 
     const [boardViewVisible, setBoardViewVisible] = useState(false);
     const [listViewVisible, setListViewVisible] = useState(true);
@@ -56,6 +58,9 @@ export const Main = () => {
 
       {/* share task page*/}
       <ShareTask show={showShareTask} setShow={setShareTask} />
+
+      {/* new task page*/}
+      <NewTask show={newTask} setShow={setNewTask}/>
 
       <div className='w-[1440px] h-[1024px] mx-auto my-0 flex flex-row justify-center'>
           {/* left content */}
