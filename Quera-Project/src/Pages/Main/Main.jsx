@@ -39,7 +39,6 @@ export const Main = () => {
       setCalenderViewVisible(true);
     }
 
-    let [arr,setarr] = useState([]);
     return(
     <>    
       {/* new workspace page*/}
@@ -49,7 +48,7 @@ export const Main = () => {
       <ShareProject show={showShareProject} setShow={setShareProject}/>
 
       {/* share workspace page*/} 
-      <ShareWorkspace show={showShareWorkspace} setShow={setShareWorkspace} Projects={arr} />
+      <ShareWorkspace show={showShareWorkspace} setShow={setShareWorkspace} Projects={Mylesson} />
 
       {/* share task page*/}
       <ShareTask show={showShareTask} setShow={setShareTask} />
