@@ -5,7 +5,6 @@ import ChecklistIcon from '@mui/icons-material/Checklist';
 import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
 import SpaceDashboardOutlinedIcon from '@mui/icons-material/SpaceDashboardOutlined';
 import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
-import { useState } from 'react';
 
 
 export const Header = ({show, setShow, onBoardViewClick, onListViewClick, onCalenderViewClick, boardViewVisible, listViewVisible, calenderViewVisible }) => {

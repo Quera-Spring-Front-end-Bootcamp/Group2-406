@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import AddIcon from '@mui/icons-material/Add';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
@@ -31,7 +32,6 @@ export const BoardColumns = ({ name, children, color }) => {
             <div className="w-[260px] max-h-[760px] flex flex-col items-center p-0 flex-none order-1 flex-grow-0 overflow-y-scroll scrollbar-hide">
                 {children}
             </div>
-
         </div>
     );
 }
