@@ -10,8 +10,7 @@ import ShareIcon from '@mui/icons-material/Share';
 export const Dropdown=({dropdown,setShow,setprojects,setInner,projects,Removehandler,setShareW})=>{
      const Addhandler=()=>{
           setShow(false),setInner(true)
-          setprojects([...projects,{id:Date.now(),nameProject:""}])
-          
+          setprojects([...projects,{id:Date.now(),nameProject:""}]);
      }
      function Remove(){
           Removehandler();

@@ -46,7 +46,8 @@ export default {
         "registerRad":"20px"
       },
       boxShadow:{
-        "registerShadow":"0px 12px 50px rgba(0, 0, 0, 0.18);"
+        "registerShadow":"0px 12px 50px rgba(0, 0, 0, 0.18)",
+        "newTaskShadow":"0px 12px 32px 0px rgba(0, 0, 0, 0.25)"
       },
       fontSize:{
         "headerSize":"32px",

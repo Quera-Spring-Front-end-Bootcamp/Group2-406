@@ -1,3 +1,4 @@
+/* eslint-disable no-const-assign */
 /* eslint-disable no-unused-vars */
 import { Aside, Footer,Newworkspace ,MainComponent, Header, ShareProject, ShareWorkspace, ShareTask, NewTask } from "../../components";
 import { useState } from "react";
@@ -38,8 +39,7 @@ export const Main = () => {
       setCalenderViewVisible(true);
     }
 
-    let Projects = [];
-
+    let [arr,setarr] = useState([]);
     return(
     <>    
       {/* new workspace page*/}
@@ -48,13 +48,8 @@ export const Main = () => {
       {/* share project page*/}
       <ShareProject show={showShareProject} setShow={setShareProject}/>
 
-      {/* share workspace page*/}
-      {Mylesson.map((item)=>{
-          item.projects.map((i)=>{
-            Projects += [i];
-          })
-      })}
-      <ShareWorkspace show={showShareWorkspace} setShow={setShareWorkspace} Projects={Projects} />
+      {/* share workspace page*/} 
+      <ShareWorkspace show={showShareWorkspace} setShow={setShareWorkspace} Projects={arr} />
 
       {/* share task page*/}
       <ShareTask show={showShareTask} setShow={setShareTask} />
