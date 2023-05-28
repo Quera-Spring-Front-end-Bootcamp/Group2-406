@@ -5,7 +5,7 @@ import { AccessLevel } from "./AccessLevel";
 import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
 import { AccessProject } from "./AccessProject";
 
-export const SharedWithOther = ({profileImg, userName, Projects}) => {
+export const SharedWithOther = ({profileImg, userName}) => {
     const accessLevel = [
         {id:1, levelAccess:"دسترسی کامل", description:"توانایی ساختن تسک در این پروژه، ویرایش تنظیمات پروژه و حذف پروژه"},
         {id:2, levelAccess:"دسترسی ویرایش", description:"توانایی ویرایش تسک در این پروژه و ویرایش تنظیمات پروژه. نمی‌تواند پروژه را حذف یا تسک جدید بسازد."},
@@ -31,12 +31,7 @@ export const SharedWithOther = ({profileImg, userName, Projects}) => {
         setShowPro(!ShowPro);
         setPro(value);
     }
-
-    // Projects.map((item) => {
-    //     setProject(...Project,{id: Date.now(), levelProject: toString(item)});
-    // });
         
-
     return(
         <div className="flex flex-row-reverse mt-4 items-start justify-between relative">
             {/* user name & img div */}

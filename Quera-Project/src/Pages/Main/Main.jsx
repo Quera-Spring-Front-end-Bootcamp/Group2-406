@@ -48,7 +48,7 @@ export const Main = () => {
       <ShareProject show={showShareProject} setShow={setShareProject}/>
 
       {/* share workspace page*/} 
-      <ShareWorkspace show={showShareWorkspace} setShow={setShareWorkspace} Projects={Mylesson} />
+      <ShareWorkspace show={showShareWorkspace} setShow={setShareWorkspace} />
 
       {/* share task page*/}
       <ShareTask show={showShareTask} setShow={setShareTask} />
