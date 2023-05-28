@@ -31,7 +31,7 @@ export const SharedWithOther = ({profileImg, userName}) => {
         setShowPro(!ShowPro);
         setPro(value);
     }
-        
+
     return(
         <div className="flex flex-row-reverse mt-4 items-start justify-between relative">
             {/* user name & img div */}

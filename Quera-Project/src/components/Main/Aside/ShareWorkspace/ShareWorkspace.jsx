@@ -16,7 +16,7 @@ export const ShareWorkspace = ({show, setShow}) => {
 
                 {/* share project name & exit */}
                 <article className="w-[90%] h-[50px] flex flex-row justify-end items-end">
-                    <span className="font-dana font-medium text-xl my-0 mx-auto pl-6">به اشتراک گذاری پروژه</span>
+                    <span className="font-dana font-medium text-xl my-0 mx-auto pl-6">به اشتراک گذاری ورک اسپیس</span>
                     <span className=" mb-1 cursor-pointer" onClick={()=>{setShow(!show)}}><CloseOutlinedIcon className="!text-base"></CloseOutlinedIcon></span>
                 </article>
 
