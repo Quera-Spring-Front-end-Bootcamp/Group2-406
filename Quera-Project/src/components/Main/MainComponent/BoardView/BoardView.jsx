@@ -1,4 +1,3 @@
-import Draggable from 'react-draggable';
 import { BoardColumns } from './BoardColumns';
 import { Tasks } from './Tasks';
 import AddIcon from '@mui/icons-material/Add';
