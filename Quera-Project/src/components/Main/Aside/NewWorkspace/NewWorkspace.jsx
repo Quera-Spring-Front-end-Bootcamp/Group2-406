@@ -12,19 +12,19 @@ export const Newworkspace=({show,setshow,setMylesson,Mylesson})=>{
     const onsubmit=(data)=>{
         console.log(data)
         if(phase<3){
-            setphase(phase+1)
+            setphase(phase+1);
         }
         else{
-            setMylesson([...Mylesson,{id:Date.now(),nameLesson:watch("name"),colorSquare:watch("color"),projects:[]}])
-            setphase(1)
-            reset()
-            setshow(false)
+            setMylesson([...Mylesson,{id:Date.now(),nameLesson:watch("name"),colorSquare:watch("color"),projects:[]}]);
+            setphase(1);
+            reset();
+            setshow(false);
         }
     };
 
     return (
         <form onSubmit={handleSubmit(onsubmit)}>
-            <div id="outer" onClick={(e)=>{e.target.id=="outer" &&  setshow(false)}} className={`w-screen h-screen bg-gray-600 bg-opacity-50 z-20 justify-center items-center ${show ? "flex":"hidden"} flex-col fixed `}>
+            <div id="outer" onClick={(e)=>{e.target.id=="outer" &&  setshow(false)}} className={`w-screen h-screen bg-gray-600 bg-opacity-50 z-50 justify-center items-center ${show ? "flex":"hidden"} flex-col fixed `}>
                 <div style={{maxHeight:"383px",minHeight:"294px"}} dir="rtl" className=" p-6  rounded-lg bg-white    items-center flex flex-col w-100">
                     {phase==1 ? <Phase1 errors={errors} setshow={setshow} register={register} />:phase==2 ? 
                     <Phase2 watch={watch} register={register} setshow={setshow} setphase={setphase}/>
