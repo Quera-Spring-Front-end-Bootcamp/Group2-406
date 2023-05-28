@@ -33,7 +33,10 @@ export const SharedWithOther = ({profileImg, userName}) => {
     }
 
     return(
-        <div className="flex flex-row-reverse mt-4 items-start justify-between relative">
+        <div className="flex flex-row-reverse mt-4 items-start justify-between relative" onBlur={()=>{
+            setShowAcc(false);
+            setShowPro(false);
+        }}>
             {/* user name & img div */}
             <div className="flex flex-row-reverse items-center justify-start">
                 <span className="w-[34px] h-[34px] ml-2">
@@ -56,7 +59,7 @@ export const SharedWithOther = ({profileImg, userName}) => {
             </div>
 
             {/* access level div */}
-            <div className="w-[252px] h-[277px] z-20 flex flex-col gap-3 shadow-lg rounded-lg p-3 bg-white absolute left-0" style={{visibility: ShowAcc ? "visible":"hidden"}}>
+            <div className="w-[252px] h-[277px] z-20 flex flex-col gap-3 shadow-lg rounded-lg p-3 bg-white absolute left-0" style={{visibility: ShowAcc ? "visible":"hidden"}} onMouseDown={(e)=>{e.preventDefault()}}>
                 {accessLevel.map((item) => {
                     return(
                         <AccessLevel AccValue={AccValue} key={item.id} levelaccess={item.levelAccess} description={item.description}/>
@@ -65,7 +68,7 @@ export const SharedWithOther = ({profileImg, userName}) => {
             </div>  
 
             {/* access project div */}
-            <div className="w-[150px] h-auto z-20 flex flex-col gap-3 shadow-lg rounded-lg p-3 bg-white absolute left-0" style={{visibility: ShowPro ? "visible":"hidden"}}>
+            <div className="w-[150px] h-auto z-20 flex flex-col gap-3 shadow-lg rounded-lg p-3 bg-white absolute left-0" style={{visibility: ShowPro ? "visible":"hidden"}} onMouseDown={(e)=>{e.preventDefault()}}>
                 {Project.map((item) => {
                     return(
                         <AccessProject ProValue={ProValue} key={item.id} levelProject={item.levelProject} />

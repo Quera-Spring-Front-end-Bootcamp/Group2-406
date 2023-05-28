@@ -21,7 +21,7 @@ export const SharedWith = ({profileImg, userName}) => {
     }
 
     return(
-        <div className="flex flex-row-reverse mt-4 items-start justify-between relative">
+        <div className="flex flex-row-reverse mt-4 items-start justify-between relative" onBlur={()=>{setShow(false)}}>
             <div className="flex flex-row-reverse items-center justify-start">
                 <span className="w-[34px] h-[34px] ml-2">
                     <img className="w-[34px] h-[34px] rounded-full" src={profileImg} alt="picture!" />
@@ -34,7 +34,7 @@ export const SharedWith = ({profileImg, userName}) => {
                 <KeyboardArrowDownOutlinedIcon className='!text-sm mr-2'></KeyboardArrowDownOutlinedIcon>
             </button>
 
-            <div className="w-[252px] h-[277px] z-20 flex flex-col gap-3 shadow-lg rounded-lg p-3 bg-white absolute left-0" style={{visibility: Show ? "visible":"hidden"}}>
+            <div className="w-[252px] h-[277px] z-20 flex flex-col gap-3 shadow-lg rounded-lg p-3 bg-white absolute left-0" style={{visibility: Show ? "visible":"hidden"}} onMouseDown={(e)=>{e.preventDefault()}}>
                 {accessLevel.map((item) => {
                     return(
                         <AccessLevel AccValue={AccValue} key={item.id} levelaccess={item.levelAccess} description={item.description}/>
