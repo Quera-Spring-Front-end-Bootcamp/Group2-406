@@ -3,3 +3,10 @@
 @import "tailwindcss/utilities";
 @import url('https://fonts.cdnfonts.com/css/dana');
 
+#Lessons::-webkit-scrollbar {
+    display: none;
+}
+#Lessons{
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}

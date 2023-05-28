@@ -8,8 +8,10 @@ import SquareRoundedIcon from '@mui/icons-material/SquareRounded';
 import MeetingRoomOutlinedIcon from '@mui/icons-material/MeetingRoomOutlined';
 import { Lessons} from './Lessons';
 import { ProfileAside } from './ProfileAside';
+import { useState } from 'react';
 
-export const Aside = ({setWork,Mylesson,setMylesson}) => {
+export const Aside = ({setWork,Mylesson,setMylesson,setShareProject,setShareWorkspace}) => {
+    const [showLessons,SetShowLessons]=useState(true)
 
     return(
         <aside className='bg-white w-[330px] border-solid border-l-2 border-gray-200 h-[1024px] flex flex-col justify-start items-end relative z-30'>
@@ -21,7 +23,7 @@ export const Aside = ({setWork,Mylesson,setMylesson}) => {
                 {/* workspaces */}
                 <article className="flex justify-between items-center flex-row-reverse mt-6">
                     <span className="font-dana text-base font-semibold">ورک اسپیس ها</span>
-                    <span className=""><KeyboardArrowDownOutlinedIcon></KeyboardArrowDownOutlinedIcon></span>
+                    <span className=""><KeyboardArrowDownOutlinedIcon   onClick={()=>{SetShowLessons(!showLessons)}} className=' cursor-pointer'></KeyboardArrowDownOutlinedIcon></span>
                 </article>
 
                 {/* workspace search */}
@@ -41,9 +43,9 @@ export const Aside = ({setWork,Mylesson,setMylesson}) => {
                 </article>
              
                 {/* lessons & projects */}
-                <article className="h-[650px] overflow-y-scroll bg-scroll">
+                <article id='Lessons' className="h-[650px] overflow-y-scroll bg-scroll">
                     {Mylesson.map((item)=>{
-                            return (<Lessons Mylesson={Mylesson} id={item.id} setMylesson={setMylesson} key={item.id} lessonName={item.nameLesson} 
+                            return (<Lessons setSharepr={setShareProject} setShareW={setShareWorkspace} showLessons={showLessons} Mylesson={Mylesson} id={item.id} setMylesson={setMylesson} key={item.id} lessonName={item.nameLesson} 
                             projectname={item.projects}  squareColor={<SquareRoundedIcon style={{color:item.colorSquare}}/>} />)
                     })}
                 </article>
