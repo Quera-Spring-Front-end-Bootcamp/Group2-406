@@ -32,9 +32,9 @@ export const SharedWithOther = ({profileImg, userName, Projects}) => {
         setPro(value);
     }
 
-    Projects.map((item) => {
-        setProject(...Project,{id: Date.now(), levelProject: toString(item)});
-    });
+    // Projects.map((item) => {
+    //     setProject(...Project,{id: Date.now(), levelProject: toString(item)});
+    // });
         
 
     return(
