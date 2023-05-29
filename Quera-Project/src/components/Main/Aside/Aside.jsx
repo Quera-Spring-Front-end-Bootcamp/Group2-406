@@ -23,7 +23,7 @@ export const Aside = ({setWork,Mylesson,setMylesson,setShareProject,setShareWork
                 {/* workspaces */}
                 <article className="flex justify-between items-center flex-row-reverse mt-6">
                     <span className="font-dana text-base font-semibold">ورک اسپیس ها</span>
-                    <span className=""><KeyboardArrowDownOutlinedIcon   onClick={()=>{SetShowLessons(!showLessons)}} className=' cursor-pointer'></KeyboardArrowDownOutlinedIcon></span>
+                    <span className=""><KeyboardArrowDownOutlinedIcon style={{rotate:!showLessons && "180deg" }}  onClick={()=>{SetShowLessons(!showLessons)}} className=' cursor-pointer'></KeyboardArrowDownOutlinedIcon></span>
                 </article>
 
                 {/* workspace search */}
