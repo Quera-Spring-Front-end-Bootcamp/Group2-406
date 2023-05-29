@@ -11,24 +11,22 @@ import React from "react";
 export const ProjectsBoard = () => {
   const [showProcess, setShowProcess] = useState(false);
 
-  function processHandler() {
-    setShowProcess(true);
-  }
+
   return (
     <main className="w-[1080px] mt-6 flex flex-col justify-start items-end">
       {/* First-Project area */}
       <section className=" w-full mr-5 flex flex-row-reverse text-lg font-dana   tracking-tight  text-end">
-        <span className="mt-0.5" onClick={processHandler}>
-          <ExpandCircleDownOutlinedIcon></ExpandCircleDownOutlinedIcon>
+        <span className="mt-0.5" >
+          <ExpandCircleDownOutlinedIcon onClick={()=>{setShowProcess(!showProcess)}}></ExpandCircleDownOutlinedIcon>
         </span>
         <span className="mr-2 font-extrabold">پروژه اول</span>
       </section>
       {/* Pending */}
-      <span className="w-full">
+      <span className="w-full" >
         {showProcess && (
           <Pending
             Icon={
-              <ExpandCircleDownOutlinedIcon className="text-gray-700"></ExpandCircleDownOutlinedIcon>
+              <ExpandCircleDownOutlinedIcon  className="text-gray-700"></ExpandCircleDownOutlinedIcon>
             }
             ProcessName="Pending"
             TaskNumber="۲ تسک"
