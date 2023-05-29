@@ -10,7 +10,7 @@ import { Lessons} from './Lessons';
 import { ProfileAside } from './ProfileAside';
 import { useState } from 'react';
 
-export const Aside = ({setWork,Mylesson,setMylesson,setShareProject,setShareWorkspace}) => {
+export const Aside = ({setWork,Mylesson,setMylesson,setShareProject,setShareWorkspace, nameProjects, setNameProjects}) => {
     const [showLessons,SetShowLessons]=useState(true)
 
     return(
@@ -45,7 +45,7 @@ export const Aside = ({setWork,Mylesson,setMylesson,setShareProject,setShareWork
                 {/* lessons & projects */}
                 <article id='Lessons' className="h-[650px] overflow-y-scroll bg-scroll">
                     {Mylesson.map((item)=>{
-                            return (<Lessons setSharepr={setShareProject} setShareW={setShareWorkspace} showLessons={showLessons} Mylesson={Mylesson} id={item.id} setMylesson={setMylesson} key={item.id} lessonName={item.nameLesson} 
+                            return (<Lessons nameProjects={nameProjects} setNameProjects={setNameProjects} setSharepr={setShareProject} setShareW={setShareWorkspace} showLessons={showLessons} Mylesson={Mylesson} id={item.id} setMylesson={setMylesson} key={item.id} lessonName={item.nameLesson} 
                             projectname={item.projects}  squareColor={<SquareRoundedIcon style={{color:item.colorSquare}}/>} />)
                     })}
                 </article>

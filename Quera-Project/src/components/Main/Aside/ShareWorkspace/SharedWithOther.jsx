@@ -5,7 +5,7 @@ import { AccessLevel } from "./AccessLevel";
 import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
 import { AccessProject } from "./AccessProject";
 
-export const SharedWithOther = ({profileImg, userName}) => {
+export const SharedWithOther = ({profileImg, userName,nameProjects, pro, setPro, Pro, id}) => {
     const accessLevel = [
         {id:1, levelAccess:"دسترسی کامل", description:"توانایی ساختن تسک در این پروژه، ویرایش تنظیمات پروژه و حذف پروژه"},
         {id:2, levelAccess:"دسترسی ویرایش", description:"توانایی ویرایش تسک در این پروژه و ویرایش تنظیمات پروژه. نمی‌تواند پروژه را حذف یا تسک جدید بسازد."},
@@ -21,7 +21,7 @@ export const SharedWithOther = ({profileImg, userName}) => {
     const [ShowAcc,setShowAcc] = useState(false);
     const [ShowPro,setShowPro] = useState(false);
     const [Acc, setAcc] = useState("دسترسی کامل");
-    const [Pro, setPro] = useState("همه پروژه ها");
+    
 
     const AccValue = (value) => {
         setShowAcc(!ShowAcc);
@@ -29,7 +29,11 @@ export const SharedWithOther = ({profileImg, userName}) => {
     }
     const ProValue = (value) => {
         setShowPro(!ShowPro);
-        setPro(value);
+        setPro(Pro.map((item)=> {
+            return(
+                {id : item.id, profileImg : item.profileImg, username : item.username, pro : id == item.id ? value : item.pro}
+            );
+        }))
     }
 
     return(
@@ -53,7 +57,7 @@ export const SharedWithOther = ({profileImg, userName}) => {
                 </button>
 
                 <button className="font-dana font-normal text-xs w-[111px] h-[27px] border-1 border-gray-200 rounded-md flex flex-row-reverse justify-center items-center" onClick={() => {setShowPro(!ShowPro)}}>
-                    {Pro}
+                    {pro}
                     <KeyboardArrowDownOutlinedIcon className='!text-sm mr-2'></KeyboardArrowDownOutlinedIcon>
                 </button>
             </div>
@@ -69,9 +73,10 @@ export const SharedWithOther = ({profileImg, userName}) => {
 
             {/* access project div */}
             <div className="w-[150px] h-auto z-20 flex flex-col gap-3 shadow-lg rounded-lg p-3 bg-white absolute left-0" style={{visibility: ShowPro ? "visible":"hidden"}} onMouseDown={(e)=>{e.preventDefault()}}>
-                {Project.map((item) => {
+                <AccessProject ProValue={ProValue} levelProject={"همه پروژه ها"} />
+                {nameProjects.map((item) => {
                     return(
-                        <AccessProject ProValue={ProValue} key={item.id} levelProject={item.levelProject} />
+                        <AccessProject ProValue={ProValue} key={item.id} levelProject={item.nameProject} />
                     );
                 })}
             </div> 
