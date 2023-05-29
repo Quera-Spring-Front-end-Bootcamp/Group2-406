@@ -19,7 +19,7 @@ export const Main = () => {
 
     const [nameProjects, setNameProjects] = useState([]);
 
-    const [newTask,setNewTask] = useState(false);
+    const [ShowNewTask,setShowNewTask] = useState(false);
 
     const [boardViewVisible, setBoardViewVisible] = useState(false);
     const [listViewVisible, setListViewVisible] = useState(true);
@@ -56,7 +56,7 @@ export const Main = () => {
       <ShareTask show={showShareTask} setShow={setShareTask} />
 
       {/* new task page*/}
-      <NewTask show={newTask} setShow={setNewTask}/>
+      <NewTask show={ShowNewTask} setShow={setShowNewTask}/>
 
       <div className='w-[1440px] h-[1024px] mx-auto my-0 flex flex-row justify-center'>
           {/* left content */}
@@ -66,7 +66,7 @@ export const Main = () => {
 
               <MainComponent boardViewVisible={boardViewVisible} listViewVisible={listViewVisible} calenderViewVisible={calenderViewVisible} />
 
-              <Footer />
+              <Footer show={ShowNewTask} setShow={setShowNewTask} />
           </div>
 
           {/* right content */}
