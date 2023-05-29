@@ -40,7 +40,7 @@ export function Lessons({id,Mylesson,setMylesson,lessonName,showLessons, squareC
                     <span className=" text-start opacity-0 group-hover/lesson:opacity-100 transition-all duration-300">
                         {<MoreHorizRoundedIcon tabIndex="0" onBlur={()=>{setShow(false)}} onClick={()=>{setShow(!show)}} className="!text-base focus:outline-none text-gray-600"></MoreHorizRoundedIcon>}
                     </span>
-                    <Dropdown nameProjects={nameProjects} setNameProjects={setNameProjects} setShareW={setShareW} dropdown={show} Removehandler={Removehandler} setInner={setInner} setShow={setShow} projects={projects} setprojects={setprojects} />
+                    <Dropdown setNameProjects={setNameProjects} setShareW={setShareW} dropdown={show} Removehandler={Removehandler} setInner={setInner} setShow={setShow} projects={projects} setprojects={setprojects} />
                 </span>
             </div>
 

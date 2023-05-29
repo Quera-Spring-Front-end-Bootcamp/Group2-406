@@ -7,13 +7,10 @@ import InsertLinkRoundedIcon from '@mui/icons-material/InsertLinkRounded';
 import DeleteTwoToneIcon from '@mui/icons-material/DeleteTwoTone';
 import ShareIcon from '@mui/icons-material/Share';
 
-export const Dropdown=({dropdown,setShow,setprojects,setInner,projects,Removehandler,setShareW, nameProjects, setNameProjects})=>{
+export const Dropdown=({dropdown,setShow,setprojects,setInner,projects,Removehandler,setShareW, setNameProjects})=>{
      const Addhandler=()=>{
           setShow(false),setInner(true)
           setprojects([...projects,{id:Date.now(),nameProject:""}]);
-     }
-     function Remove(){
-          Removehandler();
      }
      function share(){
           setShow(false);

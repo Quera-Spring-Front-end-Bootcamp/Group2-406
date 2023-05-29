@@ -18,9 +18,6 @@ export const Main = () => {
     const [showShareTask,setShareTask] = useState(false);
 
     const [nameProjects, setNameProjects] = useState([]);
-    useEffect(() => {
-      console.log(nameProjects);
-    }, [nameProjects])
 
     const [newTask,setNewTask] = useState(false);
 
@@ -74,7 +71,7 @@ export const Main = () => {
 
           {/* right content */}
           <div className="w-[330] h-auto">
-              <Aside nameProjects={nameProjects} setNameProjects={setNameProjects} Mylesson={Mylesson} setMylesson={setMylesson} setShareProject={setShareProject} setShareWorkspace={setShareWorkspace}  setWork={setWork} />
+              <Aside setNameProjects={setNameProjects} Mylesson={Mylesson} setMylesson={setMylesson} setShareProject={setShareProject} setShareWorkspace={setShareWorkspace}  setWork={setWork} />
           </div>
       </div>
     </>);
