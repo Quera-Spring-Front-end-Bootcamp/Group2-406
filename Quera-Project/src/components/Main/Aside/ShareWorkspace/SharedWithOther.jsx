@@ -1,11 +1,11 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import { AccessLevel } from "../../Header/ShareProject/AccessLevel";
+import { AccessLevel } from "./AccessLevel";
 import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
 import { AccessProject } from "./AccessProject";
 
-export const SharedWithOther = ({profileImg, userName}) => {
+export const SharedWithOther = ({profileImg, userName,nameProjects, pro, setPro, Pro, id}) => {
     const accessLevel = [
         {id:1, levelAccess:"دسترسی کامل", description:"توانایی ساختن تسک در این پروژه، ویرایش تنظیمات پروژه و حذف پروژه"},
         {id:2, levelAccess:"دسترسی ویرایش", description:"توانایی ویرایش تسک در این پروژه و ویرایش تنظیمات پروژه. نمی‌تواند پروژه را حذف یا تسک جدید بسازد."},
@@ -18,11 +18,10 @@ export const SharedWithOther = ({profileImg, userName}) => {
     ];
 
     const [Project, setProject] = useState(projectLevel);
-    const [Access, setAccess] = useState(accessLevel);
     const [ShowAcc,setShowAcc] = useState(false);
     const [ShowPro,setShowPro] = useState(false);
     const [Acc, setAcc] = useState("دسترسی کامل");
-    const [Pro, setPro] = useState("همه پروژه ها");
+    
 
     const AccValue = (value) => {
         setShowAcc(!ShowAcc);
@@ -30,11 +29,18 @@ export const SharedWithOther = ({profileImg, userName}) => {
     }
     const ProValue = (value) => {
         setShowPro(!ShowPro);
-        setPro(value);
+        setPro(Pro.map((item)=> {
+            return(
+                {id : item.id, profileImg : item.profileImg, username : item.username, pro : id == item.id ? value : item.pro}
+            );
+        }))
     }
 
     return(
-        <div className="flex flex-row-reverse mt-4 items-start justify-between relative">
+        <div className="flex flex-row-reverse mt-4 items-start justify-between relative" onBlur={()=>{
+            setShowAcc(false);
+            setShowPro(false);
+        }}>
             {/* user name & img div */}
             <div className="flex flex-row-reverse items-center justify-start">
                 <span className="w-[34px] h-[34px] ml-2">
@@ -51,14 +57,14 @@ export const SharedWithOther = ({profileImg, userName}) => {
                 </button>
 
                 <button className="font-dana font-normal text-xs w-[111px] h-[27px] border-1 border-gray-200 rounded-md flex flex-row-reverse justify-center items-center" onClick={() => {setShowPro(!ShowPro)}}>
-                    {Pro}
+                    {pro}
                     <KeyboardArrowDownOutlinedIcon className='!text-sm mr-2'></KeyboardArrowDownOutlinedIcon>
                 </button>
             </div>
 
             {/* access level div */}
-            <div className="w-[252px] h-[277px] z-20 flex flex-col gap-3 shadow-lg rounded-lg p-3 bg-white absolute left-0" style={{visibility: ShowAcc ? "visible":"hidden"}}>
-                {Access.map((item) => {
+            <div className="w-[252px] h-[277px] z-20 flex flex-col gap-3 shadow-lg rounded-lg p-3 bg-white absolute left-0" style={{visibility: ShowAcc ? "visible":"hidden"}} onMouseDown={(e)=>{e.preventDefault()}}>
+                {accessLevel.map((item) => {
                     return(
                         <AccessLevel AccValue={AccValue} key={item.id} levelaccess={item.levelAccess} description={item.description}/>
                     );
@@ -66,10 +72,11 @@ export const SharedWithOther = ({profileImg, userName}) => {
             </div>  
 
             {/* access project div */}
-            <div className="w-[150px] h-auto z-20 flex flex-col gap-3 shadow-lg rounded-lg p-3 bg-white absolute left-0" style={{visibility: ShowPro ? "visible":"hidden"}}>
-                {Project.map((item) => {
+            <div className="w-[150px] h-auto z-20 flex flex-col gap-3 shadow-lg rounded-lg p-3 bg-white absolute left-0" style={{visibility: ShowPro ? "visible":"hidden"}} onMouseDown={(e)=>{e.preventDefault()}}>
+                <AccessProject ProValue={ProValue} levelProject={"همه پروژه ها"} />
+                {nameProjects.map((item) => {
                     return(
-                        <AccessProject ProValue={ProValue} key={item.id} levelProject={item.levelProject} />
+                        <AccessProject ProValue={ProValue} key={item.id} levelProject={item.nameProject} />
                     );
                 })}
             </div> 

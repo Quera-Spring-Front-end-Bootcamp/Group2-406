@@ -1,9 +1,9 @@
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import SyncAltOutlinedIcon from '@mui/icons-material/SyncAltOutlined';
-import { FilterDropdown } from "../../../FIlterDropdown/FilterDropdown";
+import { FilterDropdown } from "../FIlterDropdown/FilterDropdown";
 import { useState } from "react";
 export const StatusHeader = () => {
-  const [show,setShow]=useState(false)
+  const [show,setShow]=useState(false);
   return (
     <section className="w-full h-[60px] flex flex-row-reverse  border-solid border-b-2 border-gray-200">
       <article>
@@ -18,7 +18,6 @@ export const StatusHeader = () => {
           <span className="w-auto flex items-center">{<SyncAltOutlinedIcon></SyncAltOutlinedIcon>}</span>
 
           <span  className="  mr-2  flex items-center font-semibold text-[13px] font-dana">فیلترها</span>
-          
           
         </button><span className="relative flex justify-center "><FilterDropdown show={show} setShow={setShow}/></span>
 

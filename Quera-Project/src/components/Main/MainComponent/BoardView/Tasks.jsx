@@ -27,9 +27,10 @@ export const Tasks = ({ imageExist, projectCategory, lessonsCategory }) => {
     }
 
     return (
-        <div className="bg-white w-[250px] p-[10px] box-border flex flex-col items-end border border-gray-100 shadow-md rounded-md hover:shadow-lg"
+        <div className="bg-white w-[250px] mb-[11px] p-[10px] box-border flex flex-col items-end border border-gray-100 shadow-md rounded-md hover:shadow-lg"
             onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}>
+            onMouseLeave={handleMouseLeave}
+            dir='ltr'>
 
             <div className={imageExist ? 'bg-black w-[230px] h-[134px] mb-[18px]' : ''}>
                 <img className={imageExist ? 'bg-black w-[230px] h-[134px] mb-[18px]' : ' invisible w-0 h-0'} src={projectPic}></img>

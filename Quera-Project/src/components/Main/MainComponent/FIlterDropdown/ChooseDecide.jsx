@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 export const ChooseDecide=({showDecide,setShowDecide,selectDecide,id})=>{
     return <div className="relative  flex flex-col items-center">
     <span className="absolute">
@@ -13,7 +14,7 @@ export const ChooseDecide=({showDecide,setShowDecide,selectDecide,id})=>{
         <li
           onClick={() => {
             setShowDecide(false);
-            selectDecide(id,"است")
+            selectDecide(id,"است");
           }}
           className=" cursor-pointer hover:opacity-70"
         >

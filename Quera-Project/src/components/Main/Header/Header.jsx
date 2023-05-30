@@ -6,7 +6,9 @@ import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined
 import SpaceDashboardOutlinedIcon from '@mui/icons-material/SpaceDashboardOutlined';
 import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
 
+
 export const Header = ({show, setShow, onBoardViewClick, onListViewClick, onCalenderViewClick, boardViewVisible, listViewVisible, calenderViewVisible }) => {
+
 
     return (
         <header className='w-full h-[110px] flex flex-row justify-end border-solid border-b-2 border-gray-200'>
@@ -24,7 +26,7 @@ export const Header = ({show, setShow, onBoardViewClick, onListViewClick, onCale
                 </article>
 
                 {/* column display */}
-                <article className={`ml-3 mr-0 pb-7 flex flex-row justify-end items-center w-[160px] h-[25px] cursor-pointer${boardViewVisible ? 'border-solid border-b-2 border-teal-500' : ''}`} onClick={onBoardViewClick}>
+                <article className={`ml-3 mr-0 pb-7 flex flex-row justify-end items-center w-[150px] h-[25px] cursor-pointer ${boardViewVisible ? 'border-solid border-b-2 border-teal-500' : ''}`} onClick={onBoardViewClick}>
                     <span className={`w-auto h-5 mr-2 font-semibold flex items-center pl-4 border-solid border-l-2 border-gray-200 font-dana ${boardViewVisible ? 'text-teal-500' : ''}`}>نمایش ستونی</span>
                     <span className={`w-auto h-5 mr-2 flex items-center ${boardViewVisible ? ' text-teal-500' : ''}`}>{<SpaceDashboardOutlinedIcon></SpaceDashboardOutlinedIcon>}</span>
                 </article>

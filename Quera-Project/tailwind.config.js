@@ -2,7 +2,8 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html",
-  "./src/**/*.{js,ts,jsx,tsx}",],
+  "./src/**/*.{js,ts,jsx,tsx}",
+  ],
   theme: {
     extend: {
       height:{
@@ -45,7 +46,8 @@ export default {
         "registerRad":"20px"
       },
       boxShadow:{
-        "registerShadow":"0px 12px 50px rgba(0, 0, 0, 0.18);"
+        "registerShadow":"0px 12px 50px rgba(0, 0, 0, 0.18)",
+        "newTaskShadow":"0px 12px 32px 0px rgba(0, 0, 0, 0.25)"
       },
       fontSize:{
         "headerSize":"32px",
@@ -83,6 +85,8 @@ export default {
       }
     },
   },
-  
+  plugins: [
+    require('tailwind-scrollbar-hide')
+  ]
 }
 
