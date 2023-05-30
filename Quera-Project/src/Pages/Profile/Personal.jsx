@@ -19,7 +19,7 @@ export const Personal=()=>{
         <span className="rounded-full bg-yellow-200 w-[100px] h-[100px] font-medium ml-2 flex justify-center items-center  text-[34px]">NM</span>
             <div className="flex flex-col gap-3   items-start">
                 
-            <button className=" p-[10px]  border border-[#208D8E] rounded-lg text-[#208D8E] text-xl">ویرایش تصویر پروفایل</button><p className=" text-[#8A8989]  text-xs">این تصویر برای عموم قابل نمایش است.</p>
+            <div className=" p-[10px]  border border-[#208D8E] rounded-lg text-[#208D8E] text-xl">ویرایش تصویر پروفایل</div><p className=" text-[#8A8989]  text-xs">این تصویر برای عموم قابل نمایش است.</p>
             </div>
             </div>
             </section>
