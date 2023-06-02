@@ -6,7 +6,7 @@ import LinkOutlinedIcon from '@mui/icons-material/LinkOutlined';
 import myProfile from"../../../../assets/images/p2.jpg";
 import otherProfile from"../../../../assets/images/p1.jpg";
 
-export const ShareWorkspace = ({show, setShow, Projects}) => {
+export const ShareWorkspace = ({show, setShow}) => {
 
     return(
         <div className="w-screen h-screen bg-gray-600 bg-opacity-50 z-40 fixed flex justify-center items-center" style={{visibility:show ? "visible":"hidden"}}>{/* entire page */}
@@ -16,7 +16,7 @@ export const ShareWorkspace = ({show, setShow, Projects}) => {
 
                 {/* share project name & exit */}
                 <article className="w-[90%] h-[50px] flex flex-row justify-end items-end">
-                    <span className="font-dana font-medium text-xl my-0 mx-auto pl-6">به اشتراک گذاری پروژه</span>
+                    <span className="font-dana font-medium text-xl my-0 mx-auto pl-6">به اشتراک گذاری ورک اسپیس</span>
                     <span className=" mb-1 cursor-pointer" onClick={()=>{setShow(!show)}}><CloseOutlinedIcon className="!text-base"></CloseOutlinedIcon></span>
                 </article>
 
@@ -58,8 +58,8 @@ export const ShareWorkspace = ({show, setShow, Projects}) => {
                         </div>
 
                         {/* shared with other */}
-                        <SharedWithOther profileImg={otherProfile} userName="sararahimi@gmail.com" Projects={Projects} />
-                        <SharedWithOther profileImg={otherProfile} userName="sararahimi@gmail.com" Projects={Projects} />
+                        <SharedWithOther profileImg={otherProfile} userName="sararahimi@gmail.com" />
+                        <SharedWithOther profileImg={otherProfile} userName="sararahimi@gmail.com" />
                     </div>
                 </article>
             </section>
