@@ -20,7 +20,7 @@ export const NewTask = ({show, setShow}) => {
                         <span><SquareRoundedIcon className="text-gray-300 !text-xl" /></span>
                         <p className='font-dana text-2xl font-medium mr-3'>عنوان تسک</p>
                     </div>
-                    <span><CloseOutlinedIcon className='text-gray-400'></CloseOutlinedIcon></span>
+                    <span onClick={()=>{setShow(!show)}}><CloseOutlinedIcon className='text-gray-400 cursor-pointer'></CloseOutlinedIcon></span>
                 </article>
 
                 {/* detected project and user */}
@@ -52,15 +52,15 @@ export const NewTask = ({show, setShow}) => {
                 {/* other work on task & create task */}
                 <article className='w-full flex flex-row-reverse justify-between items-center'>
                     <div className='flex flex-row-reverse items-center justify-start'>
-                        <span className="border-dashed border-1 border-gray-400 h-[50px] w-[50px] rounded-full mr-2 flex justify-center items-center"><FlagOutlinedIcon className='text-neutral-400 !text-3xl'></FlagOutlinedIcon></span>
-                        <span className="border-dashed border-1 border-gray-400 h-[50px] w-[50px] rounded-full mx-6 flex justify-center items-center"><CalendarMonthOutlinedIcon className='text-neutral-400 !text-3xl'></CalendarMonthOutlinedIcon></span>
-                        <span className="border-dashed border-1 border-gray-400 h-[50px] w-[50px] rounded-full ml-6 flex justify-center items-center"><LocalOfferOutlinedIcon className='text-neutral-400 !text-3xl'></LocalOfferOutlinedIcon></span>
-                        <span className='relative h-[50px] w-[50px] flex items-end'>
+                        <span className="border-dashed border-1 border-gray-400 h-[50px] w-[50px] rounded-full mr-2 flex justify-center items-center cursor-pointer"><FlagOutlinedIcon className='text-neutral-400 !text-3xl'></FlagOutlinedIcon></span>
+                        <span className="border-dashed border-1 border-gray-400 h-[50px] w-[50px] rounded-full mx-6 flex justify-center items-center cursor-pointer"><CalendarMonthOutlinedIcon className='text-neutral-400 !text-3xl'></CalendarMonthOutlinedIcon></span>
+                        <span className="border-dashed border-1 border-gray-400 h-[50px] w-[50px] rounded-full ml-6 flex justify-center items-center cursor-pointer"><LocalOfferOutlinedIcon className='text-neutral-400 !text-3xl'></LocalOfferOutlinedIcon></span>
+                        <span className='h-[60px] w-[50px] cursor-pointer flex items-end relative'>
+                            <span className='bg-teal-500 w-[26px] h-[26px] rounded-full flex justify-center items-center right-0 top-0 absolute'>2</span>
                             <VisibilityOutlinedIcon className='text-neutral-400 !text-5xl'></VisibilityOutlinedIcon>
-                            <span className='absulute bg-footBtn w-[26px] h-[26px] rounded-full flex justify-center items-center'>2</span>
                         </span>
                     </div>
-                    <button className='text-white bg-footBtn font-dana font-medium text-xs w-[125px] h-[32px] rounded'>ساختن تسک</button>
+                    <button className='text-white bg-footBtn font-dana font-medium text-xs w-[125px] h-[32px] rounded' onClick={()=>{setShow(!show)}}>ساختن تسک</button>
                 </article>
             </section>
         </div>
