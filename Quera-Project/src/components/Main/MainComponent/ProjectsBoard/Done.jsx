@@ -15,7 +15,7 @@ export const Done = ({
   Priority,
   Description,
 }) => {
-  const [showTask, setShowTask] = useState(false);
+  const [showTask, setShowTask] = useState(true);
 
  
   return (
