@@ -5,8 +5,8 @@ import { Verify } from "./Verify"
 import { Settings } from "./Settings"
 import { Route,Routes } from "react-router-dom"
  export const Profile=()=>{
-    const [page,setPage]=useState(1)
-    return <><ProfileAside page={page} setPage={setPage}/>
+    
+    return <><ProfileAside/>
        <Routes>
          <Route path="Personal" element={<Personal/>}/>
          <Route path="Verify" element={<Verify/>}/>
