@@ -8,9 +8,11 @@ import FlagOutlinedIcon from '@mui/icons-material/FlagOutlined';
 import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
 import LocalOfferOutlinedIcon from '@mui/icons-material/LocalOfferOutlined';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
+import { TagDrop } from '../TagOptions/TagDrop';
+import { useState } from 'react';
 
-export const NewTask = ({show, setShow}) => {
-
+export const NewTask = ({show, setShow,TagDetails,setDetails}) => {
+     const [showTag,setShowTag]=useState(false)
     return(
         <div className="w-screen h-screen fixed flex z-40 justify-center items-center" style={{visibility:show ? "visible":"hidden"}}>
             <section className="w-[1166px] h-[576px] shadow-newTaskShadow rounded-3xl bg-white flex flex-col p-10">
@@ -54,7 +56,7 @@ export const NewTask = ({show, setShow}) => {
                     <div className='flex flex-row-reverse items-center justify-start'>
                         <span className="border-dashed border-1 border-gray-400 h-[50px] w-[50px] rounded-full mr-2 flex justify-center items-center cursor-pointer"><FlagOutlinedIcon className='text-neutral-400 !text-3xl'></FlagOutlinedIcon></span>
                         <span className="border-dashed border-1 border-gray-400 h-[50px] w-[50px] rounded-full mx-6 flex justify-center items-center cursor-pointer"><CalendarMonthOutlinedIcon className='text-neutral-400 !text-3xl'></CalendarMonthOutlinedIcon></span>
-                        <span className="border-dashed border-1 border-gray-400 h-[50px] w-[50px] rounded-full ml-6 flex justify-center items-center cursor-pointer"><LocalOfferOutlinedIcon className='text-neutral-400 !text-3xl'></LocalOfferOutlinedIcon></span>
+                        <span className='flex flex-col justify-center'><span className='relative flex justify-center z-30 -translate-y-40'><TagDrop setShowTag={setShowTag} TagDetails={TagDetails} setDetails={setDetails} showTag={showTag}/></span><span onClick={()=>{setShowTag(!showTag)}} className="border-dashed border-1 border-gray-400 h-[50px] w-[50px] rounded-full ml-6 flex justify-center items-center cursor-pointer"><LocalOfferOutlinedIcon  className='text-neutral-400 !text-3xl'></LocalOfferOutlinedIcon></span></span>
                         <span className='h-[60px] w-[50px] cursor-pointer flex items-end relative'>
                             <span className='bg-teal-500 w-[26px] h-[26px] rounded-full flex justify-center items-center right-0 top-0 absolute'>2</span>
                             <VisibilityOutlinedIcon className='text-neutral-400 !text-5xl'></VisibilityOutlinedIcon>
