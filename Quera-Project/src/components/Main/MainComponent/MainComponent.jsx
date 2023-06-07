@@ -3,6 +3,7 @@
 import { StatusHeader } from "./StatusHeader/StatusHeader";
 import { ProjectsBoard } from "./ProjectsBoard/ProjectsBoard";
 import { BoardView } from "./BoardView/BoardView";
+import { Calendar } from "./FullCalendar/Calendar";
 
 export const MainComponent = ({
   boardViewVisible,
@@ -18,6 +19,7 @@ export const MainComponent = ({
       <section>
         {listViewVisible && <ProjectsBoard />}
         {boardViewVisible && <BoardView />}
+        {calenderViewVisible && <Calendar/>}
       </section>
     </main>
   );
