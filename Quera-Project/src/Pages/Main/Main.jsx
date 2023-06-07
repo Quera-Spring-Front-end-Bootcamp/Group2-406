@@ -12,7 +12,7 @@ export const Main = () => {
     ];
     const [showWork,setWork]=useState(false);
     const [Mylesson, setMylesson] = useState(Lesson);
-
+    const [TagDetails,setDetails]=useState([{id:1,tag:"درس",bgcolor:"#EBC8C8"},{id:2,tag:"کار",bgcolor:"#C3B7F2"},{id:3,tag:"پروژه",bgcolor:"#7FFAFA"}])
     const [showShareProject,setShareProject] = useState(false);
     const [showShareWorkspace,setShareWorkspace] = useState(false);
     const [showShareTask,setShareTask] = useState(false);
@@ -56,7 +56,7 @@ export const Main = () => {
       <ShareTask show={showShareTask} setShow={setShareTask} />
 
       {/* new task page*/}
-      <NewTask show={ShowNewTask} setShow={setShowNewTask}/>
+      <NewTask TagDetails={TagDetails} setDetails={setDetails} show={ShowNewTask} setShow={setShowNewTask}/>
 
       <div className='w-[1440px] h-[1024px] mx-auto my-0 flex flex-row justify-center'>
           {/* left content */}
@@ -64,7 +64,7 @@ export const Main = () => {
               <Header show={showShareProject} setShow={setShareProject} onBoardViewClick={handleBoardViewClick} onListViewClick={handleListViewClick} 
               onCalenderViewClick={handleCalenderViewClick} boardViewVisible={boardViewVisible} listViewVisible={listViewVisible} calenderViewVisible={calenderViewVisible} />
 
-              <MainComponent boardViewVisible={boardViewVisible} listViewVisible={listViewVisible} calenderViewVisible={calenderViewVisible} />
+              <MainComponent TagDetails={TagDetails} boardViewVisible={boardViewVisible} listViewVisible={listViewVisible} calenderViewVisible={calenderViewVisible} />
 
               <Footer show={ShowNewTask} setShow={setShowNewTask} />
           </div>

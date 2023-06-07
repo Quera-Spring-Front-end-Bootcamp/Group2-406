@@ -10,9 +10,9 @@ import LocalOfferOutlinedIcon from "@mui/icons-material/LocalOfferOutlined";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import { PriorityOptions } from "./TagTask/PriorityOptions";
 import { useState } from "react";
-import {Tag} from "./TagTask/Tag"
+import { TagDrop } from "./TagTask/TagDrop";
 
-export const NewTask = ({ show, setShow, id, selectTag}) => {
+export const NewTask = ({ TagDetails,setDetails,show, setShow, id, selectTag}) => {
   const [showTask, setShowTask] = useState(false);
   const [showTag, setShowTag] = useState(false);
 
@@ -98,12 +98,12 @@ export const NewTask = ({ show, setShow, id, selectTag}) => {
             </span>
           
           
-            <span className="border-dashed border-1 border-gray-400 h-[50px] w-[50px] rounded-full ml-6 flex justify-center items-center cursor-pointer">
-              <LocalOfferOutlinedIcon className="text-neutral-400 !text-3xl"  onClick={() => {
+            <span onClick={() => {
               setShowTag(!showTag);
-            }}></LocalOfferOutlinedIcon>
+            }} tabIndex={1} onBlur={()=>{setShowTag(false)}} className="border-dashed border-1 border-gray-400 h-[50px] w-[50px] rounded-full  flex justify-center items-center cursor-pointer">
+              <LocalOfferOutlinedIcon className="text-neutral-400 !text-3xl"  ></LocalOfferOutlinedIcon>
             </span>
-            {showTag && (<Tag  id={id} selectTag={selectTag} showTag={showTag} setShowTag={setShowTag} />)}
+           <span className="flex -translate-y-40 ml-6 z-20 justify-end relative"><TagDrop TagDetails={TagDetails} setDetails={setDetails} showTag={showTag} setShowTag={setShowTag}/></span> 
 
 
 
@@ -126,4 +126,5 @@ export const NewTask = ({ show, setShow, id, selectTag}) => {
       </section>
     </div>
   );
-};
+}
+
