@@ -26,6 +26,7 @@
     "react-dom": "^18.2.0",
     "react-draggable": "^4.4.5",
     "react-hook-form": "^7.43.9",
+    "react-multi-date-picker": "^4.0.0",
     "set-default-browser": "^1.1.2",
     "tailwind-scrollbar-hide": "^1.1.7"
   },
