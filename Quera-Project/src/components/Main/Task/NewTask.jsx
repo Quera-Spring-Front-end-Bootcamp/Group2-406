@@ -11,10 +11,12 @@ import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import { PriorityOptions } from "./TagTask/PriorityOptions";
 import { useState } from "react";
 import { TagDrop } from "./TagTask/TagDrop";
+import { CalendarTask } from "./TagTask/CalendarTask";
 
 export const NewTask = ({ TagDetails,setDetails,show, setShow, id, selectTag}) => {
   const [showTask, setShowTask] = useState(false);
   const [showTag, setShowTag] = useState(false);
+  const [showCalendar, setShowCalendar] = useState(false);
 
 
   return (
@@ -81,21 +83,43 @@ export const NewTask = ({ TagDetails,setDetails,show, setShow, id, selectTag}) =
         {/* other work on task & create task */}
         <article className="w-full flex flex-row-reverse justify-between items-center">
           <div className="flex flex-row-reverse items-center justify-start">
+            {/* PriorityOptions */}
             <span
-              className="border-dashed border-1 border-gray-400 h-[50px] w-[50px] rounded-full mr-2 flex justify-center items-center cursor-pointer"
               onClick={() => {
                 setShowTask(!showTask);
               }}
+              tabIndex={1}
+              onBlur={() => {
+                setShowTask(false);
+              }}
+              className="border-dashed border-1 border-gray-400 h-[50px] w-[50px] rounded-full mr-2 flex justify-center items-center cursor-pointer"
             >
               <FlagOutlinedIcon className="text-neutral-400 !text-3xl"></FlagOutlinedIcon>
-            </span>{" "}
-            {showTask && <PriorityOptions  id={id} selectTag={selectTag} showTag={showTag} setShowTag={setShowTag} />}
+            </span>
+            <span className="flex translate-y-4 -translate-x-8  z-20 justify-end relative">
+                <PriorityOptions showTask={showTask} setShowTask={setShowTask} />
+            </span>
            
-           
-           
-            <span className="border-dashed border-1 border-gray-400 h-[50px] w-[50px] rounded-full mx-6 flex justify-center items-center cursor-pointer">
+            {/* CalendarTask */}
+            <span
+              onClick={() => {
+                setShowCalendar(!showCalendar);
+              }}
+              tabIndex={1}
+              onBlur={() => {
+                setShowCalendar(false);
+              }}
+              className="border-dashed border-1 border-gray-400 h-[50px] w-[50px] rounded-full mx-6 flex justify-center items-center cursor-pointer"
+            >
               <CalendarMonthOutlinedIcon className="text-neutral-400 !text-3xl"></CalendarMonthOutlinedIcon>
             </span>
+            <span className="flex translate-x-6 -translate-y-[334px]   z-20 justify-end  relative">
+              <CalendarTask
+                showCalendar={showCalendar}
+                setShowCalendar={setShowCalendar}
+              />
+            </span>
+
           
           
             <span onClick={() => {
