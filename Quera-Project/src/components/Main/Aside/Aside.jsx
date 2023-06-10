@@ -14,7 +14,7 @@ export const Aside = ({setWork,Mylesson,setMylesson,setShareProject,setShareWork
     const [showLessons,SetShowLessons]=useState(true)
 
     return(
-        <aside className='bg-white w-[330px] border-solid border-l-2 border-gray-200 h-[1024px] flex flex-col justify-start items-end relative z-30'>
+        <aside className='bg-white w-[330px] border-solid border-l-2 border-gray-200 h-[1024px] flex flex-col justify-start items-end relative z-20'>
             {/* Quera task manager name */}
             <section className="ml-16 mt-14 w-full bg-namegradient bg-clip-text text-transparent text-4xl font-dana font-extrabold tracking-tight text-headerSize text-end">کوئرا تسک منیجر</section>
 

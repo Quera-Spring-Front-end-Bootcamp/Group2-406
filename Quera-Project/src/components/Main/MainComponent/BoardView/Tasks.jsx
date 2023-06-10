@@ -7,10 +7,14 @@ import TaskAltOutlinedIcon from '@mui/icons-material/TaskAltOutlined';
 import EditModal from './EditModal'
 import { useState } from 'react';
 import projectPic from "../../../../assets/images/tasks/project.jpg"
+import { TaskInfo } from '../../Task/TaskInfo/TaskInfo';
+
 
 export const Tasks = ({ imageExist, projectCategory, lessonsCategory }) => {
 
     const [hovered, setHovered] = useState(false);
+    const [showTaskInfo, setShowTaskInfo] = useState(false);
+
 
     const handleMouseEnter = () => {
         setHovered(true);
@@ -20,16 +24,12 @@ export const Tasks = ({ imageExist, projectCategory, lessonsCategory }) => {
         setHovered(false);
     };
 
-    const [showModal, setShowModal] = useState(false);
-
-    function openModal() {
-        setShowModal(true);
-    }
-
     return (
+        <>
         <div className="bg-white w-[250px] mb-[11px] p-[10px] box-border flex flex-col items-end border border-gray-100 shadow-md rounded-md hover:shadow-lg"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
+            onClick={() => {setShowTaskInfo(true)}}
             dir='ltr'>
 
             <div className={imageExist ? 'bg-black w-[230px] h-[134px] mb-[18px]' : ''}>
@@ -78,10 +78,15 @@ export const Tasks = ({ imageExist, projectCategory, lessonsCategory }) => {
 
             {/* Hidden  */}
             <div className={hovered ? 'transition ease-in-out delay-150 duration-300 opacity-100 w-[230px] h-[28px] mt-[18px] order-5 border-t border-gray-200 flex flex-row justify-between items-center pt-4' : "transition ease-in-out delay-150 duration-300 opacity-0 h-[0px]"}>
-                <button onClick={openModal}><MoreHorizIcon fontSize='small' htmlColor='#323232' className={hovered ? "opacity-100" : "opacity-0"}></MoreHorizIcon></button>
-                {showModal && <EditModal className={!hovered ? setShowModal(false) : null} />}
+                <button><MoreHorizIcon fontSize='small' htmlColor='#323232' className={hovered ? "opacity-100" : "opacity-0"}></MoreHorizIcon></button>
                 <TaskAltOutlinedIcon fontSize='small' htmlColor='#323232' className={hovered ? "opacity-100" : "opacity-0"}></TaskAltOutlinedIcon>
             </div>
+
+
+            
         </div>
+        <TaskInfo show={showTaskInfo} setShow={setShowTaskInfo}></TaskInfo>
+
+        </>
     )
 }
