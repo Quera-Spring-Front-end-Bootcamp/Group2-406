@@ -3,8 +3,20 @@
 import AddIcon from '@mui/icons-material/Add';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { Tooltip, Button, Fade } from '@mui/material';
+import { useState } from 'react';
+import EditModal from './EditModal';
 
 export const BoardColumns = ({ name, children, color }) => {
+    const [showModal, setShowModal] = useState(false);
+    
+
+    function openModal() {
+        setShowModal(true);
+    }
+    function closeModal() {
+        setShowModal(false);
+    }
+
     return (
         <div className="w-[260px] h-[599px] left-[788px] gap-5 mt-[17px] flex flex-col items-center p-0 flex-none order-5 flex-grow-0" dir='ltr'>
 
@@ -20,11 +32,13 @@ export const BoardColumns = ({ name, children, color }) => {
                 </div>
 
                 {/* hidden  */}
-                <div className="w-[48px] h-[24px] gap-1 flex flex-row items-center p-0 flex-none flex-grow-0 transition ease-in-out delay-150 duration-300 opacity-0 hover:opacity-100">
+                <div className="w-[48px] h-[24px] gap-1 flex flex-row items-center p-0 flex-none flex-grow-0 transition ease-in-out delay-150 duration-300 opacity-0 hover:opacity-100"
+                onMouseLeave={closeModal}>
                     <Tooltip title="افزودن تسک جدید" TransitionComponent={Fade} TransitionProps={{ timeout: 600 }} placement="top" arrow >
                         <AddIcon fontSize='' className="w-[24px] h-[24px] flex-none order-0 flex-grow-0"></AddIcon>
                     </Tooltip>
-                    <MoreHorizIcon fontSize=''></MoreHorizIcon>
+                    <MoreHorizIcon fontSize='' onClick={openModal}></MoreHorizIcon>
+                    {showModal && <EditModal />}
                 </div>
             </div>
 
