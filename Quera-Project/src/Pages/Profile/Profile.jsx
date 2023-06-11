@@ -10,7 +10,7 @@ import { Route,Routes } from "react-router-dom";
       <>
          <ProfileAside/>
          <Routes>
-            <Route path="/" element={<Personal/>}/>
+            <Route path="Personal" element={<Personal/>}/>
             <Route path="Verify" element={<Verify/>}/>
             <Route path="Settings" element={<Settings/>}/>
          </Routes>

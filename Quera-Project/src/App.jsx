@@ -15,7 +15,7 @@ function App() {
               <Route path="Forget" element={<Forget />} />
               <Route path="Reset" element={<Reset />} /> 
               <Route path="Main" element={<Main />} />
-              <Route path="Profile" element={<Profile />} />
+              <Route path="Profile/*" element={<Profile />} />
             </Route>
         </Routes>
       </div>
