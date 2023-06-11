@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 import SearchIcon from "@mui/icons-material/Search";
 import { useRef, useState } from "react";
-import { SelectedTag } from "../../TagOptions/SelectedTags";
+import { SelectedTag } from "../TagOptions/SelectedTags";
 import { Tags } from "./Tags";
 export const TagDrop = ({ showTag, setShowTag, TagDetails, setDetails }) => {
   const [inputValue, setInput] = useState("");

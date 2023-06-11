@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useRef, useState } from "react"
 import { MoreHorizRounded } from '@mui/icons-material';
-import { Tagdropoptions } from "../../TagOptions/TagDropOptions";
+import { Tagdropoptions } from "../TagOptions/TagDropOptions";
 export function Tags({bgcolor,tag,setSelectedTag,tagchoose}){
   const dropref=useRef()
     const [tagOptions,setOptions]=useState(false)
