@@ -1,39 +1,34 @@
+/* eslint-disable no-misleading-character-class */
 import { useForm } from "react-hook-form";
 
 useForm
 export const Personal=()=>{
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-      } = useForm();
-      const onsubmit=(data)=>{console.log(data)}
-    
-    return<><form onSubmit={handleSubmit(onsubmit)}>
-    <div dir="rtl" className=" flex flex-col float-right h-[550px] font-dana gap-[35px]  mr-[58px] mt-[170px] ">
-        <section className="text-[31px] font-bold">
-        اطلاعات فردی
-        </section>
-        <section>
+  const {
+      register,
+      handleSubmit,
+      formState: { errors },
+    } = useForm();
+    const onsubmit=(data)=>{console.log(data)}
+
+  return (
+    <>
+      <form onSubmit={handleSubmit(onsubmit)}>
+        <div dir="rtl" className=" flex flex-col float-right h-[550px] font-dana gap-[35px]  mr-[58px] mt-[170px] ">
+          <section className="text-[31px] font-bold">اطلاعات فردی</section>
+          <section>
             <div className="flex gap-4 items-center flex-row">
-        <span className="rounded-full bg-yellow-200 w-[100px] h-[100px] font-medium ml-2 flex justify-center items-center  text-[34px]">NM</span>
-            <div className="flex flex-col gap-3   items-start">
-                
-            <div className=" p-[10px]  border border-[#208D8E] rounded-lg text-[#208D8E] text-xl">ویرایش تصویر پروفایل</div><p className=" text-[#8A8989]  text-xs">این تصویر برای عموم قابل نمایش است.</p>
+              <span className="rounded-full bg-yellow-200 w-[100px] h-[100px] font-medium ml-2 flex justify-center items-center  text-[34px]">NM</span>
+              <div className="flex flex-col gap-3   items-start">  
+                <div className=" p-[10px]  border border-[#208D8E] rounded-lg text-[#208D8E] text-xl">ویرایش تصویر پروفایل</div>
+                <p className=" text-[#8A8989]  text-xs">این تصویر برای عموم قابل نمایش است.</p>
+              </div>
             </div>
-            </div>
-            </section>
-            <div>
-                
-                    
-                        <div  className="flex   gap-5 flex-col">
-                    <div className="flex   flex-col">
-                <label htmlFor="name" className="mb-2 text-sm font-dana">
-                نام
-              </label>
-              <input
-                id="name"
-                type="text"
+          </section>
+          <div>  
+            <div  className="flex   gap-5 flex-col">
+              <div className="flex   flex-col">
+                <label htmlFor="name" className="mb-2 text-sm font-dana">نام</label>
+                <input id="name" type="text"
                 {...register("name", {
                   required: {
                     value: true,
@@ -46,18 +41,12 @@ export const Personal=()=>{
                   },
                 })}
                 className="     border border-inputBorder font-dana focus-visible:outline-none rounded-md px-2   h-10 "
-              />
-              <p className="text-xxs mt-1 font-dana text-red-700">
-                {errors.name?.message}
-              </p>
+                />
+                <p className="text-xxs mt-1 font-dana text-red-700">{errors.name?.message}</p>
               </div>
               <div className="flex flex-col">
-              <label htmlFor="surename" className="mb-2 text-sm font-dana">
-              نام خانوادگی
-              </label>
-              <input
-                id="surename"
-                type="text"
+                <label htmlFor="surename" className="mb-2 text-sm font-dana">نام خانوادگی</label>
+                <input id="surename" type="text"
                 {...register("surename", {
                   required: {
                     value: true,
@@ -70,18 +59,12 @@ export const Personal=()=>{
                   },
                 })}
                 className="     border border-inputBorder font-dana focus-visible:outline-none rounded-md px-2   h-10 "
-              />
-              <p className="text-xxs mt-1 font-dana text-red-700">
-                {errors.surename?.message}
-              </p>
+                />
+                <p className="text-xxs mt-1 font-dana text-red-700">{errors.surename?.message}</p>
               </div>
               <div className="flex flex-col">
-              <label htmlFor="name" className="mb-2 text-sm font-dana">
-              شماره موبایل
-              </label>
-              <input
-                id="name"
-                type="tel"
+                <label htmlFor="name" className="mb-2 text-sm font-dana">شماره موبایل</label>
+                <input id="name" type="tel"
                 {...register("fullname", {
                   required: {
                     value: true,
@@ -94,19 +77,16 @@ export const Personal=()=>{
                   },
                 })}
                 className="     border border-inputBorder font-dana focus-visible:outline-none rounded-md px-2   h-10 "
-              />
-              <p className="text-xxs mt-1 font-dana text-red-700">
-                {errors.fullname?.message}
-              </p>
+                />
+                <p className="text-xxs mt-1 font-dana text-red-700">{errors.fullname?.message}</p>
               </div>
-                </div>
-               
-               
-            </div>
-         <div className="flex flex-col mt-auto ">
-                <input className="  cursor-pointer w-full  h-[38px] text-sm rounded-md font-dana bg-submitColor text-white  " value="ثبت تغییرات" type="submit"/>
-                </div>
-    </div> 
-    </form>
+            </div>   
+          </div>
+          <div className="flex flex-col mt-auto ">
+            <input className="  cursor-pointer w-full  h-[38px] text-sm rounded-md font-dana bg-submitColor text-white  " value="ثبت تغییرات" type="submit"/>
+          </div>
+        </div> 
+      </form>
     </>
+  );
 }
