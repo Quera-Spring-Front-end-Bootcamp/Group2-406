@@ -11,20 +11,35 @@ export const TagDrop = ({ showTag, setShowTag, TagDetails, setDetails }) => {
   const [selectedTag, setSelectedTag] = useState([]);
   const [selectedValue, setValue] = useState("");
   const input = useRef();
+  const TagColorChange=(id,color)=>{
+       setDetails(TagDetails.map((item)=>{
+        return {...item,bgcolor:item.id == id ? color:item.bgcolor}
+       }))
+       setNew(newDetails.map((item)=>{
+        return {...item,bgcolor:item.id == id ? color:item.bgcolor}
+       }))
+       setInner(innerTag.map((item)=>{
+        return {...item,bgcolor:item.id == id ? color:item.bgcolor}
+       }))
+
+
+
+  }
   const TagAdder = (e) => {
     if (e.key == "Enter" && innerTag.length == 0 && inputValue) {
-      let Preventcopy = newDetails.filter((item) => {
+      let Preventcopy = TagDetails.filter((item) => {
         return item.tag == inputValue;
       });
       if (Preventcopy.length == 0) {
         setValue(inputValue);
+        let newtagtime=Date.now()
         setDetails([
           ...TagDetails,
-          { id: Date.now(), tag: inputValue, bgcolor: "#46494D" },
+          { id: newtagtime, tag: inputValue, bgcolor: "#46494D" },
         ]);
         setNew([
           ...newDetails,
-          { id: Date.now(), tag: inputValue, bgcolor: "#46494D" },
+          { id: newtagtime, tag: inputValue, bgcolor: "#46494D" },
         ]);
         setNew(
           newDetails.filter((item) => {
@@ -34,10 +49,11 @@ export const TagDrop = ({ showTag, setShowTag, TagDetails, setDetails }) => {
         setInput("");
         setSelectedTag([
           ...selectedTag,
-          { id: Date.now(), tagname: inputValue },
+          { id: newtagtime, tagname: inputValue,bgcolor:"#46494D" },
         ]);
         setInner(
-          newDetails.filter((item) => {
+          
+          newDetails.filter((item) => {console.log(newDetails),console.log(selectedValue)
             return item.tag != selectedValue;
           })
         );
@@ -50,6 +66,24 @@ export const TagDrop = ({ showTag, setShowTag, TagDetails, setDetails }) => {
       );
     }
   };
+  const Tagdelete=(id,newtag)=>{
+    if(!newtag){
+      console.log(newtag)
+      setDetails(TagDetails.filter((item)=> item.id!=id))
+       setNew(newDetails.filter((item)=> item.id!=id))
+       setInner(innerTag.filter((item)=> item.id!=id))
+    }
+    else if(newtag){
+      setValue("")
+         setSelectedTag(selectedTag.filter((item)=> item.id!=id))
+         let unselect=selectedTag.filter((item)=>{return item.id == id})
+          setNew([...newDetails,{id:id,tag:unselect[0].tagname,bgcolor:unselect[0].bgcolor}])
+         setInner([...newDetails,{id:id,tag:unselect[0].tagname,bgcolor:unselect[0].bgcolor}])
+        
+
+         
+    }
+  }
   const tagchoose = (tag) => {
     setNew(
       newDetails.filter((item) => {
@@ -66,9 +100,9 @@ export const TagDrop = ({ showTag, setShowTag, TagDetails, setDetails }) => {
   return (
     <span
       dir="rtl"
-      className="absolute font-dana   ancho flex flex-col items-center"
+      className="absolute font-dana  flex flex-col items-center"
     >
-      <ul
+      <ul 
         onMouseDown={(e) => {
           e.preventDefault();
         }}
@@ -80,6 +114,7 @@ export const TagDrop = ({ showTag, setShowTag, TagDetails, setDetails }) => {
             {selectedTag.map((item) => {
               return (
                 <SelectedTag
+                Tagdelete={Tagdelete}
                   key={item.id}
                   id={item.id}
                   tagname={item.tagname}
@@ -108,14 +143,17 @@ export const TagDrop = ({ showTag, setShowTag, TagDetails, setDetails }) => {
             placeholder="جستجو یا ساختن تگ"
           />
         </li>
-
+        <div className="  flex flex-col  min-w-full justify-start " >
         {innerTag.length != 0 ? (
           innerTag.map((item) => {
             return (
               <Tags
+              TagColorChange={TagColorChange}
                 tagchoose={tagchoose}
                 newDetails={newDetails}
                 setNew={setNew}
+                id={item.id}
+                Tagdelete={Tagdelete}
                 setSelectedTag={setSelectedTag}
                 key={item.id}
                 bgcolor={item.bgcolor}
@@ -125,7 +163,7 @@ export const TagDrop = ({ showTag, setShowTag, TagDetails, setDetails }) => {
           })
         ) : (
           <li className="text-[#3D3D3D]">برای ساختن تگ جدید اینتر بزنید</li>
-        )}
+        )}</div>
       </ul>
     </span>
   );

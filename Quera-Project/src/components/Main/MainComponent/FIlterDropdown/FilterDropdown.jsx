@@ -15,7 +15,7 @@ import { ChooseFilter } from './ChooseFilter';
    }
    function selectTag(id,value,bgcolor){
       setFilter(filter.map((item)=>{
-         return  {id:item.id,tag:id==item.id ? value:item.tag,color:bgcolor,type:item.type,decide:item.decide}
+         return  {id:item.id,tag:id==item.id ? value:item.tag,color: item.id == id ?bgcolor: item.color,type:item.type,decide:item.decide}
       }))
    }
    function selectType(id,value){

@@ -1,8 +1,9 @@
 import { Tagdropoptions } from "./TagDropOptions";
 import { useRef, useEffect, useState } from "react";
-export const SelectedTag = ({ tagname, id }) => {
+export const SelectedTag = ({ tagname, id ,Tagdelete}) => {
   const dropdown = useRef();
   const [tagOptions, setOptions] = useState(false);
+  const newtag=true
   useEffect(() => {
     const handleclose = (e) => {
       return (
@@ -30,6 +31,9 @@ export const SelectedTag = ({ tagname, id }) => {
         </p>
       </span>
       <Tagdropoptions
+      newtag={newtag}
+      Tagdelete={Tagdelete}
+      id={id}
         tagOptions={tagOptions}
         dropref={dropdown}
         setOptions={setOptions}
