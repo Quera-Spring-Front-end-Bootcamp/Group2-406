@@ -3,7 +3,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import ColorLensOutlinedIcon from "@mui/icons-material/ColorLensOutlined";
 import { Tagcolors } from "./Tagcolors";
 import { useState } from "react";
-export const Tagdropoptions = ({ tagOptions, dropref, id }) => {
+export const Tagdropoptions = ({ tagOptions, dropref, id,Tagdelete,newtag,TagColorChange }) => {
   const [showcolors, setcolors] = useState(false);
   return (
     <article
@@ -12,7 +12,7 @@ export const Tagdropoptions = ({ tagOptions, dropref, id }) => {
       ref={dropref}
       className=" cursor-default z-10 h-[85px] justify-between min-w-[90px] rounded-lg shadow-md absolute bg-white p-2 font-dana flex-col"
     >
-      <section className="flex cursor-pointer flex-row  gap-1">
+      <section onClick={()=>Tagdelete(id,newtag)} className="flex cursor-pointer flex-row  gap-1">
         <CloseIcon className="!text-xs" />
         <small className=" text-[10px]">حذف</small>
       </section>
@@ -37,8 +37,8 @@ export const Tagdropoptions = ({ tagOptions, dropref, id }) => {
             ویرایش رنگ
           </small>
         </span>
-        <span className="relative">
-          <Tagcolors showcolors={showcolors} />
+        <span className="relative flex flex-row items-center">
+          <Tagcolors id={id} TagColorChange={TagColorChange} showcolors={showcolors} />
         </span>
       </section>
     </article>

@@ -1,4 +1,4 @@
-export const Tagcolors = ({ showcolors }) => {
+export const Tagcolors = ({ showcolors,TagColorChange,id }) => {
   const colors = [
     "#E46161",
     "#80DC69",
@@ -33,6 +33,8 @@ export const Tagcolors = ({ showcolors }) => {
             type="radio"
             key={i}
             name="colors"
+            value={item}
+            onChange={(e)=>TagColorChange(id,e.target.value)}
             style={{ backgroundColor: item }}
             className={`h-[15px] cursor-pointer checked:ring-opacity-60 checked:ring-2 checked:scale-105 checked:ring-black rounded-sm appearance-none w-[15px] `}
           />

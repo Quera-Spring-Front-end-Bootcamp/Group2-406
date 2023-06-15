@@ -127,7 +127,7 @@ export const NewTask = ({ TagDetails,setDetails,show, setShow, id, selectTag}) =
             }} tabIndex={1} onBlur={()=>{setShowTag(false)}} className="border-dashed border-1 border-gray-400 h-[50px] w-[50px] rounded-full  flex justify-center items-center cursor-pointer">
               <LocalOfferOutlinedIcon className="text-neutral-400 !text-3xl"  ></LocalOfferOutlinedIcon>
             </span>
-           <span className="flex -translate-y-40 ml-6 z-20 justify-end relative"><TagDrop TagDetails={TagDetails} setDetails={setDetails} showTag={showTag} setShowTag={setShowTag}/></span> 
+           <span className="flex justify-center ml-6 z-20 items-end relative"><TagDrop TagDetails={TagDetails} setDetails={setDetails} showTag={showTag} setShowTag={setShowTag}/></span> 
 
 
 
