@@ -29,12 +29,10 @@ export function Register() {
       phone:""
     })
     .then(function (response) {
-      console.log(response);
       setRegisterError('')
       navigate("/");
     })
     .catch(function (error) {
-      console.log(error)
       setRegisterError(error.response.data.message)
     });
     
