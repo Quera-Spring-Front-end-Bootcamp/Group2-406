@@ -11,7 +11,29 @@ export const TagDrop = ({ showTag, setShowTag, TagDetails, setDetails }) => {
   const [selectedTag, setSelectedTag] = useState([]);
   const [selectedValue, setValue] = useState("");
   const input = useRef();
+  const wholeref=useRef()
+  const Tagedit=(id,value)=>{
+    let Preventcopy = TagDetails.filter((item) => {
+      return item.tag == value;
+    });
+    if(Preventcopy.length == 0){
+      setDetails(TagDetails.map((item)=>{
+        return {...item,tag: id == item.id ? value:item.tag}
+      }))
+      setNew(newDetails.map((item)=>{
+        return {...item,tag: id == item.id ? value:item.tag}
+      }))
+      setInner(innerTag.map((item)=>{
+        return {...item,tag: id == item.id ? value:item.tag}
+      }))
+      setSelectedTag(selectedTag.map((item)=>{
+        return {...item,tagname: id == item.id ? value:item.tagname}
+      }))
+    }
+
+  }
   const TagColorChange=(id,color)=>{
+    
        setDetails(TagDetails.map((item)=>{
         return {...item,bgcolor:item.id == id ? color:item.bgcolor}
        }))
@@ -19,6 +41,9 @@ export const TagDrop = ({ showTag, setShowTag, TagDetails, setDetails }) => {
         return {...item,bgcolor:item.id == id ? color:item.bgcolor}
        }))
        setInner(innerTag.map((item)=>{
+        return {...item,bgcolor:item.id == id ? color:item.bgcolor}
+       }))
+       setSelectedTag(selectedTag.map((item)=>{
         return {...item,bgcolor:item.id == id ? color:item.bgcolor}
        }))
 
@@ -53,7 +78,7 @@ export const TagDrop = ({ showTag, setShowTag, TagDetails, setDetails }) => {
         ]);
         setInner(
           
-          newDetails.filter((item) => {console.log(newDetails),console.log(selectedValue)
+          newDetails.filter((item) => {
             return item.tag != selectedValue;
           })
         );
@@ -68,7 +93,6 @@ export const TagDrop = ({ showTag, setShowTag, TagDetails, setDetails }) => {
   };
   const Tagdelete=(id,newtag)=>{
     if(!newtag){
-      console.log(newtag)
       setDetails(TagDetails.filter((item)=> item.id!=id))
        setNew(newDetails.filter((item)=> item.id!=id))
        setInner(innerTag.filter((item)=> item.id!=id))
@@ -79,9 +103,6 @@ export const TagDrop = ({ showTag, setShowTag, TagDetails, setDetails }) => {
          let unselect=selectedTag.filter((item)=>{return item.id == id})
           setNew([...newDetails,{id:id,tag:unselect[0].tagname,bgcolor:unselect[0].bgcolor}])
          setInner([...newDetails,{id:id,tag:unselect[0].tagname,bgcolor:unselect[0].bgcolor}])
-        
-
-         
     }
   }
   const tagchoose = (tag) => {
@@ -98,7 +119,7 @@ export const TagDrop = ({ showTag, setShowTag, TagDetails, setDetails }) => {
   };
 
   return (
-    <span
+    <span ref={wholeref}
       dir="rtl"
       className="absolute font-dana  flex flex-col items-center"
     >
@@ -114,6 +135,10 @@ export const TagDrop = ({ showTag, setShowTag, TagDetails, setDetails }) => {
             {selectedTag.map((item) => {
               return (
                 <SelectedTag
+                wholeref={wholeref}
+                Tagedit={Tagedit}
+                setShowTag={setShowTag}
+                TagColorChange={TagColorChange}
                 Tagdelete={Tagdelete}
                   key={item.id}
                   id={item.id}
@@ -148,6 +173,9 @@ export const TagDrop = ({ showTag, setShowTag, TagDetails, setDetails }) => {
           innerTag.map((item) => {
             return (
               <Tags
+              wholeref={wholeref}
+              Tagedit={Tagedit}
+              setShowTag={setShowTag}
               TagColorChange={TagColorChange}
                 tagchoose={tagchoose}
                 newDetails={newDetails}
