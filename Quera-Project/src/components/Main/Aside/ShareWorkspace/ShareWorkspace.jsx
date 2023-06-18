@@ -5,8 +5,25 @@ import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import LinkOutlinedIcon from '@mui/icons-material/LinkOutlined';
 import myProfile from"../../../../assets/images/p2.jpg";
 import otherProfile from"../../../../assets/images/p1.jpg";
+import { useState } from "react";
 
-export const ShareWorkspace = ({show, setShow}) => {
+export const ShareWorkspace = ({show, setShow, nameProjects}) => {
+
+    const arr=[
+        {id:1, profileImg: otherProfile, username: "sararahimi@gmail.com", pro: "همه پروژه ها"},
+        {id:2, profileImg: otherProfile, username: "sararahimi@gmail.com", pro: "همه پروژه ها"},
+    ];
+
+    const [Pro, setPro] = useState(arr);
+
+    function exit(){
+        setShow(!show);
+        setPro(Pro.map((item)=> {
+            return(
+                {id : item.id, profileImg : item.profileImg, username : item.username, pro : "همه پروژه ها"}
+            );
+        }))
+    }
 
     return(
         <div className="w-screen h-screen bg-gray-600 bg-opacity-50 z-40 fixed flex justify-center items-center" style={{visibility:show ? "visible":"hidden"}}>{/* entire page */}
@@ -17,7 +34,7 @@ export const ShareWorkspace = ({show, setShow}) => {
                 {/* share project name & exit */}
                 <article className="w-[90%] h-[50px] flex flex-row justify-end items-end">
                     <span className="font-dana font-medium text-xl my-0 mx-auto pl-6">به اشتراک گذاری ورک اسپیس</span>
-                    <span className=" mb-1 cursor-pointer" onClick={()=>{setShow(!show)}}><CloseOutlinedIcon className="!text-base"></CloseOutlinedIcon></span>
+                    <span className=" mb-1 cursor-pointer" onClick={exit}><CloseOutlinedIcon className="!text-base"></CloseOutlinedIcon></span>
                 </article>
 
                 {/* email input & button */}
@@ -58,8 +75,11 @@ export const ShareWorkspace = ({show, setShow}) => {
                         </div>
 
                         {/* shared with other */}
-                        <SharedWithOther profileImg={otherProfile} userName="sararahimi@gmail.com" />
-                        <SharedWithOther profileImg={otherProfile} userName="sararahimi@gmail.com" />
+                        {Pro.map((item) => {
+                            return(
+                                <SharedWithOther key={item.id} profileImg={item.profileImg} id={item.id} userName={item.username} pro={item.pro} nameProjects={nameProjects} setPro={setPro} Pro={Pro} />
+                            );
+                        })}
                     </div>
                 </article>
             </section>

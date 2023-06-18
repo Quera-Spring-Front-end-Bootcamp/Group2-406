@@ -9,7 +9,7 @@ import { useState } from "react";
 import React from "react";
 
 export const ProjectsBoard = () => {
-  const [showProcess, setShowProcess] = useState(false);
+  const [showProcess, setShowProcess] = useState(true);
 
 
   return (

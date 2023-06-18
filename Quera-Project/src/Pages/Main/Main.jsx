@@ -1,7 +1,7 @@
 /* eslint-disable no-const-assign */
 /* eslint-disable no-unused-vars */
 import { Aside, Footer,Newworkspace ,MainComponent, Header, ShareProject, ShareWorkspace, ShareTask, NewTask } from "../../components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const Main = () => {
     const Lesson = [
@@ -17,7 +17,9 @@ export const Main = () => {
     const [showShareWorkspace,setShareWorkspace] = useState(false);
     const [showShareTask,setShareTask] = useState(false);
 
-    const [newTask,setNewTask] = useState(false);
+    const [nameProjects, setNameProjects] = useState([]);
+
+    const [ShowNewTask,setShowNewTask] = useState(false);
 
     const [boardViewVisible, setBoardViewVisible] = useState(false);
     const [listViewVisible, setListViewVisible] = useState(true);
@@ -48,13 +50,13 @@ export const Main = () => {
       <ShareProject show={showShareProject} setShow={setShareProject}/>
 
       {/* share workspace page*/} 
-      <ShareWorkspace show={showShareWorkspace} setShow={setShareWorkspace} />
+      <ShareWorkspace show={showShareWorkspace} setShow={setShareWorkspace} nameProjects={nameProjects} />
 
       {/* share task page*/}
       <ShareTask show={showShareTask} setShow={setShareTask} />
 
       {/* new task page*/}
-      <NewTask show={newTask} setShow={setNewTask}/>
+      <NewTask show={ShowNewTask} setShow={setShowNewTask}/>
 
       <div className='w-[1440px] h-[1024px] mx-auto my-0 flex flex-row justify-center'>
           {/* left content */}
@@ -64,12 +66,12 @@ export const Main = () => {
 
               <MainComponent boardViewVisible={boardViewVisible} listViewVisible={listViewVisible} calenderViewVisible={calenderViewVisible} />
 
-              <Footer />
+              <Footer show={ShowNewTask} setShow={setShowNewTask} />
           </div>
 
           {/* right content */}
           <div className="w-[330] h-auto">
-              <Aside Mylesson={Mylesson} setMylesson={setMylesson} setShareProject={setShareProject} setShareWorkspace={setShareWorkspace}  setWork={setWork}/>
+              <Aside setNameProjects={setNameProjects} Mylesson={Mylesson} setMylesson={setMylesson} setShareProject={setShareProject} setShareWorkspace={setShareWorkspace}  setWork={setWork} />
           </div>
       </div>
     </>);
