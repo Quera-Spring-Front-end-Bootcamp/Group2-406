@@ -1,53 +1,53 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
-import SquareRoundedIcon from "@mui/icons-material/SquareRounded";
 import PersonAddAltOutlinedIcon from "@mui/icons-material/PersonAddAltOutlined";
 import InsertLinkOutlinedIcon from "@mui/icons-material/InsertLinkOutlined";
 import FlagOutlinedIcon from "@mui/icons-material/FlagOutlined";
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
 import LocalOfferOutlinedIcon from "@mui/icons-material/LocalOfferOutlined";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
-import { PriorityOptions } from "./TagTask/PriorityOptions";
+import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
+import SquareRoundedIcon from "@mui/icons-material/SquareRounded";
+import { PriorityOptions } from "../TagTask/PriorityOptions";
 import { useState } from "react";
-import { TagDrop } from "./TagTask/TagDrop";
-import { CalendarTask } from "./TagTask/CalendarTask";
+import { TagDrop } from "../TagTask/TagDrop";
+import { CalendarTask } from "../TagTask/CalendarTask";
+import { TaskName } from "./TaskName";
 
 export const NewTask = ({ TagDetails,setDetails,show, setShow, id, selectTag}) => {
   const [showTask, setShowTask] = useState(false);
   const [showTag, setShowTag] = useState(false);
   const [showCalendar, setShowCalendar] = useState(false);
+  const [showInput, setShowInput] = useState(false);
+  const [value, setValue] = useState("عنوان تسک");
 
 
   return (
-    <div
-      className="w-screen h-screen fixed flex z-40 justify-center items-center"
-      style={{ visibility: show ? "visible" : "hidden" }}
-    >
+    <div className="w-screen h-screen fixed flex z-40 justify-center items-center" style={{ visibility: show ? "visible" : "hidden" }}>
       <section className="w-[1166px] h-[576px] shadow-newTaskShadow rounded-3xl bg-white flex flex-col p-10">
         {/* task name & exit */}
         <article className="flex flex-row-reverse w-full h-[80px] justify-between">
           <div className="flex flex-row-reverse justify-end">
             <span>
-              <SquareRoundedIcon className="text-gray-300 !text-xl" />
+                <SquareRoundedIcon className="text-gray-300 !text-xl" />
             </span>
-            <p className="font-dana text-2xl font-medium mr-3">عنوان تسک</p>
+            <p className="font-dana text-2xl font-medium mr-3 cursor-pointer" onClick={()=>{setShowInput(!showInput)}} style={{display:showInput ? "none":"block"}}>{value}</p>
+            <TaskName showInput={showInput} setShowInput={setShowInput} value={value} setValue={setValue} />
           </div>
+          
           <span
-            onClick={() => {
+          onClick={() => {
               setShow(!show);
-            }}
+          }}
           >
-            <CloseOutlinedIcon className="text-gray-400 cursor-pointer"></CloseOutlinedIcon>
+          <CloseOutlinedIcon className="text-gray-400 cursor-pointer"></CloseOutlinedIcon>
           </span>
         </article>
 
         {/* detected project and user */}
         <article className="font-dana flex flex-row-reverse justify-start items-center h-[35px]">
           <p>در</p>
-          <span className="mx-2 w-[158px] h-[33px] border-1 border-gray-300 rounded-md flex justify-end items-center pr-1 text-base font-normal text-gray-800">
-            پروژه اول
-          </span>
+          <input className="mx-2 w-[158px] h-[33px] border-1 border-gray-300 rounded-md flex justify-end items-center pr-1 text-base font-normal text-gray-800 outline-none" type="text" value="پروژه اول" dir="rtl" />
           <p>برای</p>
           <span className="border-dashed border-1 border-gray-400 h-[33px] w-[33px] rounded-full mr-2 flex justify-center items-center">
             <PersonAddAltOutlinedIcon className="text-neutral-400 !text-xl"></PersonAddAltOutlinedIcon>
