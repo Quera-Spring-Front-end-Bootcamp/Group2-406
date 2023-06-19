@@ -1,6 +1,6 @@
 /* eslint-disable no-const-assign */
 /* eslint-disable no-unused-vars */
-import { Aside, Footer,Newworkspace ,MainComponent, Header, ShareProject, ShareWorkspace, ShareTask, NewTask } from "../../components";
+import { Aside, Footer,Newworkspace ,MainComponent, Header, ShareProject, ShareWorkspace, ShareTask, NewTask, ShareProject2 } from "../../components";
 import { useState } from "react";
 
 export const Main = () => {
@@ -48,6 +48,7 @@ export const Main = () => {
 
       {/* share project page*/}
       <ShareProject show={showShareProject} setShow={setShareProject}/>
+      {/* <ShareProject2 show={showShareProject} setShow={setShareProject}/> */}
 
       {/* share workspace page*/} 
       <ShareWorkspace show={showShareWorkspace} setShow={setShareWorkspace} nameProjects={nameProjects} />
