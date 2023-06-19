@@ -13,6 +13,8 @@ import { useState } from "react";
 import { TagDrop } from "../TagTask/TagDrop";
 import { CalendarTask } from "../TagTask/CalendarTask";
 import { TaskName } from "./TaskName";
+import { ProjectInput } from "./ProjectInput";
+import { Description } from "./Description";
 
 export const NewTask = ({ TagDetails,setDetails,show, setShow, id, selectTag}) => {
   const [showTask, setShowTask] = useState(false);
@@ -21,6 +23,9 @@ export const NewTask = ({ TagDetails,setDetails,show, setShow, id, selectTag}) =
   const [showInput, setShowInput] = useState(false);
   const [value, setValue] = useState("عنوان تسک");
 
+  const createTask = () =>{
+    setShow(!show);
+  }
 
   return (
     <div className="w-screen h-screen fixed flex z-40 justify-center items-center" style={{ visibility: show ? "visible" : "hidden" }}>
@@ -47,9 +52,11 @@ export const NewTask = ({ TagDetails,setDetails,show, setShow, id, selectTag}) =
         {/* detected project and user */}
         <article className="font-dana flex flex-row-reverse justify-start items-center h-[35px]">
           <p>در</p>
-          <input className="mx-2 w-[158px] h-[33px] border-1 border-gray-300 rounded-md flex justify-end items-center pr-1 text-base font-normal text-gray-800 outline-none" type="text" value="پروژه اول" dir="rtl" />
+
+          <ProjectInput />
+  
           <p>برای</p>
-          <span className="border-dashed border-1 border-gray-400 h-[33px] w-[33px] rounded-full mr-2 flex justify-center items-center">
+          <span className="border-dashed border-1 border-gray-400 h-[33px] w-[33px] rounded-full mr-2 flex justify-center items-center cursor-pointer">
             <PersonAddAltOutlinedIcon className="text-neutral-400 !text-xl"></PersonAddAltOutlinedIcon>
           </span>
         </article>
@@ -58,13 +65,7 @@ export const NewTask = ({ TagDetails,setDetails,show, setShow, id, selectTag}) =
         <article className="w-full h-auto mt-11">
           <form className="w-full">
             <label className="w-full flex flex-wrap">
-              <textarea
-                type="text"
-                name="descriptionTask"
-                className="w-full h-[200px] border-1 border-gray-300 rounded-xl font-dana text-end px-4 outline-none break-words pt-4"
-                placeholder="توضیحاتی برای این تسک بنویسید"
-                wrap="normal"
-              ></textarea>
+              <Description />
             </label>
           </form>
         </article>
@@ -120,17 +121,14 @@ export const NewTask = ({ TagDetails,setDetails,show, setShow, id, selectTag}) =
               />
             </span>
 
-          
-          
             <span onClick={() => {
               setShowTag(!showTag);
             }} tabIndex={1} onBlur={()=>{setShowTag(false)}} className="border-dashed border-1 border-gray-400 h-[50px] w-[50px] rounded-full  flex justify-center items-center cursor-pointer">
               <LocalOfferOutlinedIcon className="text-neutral-400 !text-3xl"  ></LocalOfferOutlinedIcon>
             </span>
-           <span className="flex justify-center ml-6 z-20 items-end relative"><TagDrop TagDetails={TagDetails} setDetails={setDetails} showTag={showTag} setShowTag={setShowTag}/></span> 
 
-
-
+            <span className="flex justify-center ml-6 z-20 items-end relative"><TagDrop TagDetails={TagDetails} setDetails={setDetails} showTag={showTag} setShowTag={setShowTag}/></span> 
+            
             <span className="h-[60px] w-[50px] cursor-pointer flex items-end relative">
               <span className="bg-teal-500 w-[26px] h-[26px] rounded-full flex justify-center items-center right-0 top-0 absolute">
                 2
@@ -138,12 +136,7 @@ export const NewTask = ({ TagDetails,setDetails,show, setShow, id, selectTag}) =
               <VisibilityOutlinedIcon className="text-neutral-400 !text-5xl"></VisibilityOutlinedIcon>
             </span>
           </div>
-          <button
-            className="text-white bg-footBtn font-dana font-medium text-xs w-[125px] h-[32px] rounded"
-            onClick={() => {
-              setShow(!show);
-            }}
-          >
+          <button onClick={createTask} className="text-white bg-footBtn font-dana font-medium text-xs w-[125px] h-[32px] rounded">
             ساختن تسک
           </button>
         </article>
@@ -151,4 +144,3 @@ export const NewTask = ({ TagDetails,setDetails,show, setShow, id, selectTag}) =
     </div>
   );
 }
-

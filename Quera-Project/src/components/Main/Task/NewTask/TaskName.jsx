@@ -4,7 +4,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { useState } from "react";
 
 export function TaskName({showInput, setShowInput, value, setValue}) {
-    const [val, setVal] = useState("")
+    const [val, setVal] = useState("");
     
     const Remove=()=>{
         if(value !== ""){
