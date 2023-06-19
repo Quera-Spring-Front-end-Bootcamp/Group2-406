@@ -6,7 +6,7 @@ import InsertLinkRoundedIcon from '@mui/icons-material/InsertLinkRounded';
 import DeleteTwoToneIcon from '@mui/icons-material/DeleteTwoTone';
 import ShareIcon from '@mui/icons-material/Share';
 
-export const ProjectDropdown=({show,setShow,id,RemoveProject,setSharepr})=>{
+export const ProjectDropdown=({show,setShow,id,RemoveProject,setSharepr,Mylesson,setMylesson})=>{
     
      return (
           <div dir="rtl" onMouseDown={(e)=>{e.preventDefault(0)}} style={{visibility:show ? "visible":"hidden",width:'190px',height:show ? "190px":"0",}}  className=" overflow-hidden flex transition-all flex-col absolute  gap-3  shadow-lg rounded-lg p-3 bg-white">
@@ -15,7 +15,9 @@ export const ProjectDropdown=({show,setShow,id,RemoveProject,setSharepr})=>{
                     <span className=" my-auto font-dana  text-sm">ساختن تسک جدید</span>
                </div>
 
-               <div className=" flex flex-row  cursor-pointer items-center gap-2">
+               <div onClick={()=>{setMylesson(Mylesson.map((item)=>{
+                    return {...item,projects:item.projects.map((p)=>{return {...p,edit:id == p.id ? true:p.edit}})}
+               }))}} className=" flex flex-row  cursor-pointer items-center gap-2">
                     <EditRoundedIcon className='!text-xl'/>
                     <span className="font-dana  text-sm">ویرایش نام پروژه</span>
                </div>

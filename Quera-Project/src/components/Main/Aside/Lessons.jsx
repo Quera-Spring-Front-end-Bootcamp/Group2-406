@@ -6,10 +6,10 @@ import { Projects } from './Projects';
 import { Dropdown } from './Dropdown/Dropdown';
 import { ManageProjects } from './ManageProject';
 
-export function Lessons({id,Mylesson,setMylesson,lessonName,showLessons, squareColor,projectname,setSharepr,setShareW, nameProjects,setNameProjects}) {
+export function Lessons({id,Mylesson,setMylesson,lessonName,showLessons, squareColor,setSharepr,setShareW,projectname,setNameProjects}) {
     
 
-    const [projects, setprojects] = useState(projectname);
+    
     const [showInner,setInner]=useState(false);
     const [show,setShow]=useState(false);
 
@@ -19,13 +19,19 @@ export function Lessons({id,Mylesson,setMylesson,lessonName,showLessons, squareC
         }))   
     }
     const RemoveProject=(id)=>{
-        setprojects(projects.filter((item)=>{
-            return id!=item.id
+        setMylesson(Mylesson.map((item)=>{
+            return {...item,projects:item.projects.filter((p)=>{
+                return id != p.id
+            })}
+            
         }))
     }
     const Addhandle=(id,value,setvalue)=>{
-      setprojects(projects.map((item)=>{
-          return {id:item.id, nameProject: id== item.id ? value:item.nameProject }
+      setMylesson(Mylesson.map((item)=>{
+         return {...item,projects:item.projects.map((p)=>{
+            return {...p,nameProject: id == p.id ? value:p.nameProject,edit:id==p.id ? false: p.edit }
+         })}
+          
       }))
       setvalue("")
     }
@@ -40,16 +46,16 @@ export function Lessons({id,Mylesson,setMylesson,lessonName,showLessons, squareC
                     <span className=" text-start opacity-0 group-hover/lesson:opacity-100 transition-all duration-300">
                         {<MoreHorizRoundedIcon tabIndex="0" onBlur={()=>{setShow(false)}} onClick={()=>{setShow(!show)}} className="!text-base focus:outline-none text-gray-600"></MoreHorizRoundedIcon>}
                     </span>
-                    <Dropdown setNameProjects={setNameProjects} setShareW={setShareW} dropdown={show} Removehandler={Removehandler} setInner={setInner} setShow={setShow} projects={projects} setprojects={setprojects} />
+                    <Dropdown id={id} setNameProjects={setNameProjects} setShareW={setShareW} dropdown={show} Removehandler={Removehandler} setInner={setInner} setShow={setShow} Mylesson={Mylesson} setMylesson={setMylesson} />
                 </span>
             </div>
 
 
             {/* projects */}
             <div className="flex flex-col mr-7">
-                {projects.map((item) => {
-                    return(item.nameProject != "" ?<Projects setSharepr={setSharepr} key={item.id} RemoveProject={RemoveProject} showInner={showInner} id={item.id} projectName={item.nameProject} />
-                    :<ManageProjects Addhandle={Addhandle} id={item.id} RemoveProject={RemoveProject} key={item.id} showInner={showInner} />
+                {projectname.map((item) => {
+                    return(item.nameProject != "" && !item.edit ?<Projects setMylesson={setMylesson}  Mylesson={Mylesson} setSharepr={setSharepr} key={item.id} RemoveProject={RemoveProject} showInner={showInner} id={item.id} projectName={item.nameProject} />
+                    :<ManageProjects setMylesson={setMylesson} edit={item.edit} nameProject={item.nameProject}  Addhandle={Addhandle} id={item.id} RemoveProject={RemoveProject} key={item.id} showInner={showInner} />
                     );
                 })}
             </div>

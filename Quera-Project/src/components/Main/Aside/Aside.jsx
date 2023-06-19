@@ -9,10 +9,26 @@ import MeetingRoomOutlinedIcon from '@mui/icons-material/MeetingRoomOutlined';
 import { Lessons} from './Lessons';
 import { ProfileAside } from './ProfileAside';
 import { useState } from 'react';
+import { Workspaceedit } from './WorkspaceEdit';
 
 export const Aside = ({setWork,Mylesson,setMylesson,setShareProject,setShareWorkspace, setNameProjects}) => {
-    const [showLessons,SetShowLessons]=useState(true)
-
+    const [showLessons,SetShowLessons]=useState(true) 
+    const workspaceHandle=(id,value)=>{
+     if(value){
+         setMylesson(Mylesson.map((item)=>{
+        return {...item,nameLesson:item.id == id ? value:item.nameLesson,edit:false }
+     }))  
+    }
+    else{
+        return
+    }
+     }   
+    
+    const undoWorkspace=()=>{
+        setMylesson(Mylesson.map((item)=>{
+            return {...item,edit:false }
+         }))  
+    }
     return(
         <aside className='bg-white w-[330px] border-solid border-l-2 border-gray-200 h-[1024px] flex flex-col justify-start items-end relative z-20'>
             {/* Quera task manager name */}
@@ -45,8 +61,8 @@ export const Aside = ({setWork,Mylesson,setMylesson,setShareProject,setShareWork
                 {/* lessons & projects */}
                 <article id='Lessons' className="h-[650px] overflow-y-scroll bg-scroll">
                     {Mylesson.map((item)=>{
-                            return (<Lessons setNameProjects={setNameProjects} setSharepr={setShareProject} setShareW={setShareWorkspace} showLessons={showLessons} Mylesson={Mylesson} id={item.id} setMylesson={setMylesson} key={item.id} lessonName={item.nameLesson} 
-                            projectname={item.projects}  squareColor={<SquareRoundedIcon style={{color:item.colorSquare}}/>} />)
+                            return !item.edit ?(<Lessons setNameProjects={setNameProjects} setSharepr={setShareProject} setShareW={setShareWorkspace} showLessons={showLessons} Mylesson={Mylesson} id={item.id} setMylesson={setMylesson} key={item.id} lessonName={item.nameLesson} 
+                            projectname={item.projects}  squareColor={<SquareRoundedIcon style={{color:item.colorSquare}}/>} />): (<Workspaceedit key={item.id} id={item.id} workspaceHandle={workspaceHandle} name={item.nameLesson}  undoWorkspace={undoWorkspace}/>)
                     })}
                 </article>
             </section>
