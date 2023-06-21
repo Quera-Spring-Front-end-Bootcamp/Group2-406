@@ -5,7 +5,7 @@ import { useState } from "react";
 import { ChooseDecide } from "./ChooseDecide"
 import { ChooseTag} from "./ChooseTag";
 import { ChooseType } from "./ChooseType";
-export const ChooseFilter = ({ tag, type, decide, selectDecide,id,selectTag,selectType,DeleteFilter }) => {
+export const ChooseFilter = ({ tagid, type, decide,color,TagDetails, selectDecide,id,selectTag,selectType,DeleteFilter }) => {
   const [showTag, setShowTag] = useState(false);
   const [showType, setShowType] = useState(false);
   const [showDecide, setShowDecide] = useState(false);
@@ -28,12 +28,10 @@ export const ChooseFilter = ({ tag, type, decide, selectDecide,id,selectTag,sele
         <p className=" text-sm">آن‌ها</p>
         <article  className="flex flex-col gap-1 mt-1   justify-center items-center">
           <button tabIndex="0" onBlur={()=>{setShowTag(false)}} onClick={()=>{setShowTag(!showTag)}} className="w-[146px] text-xs items-center px-2 py-1 rounded-md border border-[#E9EBF0] justify-between flex flex-row">
-            <p className=" rounded-md " style={{padding: tag == "انتخاب کنید" ? "0":"2px", color: tag == "انتخاب کنید" ? "#959595" : "black",backgroundColor: tag=="درس" ? "#EBC8C8":tag=="کار" ? "#C3B7F2": tag=="پروژه" ? "#7FFAFA":"transparent" }}>
-              {tag}
-            </p>
+          {tagid ? TagDetails.map((item)=> item.id == tagid && <p key={id} className=" px-[3px] py-[1px] rounded-md" style={{backgroundColor:item.bgcolor}}>{item.tag}</p> ) :<p>انتخاب کنید</p>}
             <KeyboardArrowDownIcon className=" !text-sm" />
           </button>
-          <ChooseTag showTag={showTag} id={id} selectTag={selectTag} setShowTag={setShowTag}/>
+          <ChooseTag TagDetails={TagDetails} showTag={showTag} id={id} selectTag={selectTag} setShowTag={setShowTag}/>
         </article>
         <article  tabIndex="0"
           onBlur={()=>{setShowDecide(false)}}

@@ -4,7 +4,7 @@ import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded';
 import { ProjectDropdown } from './ProjectDropdown/ProjectDropdown';
 import { useState } from 'react';
 
-export const Projects = ({projectName,showInner,RemoveProject,id,setSharepr}) => {
+export const Projects = ({projectName,showInner,RemoveProject,id,setSharepr,Mylesson,setMylesson}) => {
     const [show,setshow]=useState(false)
     
     return(
@@ -13,7 +13,7 @@ export const Projects = ({projectName,showInner,RemoveProject,id,setSharepr}) =>
             <span className="font-dana font-medium mt-4 cursor-default">{projectName}</span>
             <span className='relative'>
                 <span className="mt-4 opacity-0 group-hover/lesson:opacity-100 transition-all duration-300">{<MoreHorizRoundedIcon tabIndex="0" onBlur={()=>{setshow(false)}} onClick={()=>{setshow(!show)}} className="!text-base focus:outline-none text-gray-600"></MoreHorizRoundedIcon>}</span>
-                <ProjectDropdown setSharepr={setSharepr} show={show} id={id} setShow={setshow} RemoveProject={RemoveProject}/>
+                <ProjectDropdown setSharepr={setSharepr} show={show} id={id} setMylesson={setMylesson} setShow={setshow} Mylesson={Mylesson} RemoveProject={RemoveProject}/>
             </span>
         </div>
     );

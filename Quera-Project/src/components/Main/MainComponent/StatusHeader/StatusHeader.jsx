@@ -2,7 +2,7 @@ import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import SyncAltOutlinedIcon from '@mui/icons-material/SyncAltOutlined';
 import { FilterDropdown } from "../FIlterDropdown/FilterDropdown";
 import { useState } from "react";
-export const StatusHeader = () => {
+export const StatusHeader = ({TagDetails}) => {
   const [show,setShow]=useState(false);
   return (
     <section className="w-full h-[60px] flex flex-row-reverse  border-solid border-b-2 border-gray-200">
@@ -19,7 +19,7 @@ export const StatusHeader = () => {
 
           <span  className="  mr-2  flex items-center font-semibold text-[13px] font-dana">فیلترها</span>
           
-        </button><span className="relative flex justify-center "><FilterDropdown show={show} setShow={setShow}/></span>
+        </button><span className="relative flex justify-center "><FilterDropdown TagDetails={TagDetails} show={show} setShow={setShow}/></span>
 
         <span className="  mr-5 p-1 rounded bg-sky-100 flex items-center font-semibold text-[13px]  font-dana"> دسته بندی شده با: وضعیت</span>
       </article>
