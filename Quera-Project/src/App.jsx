@@ -1,21 +1,21 @@
 import './App.module.css';
-import { Routes, Route} from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { Forget, Login, Reset, Register, Main } from "./Pages";
-import {Layout} from "./components/Layout/Layout";
-
+import { Layout } from "./components/Layout/Layout";
+import { AuthProvider } from './components/ContextApi/AuthContext';
 function App() {
 
   return (
     <>
       <div className='bg-white'>
         <Routes >
-            <Route path='/' element={<Layout />}>
-              <Route index element={<Login />} />
-              <Route path='register' element={<Register />}  />
-              <Route path="Forget" element={<Forget />} />
-              <Route path="Reset" element={<Reset />} /> 
-              <Route path="Main" element={<Main />} /> 
-            </Route>
+          <Route path='/' element={<Layout />}>
+            <Route index element={<AuthProvider> <Login /> </AuthProvider>} />
+            <Route path='register' element={<Register />} />
+            <Route path="Forget" element={<Forget />} />
+            <Route path="Reset" element={<Reset />} />
+            <Route path="Main" element={<Main />} />
+          </Route>
         </Routes>
       </div>
     </>
