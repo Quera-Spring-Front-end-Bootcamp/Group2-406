@@ -1,6 +1,6 @@
 /* eslint-disable no-const-assign */
 /* eslint-disable no-unused-vars */
-import { Aside, Footer,Newworkspace ,MainComponent, Header, ShareProject, ShareWorkspace, ShareTask, NewTask, ShareProject2 } from "../../components";
+import { Aside, Footer,Newworkspace ,MainComponent, Header, ShareProject, ShareWorkspace, ShareTask, NewTask } from "../../components";
 import { useState } from "react";
 
 export const Main = () => {
