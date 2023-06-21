@@ -1,8 +1,20 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import CloseIcon from '@mui/icons-material/Close';
-export const ManageProjects = ({showInner,id,Addhandle,RemoveProject}) => {
-    const [value,setvalue]=useState("");
+export const ManageProjects = ({showInner,id,Addhandle,RemoveProject,nameProject,edit,setMylesson}) => {
+    const [value,setvalue]=useState(nameProject);
+    const undoproject=()=>{
+        if(edit){
+             setMylesson(perv=> perv.map((item)=>{
+                return {...item,projects:item.projects.map((p)=>{
+                    return {...p,edit: id == p.id ? false:p.edit}
+                })}
+             }))
+        }
+        else(
+            RemoveProject(id)
+        )
+    }
     
     return(
         <div style={{visibility:showInner ? "visible":"hidden",height:showInner ? "33px":"0",marginTop:showInner ? "16px":"0"}} 
@@ -13,7 +25,7 @@ export const ManageProjects = ({showInner,id,Addhandle,RemoveProject}) => {
             <span className=" hover:scale-105 transition-transform cursor-pointer font-dana  text-sm" 
             onClick={()=>{Addhandle(id,value,setvalue)}}>تایید</span>
 
-            <CloseIcon onClick={()=>{RemoveProject(id)}} className="!text-sm cursor-pointer text-black hover:text-red-600 transition-all active:opacity-60 hover:transition-all rounded-full "/>
+            <CloseIcon onClick={undoproject} className="!text-sm cursor-pointer text-black hover:text-red-600 transition-all active:opacity-60 hover:transition-all rounded-full "/>
         </div>
     );
 }

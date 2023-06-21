@@ -1,14 +1,14 @@
 /* eslint-disable no-const-assign */
 /* eslint-disable no-unused-vars */
-import { Aside, Footer,Newworkspace ,MainComponent, Header, ShareProject, ShareWorkspace, ShareTask, NewTask, ShareProject2 } from "../../components";
+import { Aside, Footer,Newworkspace ,MainComponent, Header, ShareProject, ShareWorkspace, ShareTask, NewTask } from "../../components";
 import { useState } from "react";
 
 export const Main = () => {
     const Lesson = [
-        {id : 1, nameLesson: "درس مدیریت پروژه", colorSquare:"rgba(113, 253, 169, 1)", projects:[] },
-        {id : 2, nameLesson: "کارهای شخصی", colorSquare:"rgba(146, 255, 7, 1)", projects:[] },
-        {id : 3, nameLesson: "درس کامپایلر", colorSquare:"rgba(222, 136, 253, 1)", projects:[] },
-        {id : 4, nameLesson: "درس طراحی الگوریتم", colorSquare:"rgba(252, 7, 51, 1)", projects:[] },
+        {id : 1, nameLesson: "درس مدیریت پروژه", colorSquare:"rgba(113, 253, 169, 1)" ,edit:false, projects:[] },
+        {id : 2, nameLesson: "کارهای شخصی", colorSquare:"rgba(146, 255, 7, 1)" ,edit:false, projects:[] },
+        {id : 3, nameLesson: "درس کامپایلر", colorSquare:"rgba(222, 136, 253, 1)" ,edit:false, projects:[] },
+        {id : 4, nameLesson: "درس طراحی الگوریتم", colorSquare:"rgba(252, 7, 51, 1)" ,edit:false, projects:[] },
     ];
     const [showWork,setWork]=useState(false);
     const [Mylesson, setMylesson] = useState(Lesson);

@@ -8,4 +8,4 @@ export { ShareProject } from './Main/Header/ShareProject/ShareProject';
 export { ShareWorkspace } from './Main/Aside/ShareWorkspace/ShareWorkspace';
 export { NewTask } from "./Main/Task/NewTask/NewTask";
 export { ShareTask } from "./Main/Task/ShareTask/ShareTask";
-export { ShareProject2 } from "./Main/Aside/ShareProject/ShareProject"
+
