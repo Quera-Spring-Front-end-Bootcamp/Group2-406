@@ -2,22 +2,40 @@
 import { useForm } from "react-hook-form";
 import { LinkButton } from "../../components/Bottons/LinkButtons";
 import { useNavigate } from "react-router";
+import axios from "axios";
+import { useState } from "react";
 
 export function Register() {
   const navigate = useNavigate();
+  const [registerError,setRegisterError]=useState('')
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  let onSubmit = (data) => {
-    localStorage.setItem(
-      data.email,
-      JSON.stringify({ fullname: data.fullname, password: data.password })
-    );
-    console.log(JSON.parse(localStorage.getItem(data.email)));
-    navigate("/");
+  let onSubmit = async(data) => {
+    
+   const partedname=data.fullname.split(" ")
+   const firstName=partedname.shift()
+   const lastName=partedname.join(" ")
+    await axios.post("http://localhost:3000/api/auth/register",{
+      username:data.fullname,
+      password:data.password,
+      email:data.email,
+    firstname:firstName,
+      lastname:lastName,
+      profile_url: "https://example.com/john_doe/profile.jpg",
+      phone:""
+    })
+    .then(function (response) {
+      setRegisterError('')
+      navigate("/");
+    })
+    .catch(function (error) {
+      setRegisterError(error.response.data.message)
+    });
+    
   };
 
   return (
@@ -35,7 +53,8 @@ export function Register() {
             ثبت‌نام در کوئرا تسک منیجر
           </p>
           <form className="flex flex-col " onSubmit={handleSubmit(onSubmit)}>
-            <div className="flex flex-col  mb-6 mt-6 mr-6">
+            <div className="flex flex-col  mb-6 mt-6 mx-6">
+            
               <label htmlFor="name" className="mb-2 text-sm font-dana">
                 نام کامل
               </label>
@@ -53,7 +72,7 @@ export function Register() {
                     message: "نام وارد شده صحیح نمی باشد",
                   },
                 })}
-                className="   px-2  border border-inputBorder font-dana focus-visible:outline-none rounded-md ml-6 h-10 "
+                className="   px-2  border border-inputBorder font-dana focus-visible:outline-none rounded-md  h-10 "
               />
               <p className="text-xxs mt-1 font-dana text-red-700">
                 {errors.fullname?.message}
@@ -128,7 +147,9 @@ export function Register() {
                 <label htmlFor="check" className=" text-base leading-normal font-dana">
                   قوانین و مقررات را می‌پذیرم.
                 </label>
+               
               </div>
+               <p dir="ltr" className=" ml-6  text-xs text-red-500 ">{registerError}</p>
               <p className="text-xxs mt-1 font-dana text-red-700">
                 {errors.check?.message}
               </p>
@@ -139,6 +160,7 @@ export function Register() {
                 type="submit"
                 value="ثبت‌نام"
               />
+              
             </div>
           </form>
         </div>

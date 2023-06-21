@@ -7,19 +7,28 @@ import InsertLinkRoundedIcon from '@mui/icons-material/InsertLinkRounded';
 import DeleteTwoToneIcon from '@mui/icons-material/DeleteTwoTone';
 import ShareIcon from '@mui/icons-material/Share';
 
-export const Dropdown=({dropdown,setShow,setprojects,setInner,projects,Removehandler,setShareW, setNameProjects})=>{
+
+export const Dropdown=({dropdown,setShow,setMylesson,setInner,Mylesson,Removehandler,setShareW, setNameProjects,id})=>{
+    
      const Addhandler=()=>{
           setShow(false),setInner(true)
-          setprojects([...projects,{id:Date.now(),nameProject:""}]);
+          setMylesson(Mylesson.map((item)=>{
+             return  {...item,projects:id == item.id ?[...item.projects,{id:Date.now(),nameProject:"",edit:false}]: item.projects}
+               
+          }));
+     }
+     const workSpaceToggle=()=>{
+          setMylesson(Mylesson.map((item)=>{
+               return {...item,edit: id == item.id ? true : false}
+          }))
      }
      function share(){
           setShow(false);
           setShareW(true);
-          setNameProjects(projects.map((item) => {
-               return(
-                    {id: item.id, nameProject: item.nameProject}
-               );
-          }));
+          let filterdproject=Mylesson.filter((item)=>{
+             return  id== item.id
+          })
+          setNameProjects(filterdproject[0].projects)
      }
 
      return (
@@ -29,7 +38,7 @@ export const Dropdown=({dropdown,setShow,setprojects,setInner,projects,Removehan
                     <AddCircleOutlineIcon className='!text-xl'/><div className=" my-auto font-dana  text-sm">ساختن پروژه جدید</div>
                </div>
 
-               <div className=" flex flex-row  cursor-pointer items-center gap-2">
+               <div onClick={workSpaceToggle} className=" flex flex-row  cursor-pointer items-center gap-2">
                     <EditRoundedIcon className='!text-xl'/><div className="font-dana  text-sm">ویرایش نام ورک‌اسپیس</div>
                </div>
 

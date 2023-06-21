@@ -1,18 +1,18 @@
 /* eslint-disable no-const-assign */
 /* eslint-disable no-unused-vars */
 import { Aside, Footer,Newworkspace ,MainComponent, Header, ShareProject, ShareWorkspace, ShareTask, NewTask } from "../../components";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export const Main = () => {
     const Lesson = [
-        {id : 1, nameLesson: "درس مدیریت پروژه", colorSquare:"rgba(113, 253, 169, 1)", projects:[] },
-        {id : 2, nameLesson: "کارهای شخصی", colorSquare:"rgba(146, 255, 7, 1)", projects:[] },
-        {id : 3, nameLesson: "درس کامپایلر", colorSquare:"rgba(222, 136, 253, 1)", projects:[] },
-        {id : 4, nameLesson: "درس طراحی الگوریتم", colorSquare:"rgba(252, 7, 51, 1)", projects:[] },
+        {id : 1, nameLesson: "درس مدیریت پروژه", colorSquare:"rgba(113, 253, 169, 1)" ,edit:false, projects:[] },
+        {id : 2, nameLesson: "کارهای شخصی", colorSquare:"rgba(146, 255, 7, 1)" ,edit:false, projects:[] },
+        {id : 3, nameLesson: "درس کامپایلر", colorSquare:"rgba(222, 136, 253, 1)" ,edit:false, projects:[] },
+        {id : 4, nameLesson: "درس طراحی الگوریتم", colorSquare:"rgba(252, 7, 51, 1)" ,edit:false, projects:[] },
     ];
     const [showWork,setWork]=useState(false);
     const [Mylesson, setMylesson] = useState(Lesson);
-
+    const [TagDetails,setDetails]=useState([{id:1,tag:"درس",bgcolor:"#EBC8C8"},{id:2,tag:"کار",bgcolor:"#C3B7F2"},{id:3,tag:"پروژه",bgcolor:"#7FFAFA"}])
     const [showShareProject,setShareProject] = useState(false);
     const [showShareWorkspace,setShareWorkspace] = useState(false);
     const [showShareTask,setShareTask] = useState(false);
@@ -48,6 +48,7 @@ export const Main = () => {
 
       {/* share project page*/}
       <ShareProject show={showShareProject} setShow={setShareProject}/>
+      {/* <ShareProject2 show={showShareProject} setShow={setShareProject}/> */}
 
       {/* share workspace page*/} 
       <ShareWorkspace show={showShareWorkspace} setShow={setShareWorkspace} nameProjects={nameProjects} />
@@ -56,7 +57,7 @@ export const Main = () => {
       <ShareTask show={showShareTask} setShow={setShareTask} />
 
       {/* new task page*/}
-      <NewTask show={ShowNewTask} setShow={setShowNewTask}/>
+      <NewTask TagDetails={TagDetails} setDetails={setDetails} show={ShowNewTask} setShow={setShowNewTask}/>
 
       <div className='w-[1440px] h-[1024px] mx-auto my-0 flex flex-row justify-center'>
           {/* left content */}
@@ -64,7 +65,7 @@ export const Main = () => {
               <Header show={showShareProject} setShow={setShareProject} onBoardViewClick={handleBoardViewClick} onListViewClick={handleListViewClick} 
               onCalenderViewClick={handleCalenderViewClick} boardViewVisible={boardViewVisible} listViewVisible={listViewVisible} calenderViewVisible={calenderViewVisible} />
 
-              <MainComponent boardViewVisible={boardViewVisible} listViewVisible={listViewVisible} calenderViewVisible={calenderViewVisible} />
+              <MainComponent TagDetails={TagDetails} boardViewVisible={boardViewVisible} listViewVisible={listViewVisible} calenderViewVisible={calenderViewVisible} />
 
               <Footer show={ShowNewTask} setShow={setShowNewTask} />
           </div>

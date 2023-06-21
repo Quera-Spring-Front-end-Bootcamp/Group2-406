@@ -41,7 +41,7 @@ export const ShareWorkspace = ({show, setShow, nameProjects}) => {
                 <article className="w-[90%] h-auto flex flex-row mt-10 justify-center">
                     <form>
                         <button className="text-sm font-medium font-dana text-white bg-sendEmailBtn w-[90px] h-[40px] rounded-s-md">ارسال</button>
-                        <input  dir="rtl" className="font-dana outline-none pr-2 rounded-r-md border-none bg-neutral-100 w-[400px] h-[40px]" type="email" placeholder="دعوت با ایمیل"/>
+                        <input  dir="rtl" className="font-dana outline-none pr-2 rounded-r-md border-none bg-neutral-100 w-[400px] h-[40px]" type="text" placeholder=" دعوت با نام کاربری"/>
                     </form>
                 </article>
 
