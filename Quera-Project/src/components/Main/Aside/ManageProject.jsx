@@ -1,8 +1,10 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import CloseIcon from '@mui/icons-material/Close';
-export const ManageProjects = ({showInner,id,Addhandle,RemoveProject,nameProject,edit,setMylesson}) => {
-    const [value,setvalue]=useState(nameProject);
+import { useAuth } from "../../ContextApi/AuthContext";
+export const ManageProjects = ({showInner,id,Addhandle,RemoveProject,nameProject,edit,setMylesson,workspaceId}) => {
+    const [value,setvalue]=useState(()=> nameProject==workspaceId? "":nameProject);
+    const {token}=useAuth()
     const undoproject=()=>{
         if(edit){
              setMylesson(perv=> perv.map((item)=>{

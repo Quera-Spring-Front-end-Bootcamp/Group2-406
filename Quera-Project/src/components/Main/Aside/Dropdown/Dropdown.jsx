@@ -6,16 +6,30 @@ import ColorLensRoundedIcon from '@mui/icons-material/ColorLensRounded';
 import InsertLinkRoundedIcon from '@mui/icons-material/InsertLinkRounded';
 import DeleteTwoToneIcon from '@mui/icons-material/DeleteTwoTone';
 import ShareIcon from '@mui/icons-material/Share';
-
+import axios from 'axios';
+import { baseurl } from '../../../../assets/baseUrl';
+import { useAuth } from '../../../ContextApi/AuthContext';
 
 export const Dropdown=({dropdown,setShow,setMylesson,setInner,Mylesson,Removehandler,setShareW, setNameProjects,id})=>{
-    
-     const Addhandler=()=>{
+    const {token}=useAuth()
+     const Addhandler=async()=>{
           setShow(false),setInner(true)
-          setMylesson(Mylesson.map((item)=>{
-             return  {...item,projects:id == item.id ?[...item.projects,{id:Date.now(),nameProject:"",edit:false}]: item.projects}
+          console.log(id)
+          axios.post(baseurl+"/projects",{
+               name:id,
+               workspaceId:id
+          },{headers:{"x-auth-token":token}})
+          .then((response)=>{
+               
+                 setMylesson(Mylesson.map((item)=>{
+             return  {...item,projects:id == item.id ?[...item.projects,{id:response.data.data._id,nameProject:id,edit:false}]: item.projects}
                
           }));
+          })
+          .catch((error)=>{
+               console.log(error)
+          })
+        
      }
      const workSpaceToggle=()=>{
           setMylesson(Mylesson.map((item)=>{

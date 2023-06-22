@@ -5,43 +5,59 @@ import axios from "axios";
 
 const AuthContext = createContext()
 export const AuthProvider = ({ children }) => {
+    const [userId,setUserId]=useState(()=>{
+       return localStorage.userId ? localStorage.userId:""
+    })
+    const [userdata,setUserdata]=useState(()=>{
+       return localStorage.userdata ? JSON.parse(localStorage.getItem("userdata")):{}
+    })
     const [refreshToken, setRefreshToken] = useState(() => {
         return localStorage.refreshToken ? localStorage.refreshToken : "";
     });
     const [token, setToken] = useState(() => {
-        return localStorage.token ? localStorage.token : null;
+        return localStorage.token ? localStorage.token : "";
     });
-
-    useEffect(() => {
-        async function refresh() {
-            await axios
-                .post(baseurl + "/auth/refreshToken", {
-                    refreshToken: refreshToken,
-                })
-                .then((response) => {
-                    localStorage.token = response.data.accessToken;
-                    setToken(response.data.accessToken);
-                });
-        }
-        refresh();
-    }, []);
-
-    const login = (token, refreshToken) => {
+    const login = (token, refreshToken,userdata) => {
         localStorage.setItem("token", token);
+        localStorage.setItem("userId", userdata._id);
         localStorage.setItem("refreshToken", refreshToken);
+        localStorage.setItem("userdata",JSON.stringify(userdata))
         setToken(token);
+        setUserId(userdata._id)
+        setUserdata(userdata)
         setRefreshToken(refreshToken);
     };
 
     const logout = () => {
         localStorage.removeItem("token");
         localStorage.removeItem("refreshToken");
-        setToken(null);
+        localStorage.removeItem("userId")
+        localStorage.removeItem("userdata")
+        setToken("");
         setRefreshToken("");
+        setUserdata({})
+        setUserId("")
+        
     };
+    
+    useEffect(() => {
+        
+        async function refresh() {
+            await axios
+                .post(baseurl + "/auth/refreshToken", {
+                    refreshToken: refreshToken,
+                })
+                .then((response) => {
+                    localStorage.token = response.data.data.accessToken;
+                    setToken(response.data.data.accessToken);
+                });
+        }
+        refresh();
+    }, []);
 
+    
     return (
-        <AuthContext.Provider value={{ token, setToken, refreshToken, login, logout }}>
+        <AuthContext.Provider value={{ token, setToken, refreshToken, login, logout,userId,userdata }}>
             {children}
         </AuthContext.Provider>
     );

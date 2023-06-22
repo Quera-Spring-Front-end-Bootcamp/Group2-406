@@ -9,9 +9,10 @@ function App() {
   return (
     <>
       <div className='bg-white'>
+        <AuthProvider>
         <Routes >
           <Route path='/' element={<Layout />}>
-            <Route index element={<AuthProvider> <Login /> </AuthProvider>} />
+            <Route index element= {<Login />}  />
             <Route path='register' element={<Register />} />
             <Route path="Forget" element={<Forget />} />
             <Route path="Reset" element={<Reset />} />
@@ -19,6 +20,7 @@ function App() {
             <Route path="Profile/*" element={<Profile />} />
            </Route>
         </Routes>
+        </AuthProvider>
       </div>
     </>
   )

@@ -1,17 +1,33 @@
 /* eslint-disable no-const-assign */
 /* eslint-disable no-unused-vars */
 import { Aside, Footer,Newworkspace ,MainComponent, Header, ShareProject, ShareWorkspace, ShareTask, NewTask } from "../../components";
-import { useState } from "react";
-
+import { useEffect, useState } from "react";
+import { Navigate } from "react-router-dom";
+import axios from "axios";
+import { baseurl } from "../../assets/baseUrl";
+import { useAuth } from "../../components/ContextApi/AuthContext";
 export const Main = () => {
-    const Lesson = [
-        {id : 1, nameLesson: "درس مدیریت پروژه", colorSquare:"rgba(113, 253, 169, 1)" ,edit:false, projects:[] },
-        {id : 2, nameLesson: "کارهای شخصی", colorSquare:"rgba(146, 255, 7, 1)" ,edit:false, projects:[] },
-        {id : 3, nameLesson: "درس کامپایلر", colorSquare:"rgba(222, 136, 253, 1)" ,edit:false, projects:[] },
-        {id : 4, nameLesson: "درس طراحی الگوریتم", colorSquare:"rgba(252, 7, 51, 1)" ,edit:false, projects:[] },
-    ];
+    const {token}=useAuth()
     const [showWork,setWork]=useState(false);
-    const [Mylesson, setMylesson] = useState(Lesson);
+    const [Mylesson, setMylesson] = useState([])
+    const fetchData=()=>{
+       axios.get(baseurl+"/workspace/get-all",{headers:{"x-auth-token":token}})
+       .then((response)=>{
+        console.log(response)
+        const workspaces=response.data.data
+        setMylesson(workspaces.map((item)=>{
+          return {id:item._id,nameLesson:item.name,members:item.members,colorSquare:item.color,edit:false,projects:item.projects.map((p)=>{
+            return ({id:p._id,nameProject:p.name,members:p.members,boards:p.boards})
+          })}
+        }))
+       })
+       .catch((error)=>{
+        console.log(error)
+       })
+    }
+    useEffect(()=>{
+       fetchData()    
+    },[])
     const [TagDetails,setDetails]=useState([{id:1,tag:"درس",bgcolor:"#EBC8C8"},{id:2,tag:"کار",bgcolor:"#C3B7F2"},{id:3,tag:"پروژه",bgcolor:"#7FFAFA"}])
     const [showShareProject,setShareProject] = useState(false);
     const [showShareWorkspace,setShareWorkspace] = useState(false);
@@ -42,6 +58,7 @@ export const Main = () => {
     }
 
     return(
+      token ?
     <>    
       {/* new workspace page*/}
       <Newworkspace Mylesson={Mylesson} setMylesson={setMylesson}  show={showWork} setshow={setWork}/>
@@ -75,5 +92,5 @@ export const Main = () => {
               <Aside setNameProjects={setNameProjects} Mylesson={Mylesson} setMylesson={setMylesson} setShareProject={setShareProject} setShareWorkspace={setShareWorkspace}  setWork={setWork} />
           </div>
       </div>
-    </>);
+    </>:<Navigate to="/"/>);
 }

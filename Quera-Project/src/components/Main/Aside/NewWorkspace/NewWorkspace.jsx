@@ -4,26 +4,28 @@ import { Phase1 } from "./Phase1"
 import { Phase2 } from "./Phase2"
 import { Phase3 } from "./Phase3"
 import { useForm } from "react-hook-form"
-
+import { useAuth } from "../../../ContextApi/AuthContext"
 import axios from "axios"
 
 export const Newworkspace=({show,setshow,setMylesson,Mylesson})=>{
+    
     const {watch,register,reset,formState:{errors},handleSubmit}=useForm({defaultValues:{color:"#7D828C"}});
     const [phase,setphase]=useState(1);
-
+     const {token,userId} = useAuth()
     const onsubmit= async(data)=>{
         console.log(data)
         if(phase<3){
             setphase(phase+1);
         }
         else{
-            
+            console.log(token)
             await axios.post("http://localhost:3000/api/workspace/create",{
-                name:watch("name")
-            },{headers:{"x-auth-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0OGU4M2Q4MzMyNjk5MDAzZjJmZjRkNCIsInVzZXJuYW1lIjoiZGFkYSIsImVtYWlsIjoibWV5c2Ftc2F5eWFkdGFsYUBnbWFpbC5jb20iLCJpYXQiOjE2ODcyMzY4OTUsImV4cCI6MTY4NzMyMzI5NX0.pZ7tc502bTHxfA7KbgcB3ZtcF3jeAPmHhlsSOKY4wNs"}})
+                name:watch("name"),
+                color:watch("color")
+            },{headers:{"x-auth-token":token}})
             .then(function (response) {
               
-              setMylesson([...Mylesson,{id:response.data.data._id,nameLesson:watch("name"),colorSquare:watch("color"),edit:false,projects:[]}]);
+              setMylesson([...Mylesson,{id:response.data.data._id,nameLesson:watch("name"),colorSquare:watch("color"),user:userId,edit:false,members:[],projects:[]}]);
               console.log(Mylesson)
               })
               .catch(function (error) {
