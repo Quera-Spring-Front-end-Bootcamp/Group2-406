@@ -26,9 +26,10 @@ export const Login = () => {
                 password: data.password
             }, { headers: { "Content-Type": "application/json" } }
             );
-
+           console.log(response)
             const { accessToken, refreshToken } = response.data.data;
-            login(accessToken, refreshToken);
+            const userdata=response.data.data.toBeSendUserData
+            login(accessToken, refreshToken,userdata);
             navigate("/Main");
         } catch (error) {
             alert("ایمیل یا رمز عبور اشتباه می باشد");

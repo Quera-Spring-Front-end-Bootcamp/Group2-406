@@ -5,6 +5,9 @@ import { useState } from 'react';
 import { Projects } from './Projects';
 import { Dropdown } from './Dropdown/Dropdown';
 import { ManageProjects } from './ManageProject';
+import axios from 'axios';
+import { baseurl } from '../../../assets/baseUrl';
+import { useAuth } from '../../ContextApi/AuthContext';
 
 export function Lessons({id,Mylesson,setMylesson,lessonName,showLessons, squareColor,setSharepr,setShareW,projectname,setNameProjects}) {
     
@@ -12,27 +15,49 @@ export function Lessons({id,Mylesson,setMylesson,lessonName,showLessons, squareC
     
     const [showInner,setInner]=useState(false);
     const [show,setShow]=useState(false);
-
-    const Removehandler=()=>{
-        setMylesson(Mylesson.filter((item)=>{
+    const {token}=useAuth()
+    const Removehandler=async()=>{
+        axios.delete(baseurl+"/workspace/"+id,{
+headers:{"x-auth-token":token}
+        }).then((response)=>{
+             setMylesson(Mylesson.filter((item)=>{
             return id!=item.id
         }))   
+        })
+        .catch((error)=>{
+            console.log(error)
+        })
+       
     }
     const RemoveProject=(id)=>{
-        setMylesson(Mylesson.map((item)=>{
-            return {...item,projects:item.projects.filter((p)=>{
-                return id != p.id
-            })}
-            
-        }))
+        axios.delete(baseurl +"/projects/"+id,
+          {headers:{"x-auth-token":token}})
+          .then((response)=>{
+            setMylesson(Mylesson.map((item)=>{
+                return {...item,projects:item.projects.filter((p)=>{
+                    return id != p.id
+                })}
+                
+            }))
+          })
+          .catch((error)=>{
+            console.log(error)
+          })
+       
     }
     const Addhandle=(id,value,setvalue)=>{
-      setMylesson(Mylesson.map((item)=>{
-         return {...item,projects:item.projects.map((p)=>{
-            return {...p,nameProject: id == p.id ? value:p.nameProject,edit:id==p.id ? false: p.edit }
-         })}
-          
-      }))
+      axios.put(baseurl +"/projects/"+id,{
+        name:value
+      },{headers:{"x-auth-token":token}})
+      .then((response)=>{
+        setMylesson(Mylesson.map((item)=>{
+            return {...item,projects:item.projects.map((p)=>{
+               return {...p,nameProject: id == p.id ? value:p.nameProject,edit:id==p.id ? false: p.edit }
+            })}
+             
+         }))
+      })
+      
       setvalue("")
     }
     
@@ -54,8 +79,8 @@ export function Lessons({id,Mylesson,setMylesson,lessonName,showLessons, squareC
             {/* projects */}
             <div className="flex flex-col mr-7">
                 {projectname.map((item) => {
-                    return(item.nameProject != "" && !item.edit ?<Projects setMylesson={setMylesson}  Mylesson={Mylesson} setSharepr={setSharepr} key={item.id} RemoveProject={RemoveProject} showInner={showInner} id={item.id} projectName={item.nameProject} />
-                    :<ManageProjects setMylesson={setMylesson} edit={item.edit} nameProject={item.nameProject}  Addhandle={Addhandle} id={item.id} RemoveProject={RemoveProject} key={item.id} showInner={showInner} />
+                    return(item.nameProject != id && !item.edit ?<Projects setMylesson={setMylesson}  Mylesson={Mylesson} setSharepr={setSharepr} key={item.id} RemoveProject={RemoveProject} showInner={showInner} id={item.id} projectName={item.nameProject} />
+                    :<ManageProjects setMylesson={setMylesson} edit={item.edit} nameProject={item.nameProject}  Addhandle={Addhandle} workspaceId={id} id={item.id} RemoveProject={RemoveProject} key={item.id} showInner={showInner} />
                     );
                 })}
             </div>
