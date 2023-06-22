@@ -9,7 +9,7 @@ export const AuthProvider = ({ children }) => {
         return localStorage.refreshToken ? localStorage.refreshToken : "";
     });
     const [token, setToken] = useState(() => {
-        return localStorage.token ? localStorage.token : null;
+        return localStorage.token ? localStorage.token : "";
     });
 
     useEffect(() => {
@@ -36,7 +36,7 @@ export const AuthProvider = ({ children }) => {
     const logout = () => {
         localStorage.removeItem("token");
         localStorage.removeItem("refreshToken");
-        setToken(null);
+        setToken("");
         setRefreshToken("");
     };
 
