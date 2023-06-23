@@ -1,14 +1,38 @@
 /* eslint-disable no-misleading-character-class */
 import { useForm } from "react-hook-form";
-
+import { useAuth } from "../../components/ContextApi/AuthContext";
+import { baseurl } from "../../assets/baseUrl";
+import axios from "axios";
+import { useState } from "react";
 useForm
 export const Personal=()=>{
+  const [resultMessage,setResultMessage]=useState({})
+  const {token,userdata,userId,updateuser}=useAuth()
   const {
       register,
       handleSubmit,
       formState: { errors },
-    } = useForm();
-    const onsubmit=(data)=>{console.log(data)}
+    } = useForm({defaultValues:{
+      name:userdata.firstname,
+      lastname:userdata.lastname
+    }});
+   
+    const onsubmit=async(data)=>{
+        await axios.put(baseurl+"/users/"+userId,{
+          firstname:data.name,
+          lastname:data.lastname,
+          email:userdata.email
+        },{headers:{"x-auth-token":token}}).then((response)=>{
+         console.log(response)
+         setResultMessage({message:"اطلاعات با موفقیت ذخیره شد",color:"#208D8E"})
+         updateuser(response.data.data)
+         
+
+        })
+        .catch((error)=>{
+          setResultMessage({message:"خطایی رخ داده است",color:"#FF9494"})
+        })
+    }
 
   return (
     <>
@@ -17,9 +41,9 @@ export const Personal=()=>{
           <section className="text-[31px] font-bold">اطلاعات فردی</section>
           <section>
             <div className="flex gap-4 items-center flex-row">
-              <span className="rounded-full bg-yellow-200 w-[100px] h-[100px] font-medium ml-2 flex justify-center items-center  text-[34px]">NM</span>
+              <span className="rounded-full bg-yellow-200 w-[100px] h-[100px] font-medium ml-2 flex justify-center items-center  text-[34px]">{userdata.lastname[0] ? userdata.firstname[0] + " " + userdata.lastname[0]:userdata.firstname[0] }</span>
               <div className="flex flex-col gap-3   items-start">  
-                <div className=" p-[10px]  border border-[#208D8E] rounded-lg text-[#208D8E] text-xl">ویرایش تصویر پروفایل</div>
+                <div className=" p-[10px]  border border-[#208D8E] rounded-lg cursor-pointer text-[#208D8E] text-xl">ویرایش تصویر پروفایل</div>
                 <p className=" text-[#8A8989]  text-xs">این تصویر برای عموم قابل نمایش است.</p>
               </div>
             </div>
@@ -45,9 +69,9 @@ export const Personal=()=>{
                 <p className="text-xxs mt-1 font-dana text-red-700">{errors.name?.message}</p>
               </div>
               <div className="flex flex-col">
-                <label htmlFor="surename" className="mb-2 text-sm font-dana">نام خانوادگی</label>
-                <input id="surename" type="text"
-                {...register("surename", {
+                <label htmlFor="lastname" className="mb-2 text-sm font-dana">نام خانوادگی</label>
+                <input id="lastname" type="text"
+                {...register("lastname", {
                   required: {
                     value: true,
                     message: "وارد کردن نام خانوادگی الزامی است",
@@ -60,16 +84,13 @@ export const Personal=()=>{
                 })}
                 className="     border border-inputBorder font-dana focus-visible:outline-none rounded-md px-2   h-10 "
                 />
-                <p className="text-xxs mt-1 font-dana text-red-700">{errors.surename?.message}</p>
+                <p className="text-xxs mt-1 font-dana text-red-700">{errors.lastname?.message}</p>
               </div>
               <div className="flex flex-col">
-                <label htmlFor="name" className="mb-2 text-sm font-dana">شماره موبایل</label>
-                <input id="name" type="tel"
-                {...register("fullname", {
-                  required: {
-                    value: true,
-                    message: "وارد کردن نام الزامی است",
-                  },
+                <label htmlFor="phone" className="mb-2 text-sm font-dana">شماره موبایل</label>
+                <input id="phone" type="tel"
+                {...register("phone", {
+                  
                   pattern: {
                     value:
                       /^(0|\+98)?([ ]|-|[()]){0,2}9[1|2|3|4]([ ]|-|[()]){0,2}(?:[0-9]([ ]|-|[()]){0,2}){8}/,
@@ -78,9 +99,10 @@ export const Personal=()=>{
                 })}
                 className="     border border-inputBorder font-dana focus-visible:outline-none rounded-md px-2   h-10 "
                 />
-                <p className="text-xxs mt-1 font-dana text-red-700">{errors.fullname?.message}</p>
+                <p className="text-xxs mt-1 font-dana text-red-700">{errors.phone?.message}</p>
               </div>
             </div>   
+            <p className=" font-semibold text-sm mt-1 font-dana" style={{color:resultMessage.color}}>{resultMessage.message}</p>
           </div>
           <div className="flex flex-col mt-auto ">
             <input className="  cursor-pointer w-full  h-[38px] text-sm rounded-md font-dana bg-submitColor text-white  " value="ثبت تغییرات" type="submit"/>

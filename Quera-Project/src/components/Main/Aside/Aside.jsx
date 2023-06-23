@@ -87,7 +87,7 @@ export const Aside = ({setWork,Mylesson,setMylesson,setShareProject,setShareWork
             {/* exit & profile */}
             <section className='w-full h-[70px] mt-2'>
                 {/* profile */}
-                <ProfileAside Name={userdata.username} Abb={userdata.lastname[0] ? userdata.firstname[0] + " " + userdata.lastname[0]:userdata.firstname[0] } />
+                <ProfileAside Name={userdata.firstname + " " + userdata.lastname} Abb={userdata.lastname[0] ? userdata.firstname[0] + " " + userdata.lastname[0]:userdata.firstname[0] } />
 
                 {/* exit */}
                 <article className="text-stone-500 flex flex-row w-full justify-end items-end mt-2 cursor-pointer">

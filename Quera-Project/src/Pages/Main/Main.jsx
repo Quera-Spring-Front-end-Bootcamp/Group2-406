@@ -10,8 +10,8 @@ export const Main = () => {
     const {token}=useAuth()
     const [showWork,setWork]=useState(false);
     const [Mylesson, setMylesson] = useState([])
-    const fetchData=()=>{
-       axios.get(baseurl+"/workspace/get-all",{headers:{"x-auth-token":token}})
+    const fetchData=async()=>{
+      await axios.get(baseurl+"/workspace/get-all",{headers:{"x-auth-token":token}})
        .then((response)=>{
         console.log(response)
         const workspaces=response.data.data
@@ -76,7 +76,7 @@ export const Main = () => {
       {/* new task page*/}
       <NewTask TagDetails={TagDetails} setDetails={setDetails} show={ShowNewTask} setShow={setShowNewTask}/>
 
-      <div className='w-[1440px] h-[1024px] mx-auto my-0 flex flex-row justify-center'>
+      <div className='w-[1440px] dark:bg-black h-[1024px] mx-auto my-0 flex flex-row justify-center'>
           {/* left content */}
           <div className="flex flex-col justify-start w-[1080px] h-auto mr-5">
               <Header show={showShareProject} setShow={setShareProject} onBoardViewClick={handleBoardViewClick} onListViewClick={handleListViewClick} 
