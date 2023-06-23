@@ -10,14 +10,31 @@ import { Lessons} from './Lessons';
 import { ProfileAside } from './ProfileAside';
 import { useState } from 'react';
 import { Workspaceedit } from './WorkspaceEdit';
+import axios from 'axios';
+import { baseurl } from '../../../assets/baseUrl';
+import { useAuth } from '../../ContextApi/AuthContext';
 
 export const Aside = ({setWork,Mylesson,setMylesson,setShareProject,setShareWorkspace, setNameProjects}) => {
     const [showLessons,SetShowLessons]=useState(true) 
-    const workspaceHandle=(id,value)=>{
+    const {token,userId,userdata}=useAuth()
+    const workspaceHandle=async(id,value)=>{
      if(value){
-         setMylesson(Mylesson.map((item)=>{
+        await axios.patch(baseurl + "/workspace/"+id,{
+            name:value,
+            usernameOrId: userId,
+    image: "image url"
+        },{
+            headers:{"x-auth-token":token}
+        })
+        .then((response)=>{
+             setMylesson(Mylesson.map((item)=>{
         return {...item,nameLesson:item.id == id ? value:item.nameLesson,edit:false }
-     }))  
+     }))
+     
+        })
+        .catch((error)=>{
+        console.log(error)
+     })  
     }
     else{
         return
@@ -70,7 +87,7 @@ export const Aside = ({setWork,Mylesson,setMylesson,setShareProject,setShareWork
             {/* exit & profile */}
             <section className='w-full h-[70px] mt-2'>
                 {/* profile */}
-                <ProfileAside Name="نیلوفر موجودی" Abb="NM" />
+                <ProfileAside Name={userdata.username} Abb={userdata.lastname[0] ? userdata.firstname[0] + " " + userdata.lastname[0]:userdata.firstname[0] } />
 
                 {/* exit */}
                 <article className="text-stone-500 flex flex-row w-full justify-end items-end mt-2 cursor-pointer">
