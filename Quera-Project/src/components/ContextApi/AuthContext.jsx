@@ -23,10 +23,15 @@ export const AuthProvider = ({ children }) => {
         localStorage.setItem("refreshToken", refreshToken);
         localStorage.setItem("userdata",JSON.stringify(userdata))
         setToken(token);
-        setUserId(userdata._id)
         setUserdata(userdata)
+        setUserId(userdata._id)
         setRefreshToken(refreshToken);
     };
+   const updateuser=(data)=>{
+    const newdata={...userdata,firstname:data.firstname,lastname:data.lastname}
+        setUserdata(newdata)
+        localStorage.setItem("userdata",JSON.stringify(newdata))
+   }
 
     const logout = () => {
         localStorage.removeItem("token");
@@ -52,12 +57,12 @@ export const AuthProvider = ({ children }) => {
                     setToken(response.data.data.accessToken);
                 });
         }
-        refresh();
+       refreshToken && refresh();
     }, []);
 
     
     return (
-        <AuthContext.Provider value={{ token, setToken, refreshToken, login, logout,userId,userdata }}>
+        <AuthContext.Provider value={{ token, setToken, refreshToken, login, logout,userId,userdata,updateuser }}>
             {children}
         </AuthContext.Provider>
     );
