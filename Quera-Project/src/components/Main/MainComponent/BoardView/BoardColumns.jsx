@@ -5,10 +5,11 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { Tooltip, Button, Fade } from '@mui/material';
 import { useState } from 'react';
 import EditModal from './EditModal';
+import { EditBoard } from './EditBoard';
 
-export const BoardColumns = ({ name, children, color }) => {
+export const BoardColumns = ({ name, children, color,id,deleteBoard,editBoard }) => {
     const [showModal, setShowModal] = useState(false);
-    
+    const [edit,setEdit]=useState(false)
 
     function openModal() {
         setShowModal(true);
@@ -17,7 +18,7 @@ export const BoardColumns = ({ name, children, color }) => {
         setShowModal(false);
     }
 
-    return (
+    return !edit ?(
         <div  className="w-[260px] h-[599px] left-[788px] gap-5 mt-[17px] flex flex-col items-center p-0 flex-none order-5 flex-grow-0" dir='ltr'>
 
             {/* column header  */}
@@ -38,7 +39,7 @@ export const BoardColumns = ({ name, children, color }) => {
                         <AddIcon fontSize='' className="w-[24px] h-[24px] flex-none order-0 flex-grow-0"></AddIcon>
                     </Tooltip>
                     <MoreHorizIcon fontSize='' onClick={openModal}></MoreHorizIcon>
-                    {showModal && <EditModal />}
+                    {showModal && <EditModal setEdit={setEdit} id={id} deleteBoard={deleteBoard} />}
                 </div>
             </div>
 
@@ -47,5 +48,5 @@ export const BoardColumns = ({ name, children, color }) => {
                 {children}
             </div>
         </div>
-    );
+    ):<EditBoard editBoard={editBoard} setEdit={setEdit} id={id} name={name}/>;
 }
