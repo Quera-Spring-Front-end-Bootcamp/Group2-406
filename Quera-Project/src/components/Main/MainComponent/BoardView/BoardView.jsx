@@ -5,7 +5,7 @@ import { NewBoard } from '../../Aside/NewBoard/New‌Board';
 import { useState } from 'react';
 
 
-export const BoardView = ({newBoard,boards}) => {
+export const BoardView = ({newBoard,boards,deleteBoard,editBoard}) => {
     const [show,setShow]=useState(false)
     return (
           
@@ -18,7 +18,7 @@ export const BoardView = ({newBoard,boards}) => {
                 {
                   
                    boards.map((p)=>{
-                        return    <BoardColumns key={p._id} name={p.name} color={p.color}/>
+                        return    <BoardColumns editBoard={editBoard} deleteBoard={deleteBoard} id={p._id} key={p._id} name={p.name} color={p.color}/>
                     })
                   
                 }

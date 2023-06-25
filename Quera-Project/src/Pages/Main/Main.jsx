@@ -30,10 +30,7 @@ export const Main = () => {
     useEffect(()=>{
        fetchData()    
     },[])
-    const newBoard=(data)=>{
-      setBoards([...boards,{name:data.name,_id:data._id,color:data.color,position:data.position,project:data.project}])
-      fetchData()
-    }
+    
     const [TagDetails,setDetails]=useState([{id:1,tag:"درس",bgcolor:"#EBC8C8"},{id:2,tag:"کار",bgcolor:"#C3B7F2"},{id:3,tag:"پروژه",bgcolor:"#7FFAFA"}])
     const [showShareProject,setShareProject] = useState(false);
     const [showShareWorkspace,setShareWorkspace] = useState(false);
@@ -89,7 +86,7 @@ export const Main = () => {
             
               
 
-              <MainComponent boards={boards} newBoard={newBoard} showShareProject={showShareProject} setShareProject={setShareProject} Mylesson={Mylesson} TagDetails={TagDetails} boardViewVisible={boardViewVisible} listViewVisible={listViewVisible} calenderViewVisible={calenderViewVisible} />
+              <MainComponent fetchData={fetchData} setBoards={setBoards} boards={boards} showShareProject={showShareProject} setShareProject={setShareProject} Mylesson={Mylesson} TagDetails={TagDetails} boardViewVisible={boardViewVisible} listViewVisible={listViewVisible} calenderViewVisible={calenderViewVisible} />
 
               <Footer show={ShowNewTask} setShow={setShowNewTask}  />
           </div>
