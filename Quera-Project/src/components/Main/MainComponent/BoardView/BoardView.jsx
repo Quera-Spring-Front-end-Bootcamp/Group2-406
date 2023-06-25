@@ -3,15 +3,10 @@ import { Tasks } from './Tasks';
 import AddIcon from '@mui/icons-material/Add';
 import { NewBoard } from '../../Aside/NewBoard/New‌Board';
 import { useState } from 'react';
-import { useProject } from '../TaskLayout/TaskLayout';
-import Draggable from 'react-draggable';
 
 
 export const BoardView = ({newBoard,boards}) => {
     const [show,setShow]=useState(false)
-     const project=useProject()
-     const projectboards=project.boards
-     console.log(boards)
     return (
           
         <>

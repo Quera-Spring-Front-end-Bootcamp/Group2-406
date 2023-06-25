@@ -5,14 +5,12 @@ import ChecklistIcon from '@mui/icons-material/Checklist';
 import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
 import SpaceDashboardOutlinedIcon from '@mui/icons-material/SpaceDashboardOutlined';
 import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
-import { useNavigate ,useLocation,matchPath} from 'react-router-dom';
+import { useNavigate ,useLocation} from 'react-router-dom';
 
 
 export const Header = ({show, setShow,id }) => {
 const navigate=useNavigate()
 const url=useLocation()
-const match = matchPath({ path: "/Main/:id" }, url.pathname);
-console.log(match)
     return (
         <header className='w-full h-[110px] flex flex-row justify-end border-solid border-b-2 border-gray-200'>
 

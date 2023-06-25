@@ -9,7 +9,7 @@ export const TaskLayout=({Mylesson,showShareProject,setShareProject,TagDetails})
         return p.id == id
     })
   })
-  console.log(SelectedWorkspace)
+  
  let project= SelectedWorkspace.length > 0 ? SelectedWorkspace[0].projects.filter((item)=>{
    return item.id == id
   }):"undefined"

@@ -27,7 +27,7 @@ export const NewBoard=({show,setshow,setMylesson,Mylesson,newBoard})=>{
                 projectId:id
             },{headers:{"x-auth-token":token}})
             .then(function (response) {
-                console.log(response)
+                
                 newBoard(response.data.data)
               
               })
