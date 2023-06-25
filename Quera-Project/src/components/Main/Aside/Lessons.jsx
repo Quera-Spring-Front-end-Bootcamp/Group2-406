@@ -9,7 +9,7 @@ import axios from 'axios';
 import { baseurl } from '../../../assets/baseUrl';
 import { useAuth } from '../../ContextApi/AuthContext';
 
-export function Lessons({id,Mylesson,setMylesson,lessonName,showLessons, squareColor,setSharepr,setShareW,projectname,setNameProjects}) {
+export function Lessons({id,setBoards,Mylesson,setMylesson,lessonName,showLessons, squareColor,setSharepr,setShareW,projectname,setNameProjects}) {
     
 
     
@@ -79,7 +79,7 @@ headers:{"x-auth-token":token}
             {/* projects */}
             <div className="flex flex-col mr-7">
                 {projectname.map((item) => {
-                    return(item.nameProject != id && !item.edit ?<Projects setMylesson={setMylesson}  Mylesson={Mylesson} setSharepr={setSharepr} key={item.id} RemoveProject={RemoveProject} showInner={showInner} id={item.id} projectName={item.nameProject} />
+                    return(item.nameProject != id && !item.edit ?<Projects setBoards={setBoards} setMylesson={setMylesson}  Mylesson={Mylesson} setSharepr={setSharepr} key={item.id} RemoveProject={RemoveProject} showInner={showInner} id={item.id} projectName={item.nameProject} />
                     :<ManageProjects setMylesson={setMylesson} edit={item.edit} nameProject={item.nameProject}  Addhandle={Addhandle} workspaceId={id} id={item.id} RemoveProject={RemoveProject} key={item.id} showInner={showInner} />
                     );
                 })}

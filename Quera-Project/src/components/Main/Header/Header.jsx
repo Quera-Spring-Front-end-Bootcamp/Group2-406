@@ -5,11 +5,14 @@ import ChecklistIcon from '@mui/icons-material/Checklist';
 import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
 import SpaceDashboardOutlinedIcon from '@mui/icons-material/SpaceDashboardOutlined';
 import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
+import { useNavigate ,useLocation,matchPath} from 'react-router-dom';
 
 
-export const Header = ({show, setShow, onBoardViewClick, onListViewClick, onCalenderViewClick, boardViewVisible, listViewVisible, calenderViewVisible }) => {
-
-
+export const Header = ({show, setShow,id }) => {
+const navigate=useNavigate()
+const url=useLocation()
+const match = matchPath({ path: "/Main/:id" }, url.pathname);
+console.log(match)
     return (
         <header className='w-full h-[110px] flex flex-row justify-end border-solid border-b-2 border-gray-200'>
 
@@ -20,21 +23,21 @@ export const Header = ({show, setShow, onBoardViewClick, onListViewClick, onCale
                 </article>
 
                 {/* list view  */}
-                <article className={`ml-3 mr-0 pb-7 flex flex-row justify-end items-center w-[150px] h-[25px] cursor-pointer ${listViewVisible ? 'border-solid border-b-2 border-teal-500' : ''}`} onClick={onListViewClick}>
-                    <span className={`w-auto h-5 mr-2 font-semibold flex items-center pl-4 border-solid border-l-2 border-gray-200 font-dana ${listViewVisible ? 'text-teal-500' : ''}`}>نمایش لیستی</span>
-                    <span className={`w-auto h-5 mr-2 flex items-center ${listViewVisible ? ' text-teal-500' : ''}`}>{<ChecklistIcon></ChecklistIcon>}</span>
+                <article className={`ml-3 mr-0 pb-7 flex flex-row justify-end items-center w-[150px] h-[25px] cursor-pointer ${url.pathname == "/Main/" + id + "/ColumnView" ? 'border-solid border-b-2 border-teal-500' : ''}`} onClick={()=>{navigate("/Main/"+id + "/ColumnView")}}>
+                    <span className={`w-auto h-5 mr-2 font-semibold flex items-center pl-4 border-solid border-l-2 border-gray-200 font-dana ${url.pathname == "/Main/" + id + "/ColumnView" ? 'text-teal-500' : ''}`}>نمایش لیستی</span>
+                    <span className={`w-auto h-5 mr-2 flex items-center ${url.pathname == "/Main/" + id + "/ColumnView" ? ' text-teal-500' : ''}`}>{<ChecklistIcon></ChecklistIcon>}</span>
                 </article>
 
                 {/* column display */}
-                <article className={`ml-3 mr-0 pb-7 flex flex-row justify-end items-center w-[150px] h-[25px] cursor-pointer ${boardViewVisible ? 'border-solid border-b-2 border-teal-500' : ''}`} onClick={onBoardViewClick}>
-                    <span className={`w-auto h-5 mr-2 font-semibold flex items-center pl-4 border-solid border-l-2 border-gray-200 font-dana ${boardViewVisible ? 'text-teal-500' : ''}`}>نمایش ستونی</span>
-                    <span className={`w-auto h-5 mr-2 flex items-center ${boardViewVisible ? ' text-teal-500' : ''}`}>{<SpaceDashboardOutlinedIcon></SpaceDashboardOutlinedIcon>}</span>
+                <article className={`ml-3 mr-0 pb-7 flex flex-row justify-end items-center w-[150px] h-[25px] cursor-pointer ${ url.pathname == "/Main/" + id + "/BoardView"? 'border-solid border-b-2 border-teal-500' : ''}`} onClick={()=>{navigate("/Main/"+id + "/BoardView")}}>
+                    <span className={`w-auto h-5 mr-2 font-semibold flex items-center pl-4 border-solid border-l-2 border-gray-200 font-dana ${ url.pathname == "/Main/" + id + "/BoardView"? 'text-teal-500' : ''}`}>نمایش ستونی</span>
+                    <span className={`w-auto h-5 mr-2 flex items-center ${ url.pathname == "/Main/" + id + "/BoardView"? ' text-teal-500' : ''}`}>{<SpaceDashboardOutlinedIcon></SpaceDashboardOutlinedIcon>}</span>
                 </article>
 
                 {/* calender */}
-                <article className={`mr-0 pb-7 flex flex-row justify-end items-center w-[90px] h-[25px] cursor-pointer ${calenderViewVisible ? 'border-solid border-b-2 border-teal-500' : ''}`} onClick={onCalenderViewClick}>
-                    <span className={`w-100 h-5 mr-2 font-semibold flex items-center pl-4 border-solid border-l-2 border-gray-200 font-dana ${calenderViewVisible ? 'text-teal-500' : ''}`}>تقویم</span>
-                    <span className={`w-auto h-5 mr-2 flex items-center ${calenderViewVisible ? ' text-teal-500' : ''}`}>{<CalendarMonthOutlinedIcon></CalendarMonthOutlinedIcon>}</span>
+                <article className={`mr-0 pb-7 flex flex-row justify-end items-center w-[90px] h-[25px] cursor-pointer ${ url.pathname == "/Main/" + id + "/Calendar" ? 'border-solid border-b-2 border-teal-500' : ''}`} onClick={()=>{navigate("/Main/"+id + "/Calendar")}}>
+                    <span className={`w-100 h-5 mr-2 font-semibold flex items-center pl-4 border-solid border-l-2 border-gray-200 font-dana ${ url.pathname == "/Main/" + id + "/Calendar" ? 'text-teal-500' : ''}`}>تقویم</span>
+                    <span className={`w-auto h-5 mr-2 flex items-center ${ url.pathname == "/Main/" + id + "/Calendar" ? ' text-teal-500' : ''}`}>{<CalendarMonthOutlinedIcon></CalendarMonthOutlinedIcon>}</span>
                 </article>
 
                 {/* share */}

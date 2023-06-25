@@ -18,10 +18,10 @@ export const BoardColumns = ({ name, children, color }) => {
     }
 
     return (
-        <div className="w-[260px] h-[599px] left-[788px] gap-5 mt-[17px] flex flex-col items-center p-0 flex-none order-5 flex-grow-0" dir='ltr'>
+        <div  className="w-[260px] h-[599px] left-[788px] gap-5 mt-[17px] flex flex-col items-center p-0 flex-none order-5 flex-grow-0" dir='ltr'>
 
             {/* column header  */}
-            <div className={`bg-white w-[250px] h-[41px] flex flex-row items-center justify-between border-t-[1px] ${color} shadow-md rounded p-2 gap-1`}>
+            <div style={{borderColor:color}} className={`bg-white w-[250px] h-[41px] flex flex-row items-center justify-between border-t-[1px]  shadow-md rounded p-2 gap-1`}>
                 <div className="bg-white max-w-[140px] h-[25px] gap-1 flex flex-row-reverse items-center p-0 flex-none order-1 flex-grow-0">
                     <label className="w-fit font-dana font-medium text-base text-right text-gray-800">
                         {name}
