@@ -14,7 +14,7 @@ import axios from 'axios';
 import { baseurl } from '../../../assets/baseUrl';
 import { useAuth } from '../../ContextApi/AuthContext';
 
-export const Aside = ({setWork,Mylesson,setMylesson,setShareProject,setShareWorkspace, setNameProjects}) => {
+export const Aside = ({setWork,Mylesson,setMylesson,setShareProject,setShareWorkspace, setNameProjects,setBoards}) => {
     const [showLessons,SetShowLessons]=useState(true) 
     const {token,userId,userdata}=useAuth()
     const workspaceHandle=async(id,value)=>{
@@ -78,7 +78,7 @@ export const Aside = ({setWork,Mylesson,setMylesson,setShareProject,setShareWork
                 {/* lessons & projects */}
                 <article id='Lessons' className="h-[650px] overflow-y-scroll bg-scroll">
                     {Mylesson.map((item)=>{
-                            return !item.edit ?(<Lessons setNameProjects={setNameProjects} setSharepr={setShareProject} setShareW={setShareWorkspace} showLessons={showLessons} Mylesson={Mylesson} id={item.id} setMylesson={setMylesson} key={item.id} lessonName={item.nameLesson} 
+                            return !item.edit ?(<Lessons setBoards={setBoards} setNameProjects={setNameProjects} setSharepr={setShareProject} setShareW={setShareWorkspace} showLessons={showLessons} Mylesson={Mylesson} id={item.id} setMylesson={setMylesson} key={item.id} lessonName={item.nameLesson} 
                             projectname={item.projects}  squareColor={<SquareRoundedIcon style={{color:item.colorSquare}}/>} />): (<Workspaceedit key={item.id} id={item.id} workspaceHandle={workspaceHandle} name={item.nameLesson}  undoWorkspace={undoWorkspace}/>)
                     })}
                 </article>
