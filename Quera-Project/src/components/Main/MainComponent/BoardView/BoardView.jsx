@@ -1,12 +1,13 @@
 import { BoardColumns } from './BoardColumns';
-import { Tasks } from './Tasks';
 import AddIcon from '@mui/icons-material/Add';
 import { NewBoard } from '../../Aside/NewBoard/New‌Board';
 import { useState } from 'react';
+import { useRef ,useEffect} from 'react';
 
-
-export const BoardView = ({newBoard,boards,deleteBoard,editBoard}) => {
+export const BoardView = ({newBoard,boards,deleteBoard,editBoard,updateBoard}) => {
     const [show,setShow]=useState(false)
+    const dragref=useRef()
+    dragref.current=null
     return (
           
         <>
@@ -18,22 +19,14 @@ export const BoardView = ({newBoard,boards,deleteBoard,editBoard}) => {
                 {
                   
                    boards.map((p)=>{
-                        return    <BoardColumns editBoard={editBoard} deleteBoard={deleteBoard} id={p._id} key={p._id} name={p.name} color={p.color}/>
+                        return    <BoardColumns updateBoard={updateBoard} dragref={dragref} position={p.position} editBoard={editBoard} deleteBoard={deleteBoard} boardid={p._id} key={p._id} name={p.name} color={p.color}/>
                     })
                   
                 }
 
                 
 
-                <BoardColumns name={"Pending"} color={"yellow"}>
-                    <Tasks imageExist={false} projectCategory={true} lessonsCategory={true} />
-                    <Tasks imageExist={true} projectCategory={true} lessonsCategory={false} />
-                    <Tasks imageExist={false} projectCategory={true} lessonsCategory={true} />
-                    <Tasks imageExist={false} projectCategory={true} lessonsCategory={true} />
-                    <Tasks imageExist={false} projectCategory={true} lessonsCategory={true} />
-                    <Tasks imageExist={false} projectCategory={true} lessonsCategory={true} />
-                </BoardColumns>
-
+                
 
                 {/* ساختن برد جدید */}
                 <div onClick={()=>{setShow(true)}} className="bg-white w-[250px] h-[41px] gap-5 mt-[17px] ml-1 flex flex-col items-start p-0 flex-none order-0 flex-grow-0 border-t-[1px] shadow-md rounded-md" dir='ltr'>

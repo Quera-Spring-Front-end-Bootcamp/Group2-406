@@ -2,32 +2,34 @@
 /* eslint-disable no-unused-vars */
 import { useState } from "react";
 import axios from "axios";
+import { useAuth } from "../../../ContextApi/AuthContext";
+import { baseurl } from "../../../../assets/baseUrl";
 
 
-export function InviteUser() {
+export function InviteUser({id,fetchMembers}) {
     const [val, setVal] = useState("");
-
-    const axs = axios.create({
-        baseURL: 'mongodb://localhost:27017'
-    });
+    const[error,setError]=useState("")
+    const {token,fetchData}= useAuth()
 
     // ***
     const addUser = () => {
-        axs.post(`/projects/:projectId/members/:${val}`)
+        axios.put(baseurl+`/projects/${id}/members/${val}`,{},{headers:{'x-auth-token':token}})
 
         .then(function (response) {
-        console.log(response);
+        fetchMembers()
+        setError("")
         })
-        .catch(function (error) {
-        console.log(error);
-        });
+        .catch((error)=>{
+            error.response.data.code == 404 ? setError("این نام کاربری وجود ندارد"):error.response.data.code == 400 && setError("این کاربر قبلا اضافه شده")
+        })
     }
 
   return (
     <>
-        <form>
+        <form onSubmit={(e)=>{e.preventDefault()}}>
             <button className="text-sm font-medium font-dana text-white bg-sendEmailBtn w-[80px] h-[40px] rounded-s-md" onClick={addUser}>ارسال</button>
             <input  dir="rtl" className="font-dana outline-none pr-2 rounded-r-md border-none bg-neutral-100 w-[340px] h-[40px]" type="text" placeholder=" دعوت با نام کاربری" onChange={(e)=>{setVal(e.target.value)}} />
+            <p className=" float-right mt-1 font-dana font-semibold text-xs text-red-600">{error}</p>
         </form>
     </>
   )
