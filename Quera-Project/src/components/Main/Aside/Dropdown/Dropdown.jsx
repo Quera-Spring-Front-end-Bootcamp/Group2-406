@@ -10,7 +10,7 @@ import axios from 'axios';
 import { baseurl } from '../../../../assets/baseUrl';
 import { useAuth } from '../../../ContextApi/AuthContext';
 
-export const Dropdown=({dropdown,setShow,setMylesson,setInner,Mylesson,Removehandler,setShareW, setNameProjects,id})=>{
+export const Dropdown=({dropdown,setShow,setMylesson,setInner,Mylesson,Removehandler,setShareW,id})=>{
     const {token}=useAuth()
      const Addhandler=async()=>{
           setShow(false),setInner(true)
@@ -20,9 +20,9 @@ export const Dropdown=({dropdown,setShow,setMylesson,setInner,Mylesson,Removehan
                workspaceId:id
           },{headers:{"x-auth-token":token}})
           .then((response)=>{
-               
+               console.log(response)
                  setMylesson(Mylesson.map((item)=>{
-             return  {...item,projects:id == item.id ?[...item.projects,{id:response.data.data._id,nameProject:id,edit:false}]: item.projects}
+             return  {...item,projects:id == item.id ?[...item.projects,{id:response.data.data._id,members:response.data.data.members,nameProject:id,edit:false}]: item.projects}
                
           }));
           })
@@ -39,10 +39,6 @@ export const Dropdown=({dropdown,setShow,setMylesson,setInner,Mylesson,Removehan
      function share(){
           setShow(false);
           setShareW(true);
-          let filterdproject=Mylesson.filter((item)=>{
-             return  id== item.id
-          })
-          setNameProjects(filterdproject[0].projects)
      }
 
      return (

@@ -22,9 +22,12 @@ export const NewTask = ({ TagDetails,setDetails,show, setShow, id, selectTag}) =
   const [showCalendar, setShowCalendar] = useState(false);
   const [showInput, setShowInput] = useState(false);
   const [value, setValue] = useState("عنوان تسک");
-
+  const [selectedTag, setSelectedTag] = useState([]);
+  
   const createTask = () =>{
     setShow(!show);
+    setSelectedTag([])
+    setDetails([...TagDetails,...selectedTag]);
   }
 
   return (
@@ -127,7 +130,7 @@ export const NewTask = ({ TagDetails,setDetails,show, setShow, id, selectTag}) =
               <LocalOfferOutlinedIcon className="text-neutral-400 !text-3xl"  ></LocalOfferOutlinedIcon>
             </span>
 
-            <span className="flex justify-center ml-6 z-20 items-end relative"><TagDrop TagDetails={TagDetails} setDetails={setDetails} showTag={showTag} setShowTag={setShowTag}/></span> 
+            <span className="flex justify-center ml-6 z-20 items-end relative">{showTag && <TagDrop selectedTag={selectedTag} setSelectedTag={setSelectedTag} TagDetails={TagDetails} setDetails={setDetails} showTag={showTag} setShowTag={setShowTag}/>}</span> 
             
             <span className="h-[60px] w-[50px] cursor-pointer flex items-end relative">
               <span className="bg-teal-500 w-[26px] h-[26px] rounded-full flex justify-center items-center right-0 top-0 absolute">

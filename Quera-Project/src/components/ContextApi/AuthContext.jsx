@@ -23,10 +23,15 @@ export const AuthProvider = ({ children }) => {
         localStorage.setItem("refreshToken", refreshToken);
         localStorage.setItem("userdata",JSON.stringify(userdata))
         setToken(token);
-        setUserId(userdata._id)
         setUserdata(userdata)
+        setUserId(userdata._id)
         setRefreshToken(refreshToken);
     };
+   const updateuser=(data)=>{
+    const newdata={...userdata,firstname:data.firstname,lastname:data.lastname}
+        setUserdata(newdata)
+        localStorage.setItem("userdata",JSON.stringify(newdata))
+   }
 
     const logout = () => {
         localStorage.removeItem("token");
@@ -52,12 +57,27 @@ export const AuthProvider = ({ children }) => {
                     setToken(response.data.data.accessToken);
                 });
         }
-        refresh();
+       refreshToken && refresh();
     }, []);
+    const fetchData=async(setMylesson)=>{
+        await axios.get(baseurl+"/workspace/get-all",{headers:{"x-auth-token":token}})
+         .then((response)=>{
+          console.log(response)
+          const workspaces=response.data.data
+          setMylesson(workspaces.map((item)=>{
+            return {id:item._id,nameLesson:item.name,members:item.members,colorSquare:item.color,edit:false,projects:item.projects.map((p)=>{
+              return ({id:p._id,nameProject:p.name,members:p.members,boards:p.boards})
+            })}
+          }))
+         })
+         .catch((error)=>{
+          console.log(error)
+         })
+      }
 
     
     return (
-        <AuthContext.Provider value={{ token, setToken, refreshToken, login, logout,userId,userdata }}>
+        <AuthContext.Provider value={{ token, setToken, refreshToken, login, logout,userId,userdata,updateuser,fetchData }}>
             {children}
         </AuthContext.Provider>
     );

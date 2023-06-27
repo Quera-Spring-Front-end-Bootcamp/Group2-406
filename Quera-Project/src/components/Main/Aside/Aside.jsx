@@ -14,7 +14,7 @@ import axios from 'axios';
 import { baseurl } from '../../../assets/baseUrl';
 import { useAuth } from '../../ContextApi/AuthContext';
 
-export const Aside = ({setWork,Mylesson,setMylesson,setShareProject,setShareWorkspace, setNameProjects}) => {
+export const Aside = ({setWork,Mylesson,setMylesson,setShareProject, setNameProjects,setBoards}) => {
     const [showLessons,SetShowLessons]=useState(true) 
     const {token,userId,userdata}=useAuth()
     const workspaceHandle=async(id,value)=>{
@@ -78,7 +78,7 @@ export const Aside = ({setWork,Mylesson,setMylesson,setShareProject,setShareWork
                 {/* lessons & projects */}
                 <article id='Lessons' className="h-[650px] overflow-y-scroll bg-scroll">
                     {Mylesson.map((item)=>{
-                            return !item.edit ?(<Lessons setNameProjects={setNameProjects} setSharepr={setShareProject} setShareW={setShareWorkspace} showLessons={showLessons} Mylesson={Mylesson} id={item.id} setMylesson={setMylesson} key={item.id} lessonName={item.nameLesson} 
+                            return !item.edit ?(<Lessons members={item.members} setBoards={setBoards} setNameProjects={setNameProjects} setSharepr={setShareProject} showLessons={showLessons} Mylesson={Mylesson} id={item.id} setMylesson={setMylesson} key={item.id} lessonName={item.nameLesson} 
                             projectname={item.projects}  squareColor={<SquareRoundedIcon style={{color:item.colorSquare}}/>} />): (<Workspaceedit key={item.id} id={item.id} workspaceHandle={workspaceHandle} name={item.nameLesson}  undoWorkspace={undoWorkspace}/>)
                     })}
                 </article>
@@ -87,7 +87,7 @@ export const Aside = ({setWork,Mylesson,setMylesson,setShareProject,setShareWork
             {/* exit & profile */}
             <section className='w-full h-[70px] mt-2'>
                 {/* profile */}
-                <ProfileAside Name={userdata.username} Abb={userdata.lastname[0] ? userdata.firstname[0] + " " + userdata.lastname[0]:userdata.firstname[0] } />
+                <ProfileAside Name={userdata.firstname + " " + userdata.lastname} Abb={userdata.lastname[0] ? userdata.firstname[0] + " " + userdata.lastname[0]:userdata.firstname[0] } />
 
                 {/* exit */}
                 <article className="text-stone-500 flex flex-row w-full justify-end items-end mt-2 cursor-pointer">

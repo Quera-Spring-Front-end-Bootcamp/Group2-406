@@ -4,8 +4,10 @@ import { useState } from "react";
 import { AccessLevel } from "./AccessLevel";
 import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
 import { AccessProject } from "./AccessProject";
+import { Profilepicture } from "../../../ProfilePic/ProfilePicture";
+import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 
-export const SharedWithOther = ({profileImg, userName,nameProjects, pro, setPro, Pro, id}) => {
+export const SharedWithOther = ({ userName,nameProjects, pro, setPro,firstname,lastname,id,deleteMember}) => {
     const accessLevel = [
         {id:1, levelAccess:"دسترسی کامل", description:"توانایی ساختن تسک در این پروژه، ویرایش تنظیمات پروژه و حذف پروژه"},
         {id:2, levelAccess:"دسترسی ویرایش", description:"توانایی ویرایش تسک در این پروژه و ویرایش تنظیمات پروژه. نمی‌تواند پروژه را حذف یا تسک جدید بسازد."},
@@ -29,23 +31,19 @@ export const SharedWithOther = ({profileImg, userName,nameProjects, pro, setPro,
     }
     const ProValue = (value) => {
         setShowPro(!ShowPro);
-        setPro(Pro.map((item)=> {
-            return(
-                {id : item.id, profileImg : item.profileImg, username : item.username, pro : id == item.id ? value : item.pro}
-            );
-        }))
+        setPro(value)
     }
 
     return(
-        <div className="flex flex-row-reverse mt-4 items-start justify-between relative" onBlur={()=>{
+        <div className="flex flex-row-reverse mt-4  items-center justify-between relative" onBlur={()=>{
             setShowAcc(false);
             setShowPro(false);
         }}>
             {/* user name & img div */}
             <div className="flex flex-row-reverse items-center justify-start">
-                <span className="w-[34px] h-[34px] ml-2">
-                    <img className="w-[34px] h-[34px] rounded-full" src={profileImg} alt="picture!" />
-                </span>
+                
+                   <Profilepicture firstname={firstname} lastname={lastname} />
+               
                 <span className="font-dana font-normal text-sm ml-2 flex items-center">{userName}</span>
             </div>
 
@@ -72,6 +70,7 @@ export const SharedWithOther = ({profileImg, userName,nameProjects, pro, setPro,
             </div>  
 
             {/* access project div */}
+            <div className="relative">
             <div className="w-[150px] h-auto z-20 flex flex-col gap-3 shadow-lg rounded-lg p-3 bg-white absolute left-0" style={{visibility: ShowPro ? "visible":"hidden"}} onMouseDown={(e)=>{e.preventDefault()}}>
                 <AccessProject ProValue={ProValue} levelProject={"همه پروژه ها"} />
                 {nameProjects.map((item) => {
@@ -80,6 +79,8 @@ export const SharedWithOther = ({profileImg, userName,nameProjects, pro, setPro,
                     );
                 })}
             </div> 
+            </div>
+            <DeleteOutlineOutlinedIcon onClick={()=>deleteMember(id)} className=" cursor-pointer "/>
         </div>
     );
 }

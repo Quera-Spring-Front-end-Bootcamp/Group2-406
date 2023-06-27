@@ -4,11 +4,12 @@ import SearchIcon from "@mui/icons-material/Search";
 import { useRef, useState } from "react";
 import { SelectedTag } from "../TagOptions/SelectedTags";
 import { Tags } from "./Tags";
-export const TagDrop = ({ showTag, setShowTag, TagDetails, setDetails }) => {
-  const [inputValue, setInput] = useState("");
-  const [newDetails, setNew] = useState(TagDetails);
+export const TagDrop = ({ showTag, setShowTag,selectedTag,setSelectedTag, TagDetails, setDetails}) => {
+  
+  const [newDetails,setNew]=useState(TagDetails)
   const [innerTag, setInner] = useState(newDetails);
-  const [selectedTag, setSelectedTag] = useState([]);
+  let newtagtime=Date.now()
+  const [inputValue, setInput] = useState("");
   const [selectedValue, setValue] = useState("");
   const input = useRef();
   const wholeref=useRef()
@@ -27,7 +28,7 @@ export const TagDrop = ({ showTag, setShowTag, TagDetails, setDetails }) => {
         return {...item,tag: id == item.id ? value:item.tag}
       }))
       setSelectedTag(selectedTag.map((item)=>{
-        return {...item,tagname: id == item.id ? value:item.tagname}
+        return {...item,tag: id == item.id ? value:item.tagname}
       }))
     }
 
@@ -57,24 +58,16 @@ export const TagDrop = ({ showTag, setShowTag, TagDetails, setDetails }) => {
       });
       if (Preventcopy.length == 0) {
         setValue(inputValue);
-        let newtagtime=Date.now()
-        setDetails([
-          ...TagDetails,
-          { id: newtagtime, tag: inputValue, bgcolor: "#46494D" },
-        ]);
+        
         setNew([
           ...newDetails,
           { id: newtagtime, tag: inputValue, bgcolor: "#46494D" },
         ]);
-        setNew(
-          newDetails.filter((item) => {
-            return item.tag != inputValue;
-          })
-        );
+        
         setInput("");
         setSelectedTag([
           ...selectedTag,
-          { id: newtagtime, tagname: inputValue,bgcolor:"#46494D" },
+          { id: newtagtime, tag: inputValue,bgcolor:"#46494D" },
         ]);
         setInner(
           
@@ -93,16 +86,28 @@ export const TagDrop = ({ showTag, setShowTag, TagDetails, setDetails }) => {
   };
   const Tagdelete=(id,newtag)=>{
     if(!newtag){
+
       setDetails(TagDetails.filter((item)=> item.id!=id))
        setNew(newDetails.filter((item)=> item.id!=id))
+       
        setInner(innerTag.filter((item)=> item.id!=id))
     }
     else if(newtag){
       setValue("")
+      if(TagDetails.filter((item)=>item.id==id).length == 0){
+        setNew(newDetails.filter((item)=> item.id!=id))
+        
+        setInner(innerTag.filter((item)=> item.id!=id))
+        setSelectedTag(selectedTag.filter((item)=> item.id!=id))
+      }
+      else{
          setSelectedTag(selectedTag.filter((item)=> item.id!=id))
          let unselect=selectedTag.filter((item)=>{return item.id == id})
-          setNew([...newDetails,{id:id,tag:unselect[0].tagname,bgcolor:unselect[0].bgcolor}])
-         setInner([...newDetails,{id:id,tag:unselect[0].tagname,bgcolor:unselect[0].bgcolor}])
+          setNew([...newDetails,{id:id,tag:unselect[0].tag,bgcolor:unselect[0].bgcolor}])
+         
+         setInner([...newDetails,{id:id,tag:unselect[0].tag,bgcolor:unselect[0].bgcolor}])
+      }
+        
     }
   }
   const tagchoose = (tag) => {
@@ -142,7 +147,7 @@ export const TagDrop = ({ showTag, setShowTag, TagDetails, setDetails }) => {
                 Tagdelete={Tagdelete}
                   key={item.id}
                   id={item.id}
-                  tagname={item.tagname}
+                  tagname={item.tag}
                 />
               );
             })}

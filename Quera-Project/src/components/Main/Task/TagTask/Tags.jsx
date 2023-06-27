@@ -26,7 +26,7 @@ useEffect(()=>{
             
     className={`  text-center  self-start flex flex-row justify-between pb-[12px] items-center w-full  group  cursor-pointer `}
 >
-  <p onClick={()=>{setSelectedTag((pervTag)=>[...pervTag,{id:id,tagname:tag,bgcolor:bgcolor}]),tagchoose(tag)}} style={{backgroundColor:bgcolor}} className='flex  bg-[${bgcolor}]  rounded-md hover:opacity-70 justify-center px-2 py-[5px] items-center'> {tag}</p><span ref={dotsref} className='relative'><MoreHorizRounded  ref={dotsref}  onClick={()=>{setOptions(true)}} className='text-[#BDBDBD] group-hover:opacity-100 opacity-0 group-hover:transition-all group-hover:duration-300 !text-xs'/>
+  <p onClick={()=>{setSelectedTag((pervTag)=>[...pervTag,{id:id,tag:tag,bgcolor:bgcolor}]),tagchoose(tag)}} style={{backgroundColor:bgcolor}} className='flex  bg-[${bgcolor}]  rounded-md hover:opacity-70 justify-center px-2 py-[5px] items-center'> {tag}</p><span ref={dotsref} className='relative'><MoreHorizRounded  ref={dotsref}  onClick={()=>{setOptions(true)}} className='text-[#BDBDBD] group-hover:opacity-100 opacity-0 group-hover:transition-all group-hover:duration-300 !text-xs'/>
   <Tagdropoptions setEdit={setEdit} TagColorChange={TagColorChange} newtag={newtag} Tagdelete={Tagdelete} id={id} tagOptions={tagOptions} dropref={dropref} /></span>
 </li>)
 }

@@ -6,14 +6,39 @@ import LinkOutlinedIcon from '@mui/icons-material/LinkOutlined';
 import myProfile from"../../../../assets/images/p2.jpg";
 import otherProfile from"../../../../assets/images/p1.jpg";
 import { InviteUser } from "./InviteUser";
-
-export const ShareProject = ({show,setShow}) => {
-
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useAuth } from "../../../ContextApi/AuthContext";
+import { baseurl } from "../../../../assets/baseUrl";
+import { useParams } from "react-router-dom";
+export const ShareProject = ({show,setShow,userid}) => {
+    const {id}=useParams()
+    const {token}=useAuth()
+    const [memberDetails,setMemberDetails]=useState([])
+    const fetchMembers=async()=>{
+        await axios.get(baseurl+"/projects/"+ id,{headers:{"x-auth-token":token}})
+        .then((response)=>{
+            setMemberDetails(response.data.data.members)
+        })
+        }
+        async function deleteProjectMember(userid){
+            await  axios.delete(baseurl+`/projects/${id}/members/${userid}`,{headers:{"x-auth-token":token}})
+              .then((response)=>{
+                  console.log(response)
+                  fetchMembers()
+              })
+              .catch((error)=>{
+                  console.log(error)
+              })
+          }
+    useEffect(()=>{
+        fetchMembers()
+    },[])
     return(
-        <div className="w-screen h-screen bg-gray-600 bg-opacity-50 z-40 fixed flex justify-center items-center" style={{visibility:show ? "visible":"hidden"}}>{/* entire page */}
+        <div className="w-screen h-screen inset-0 bg-gray-600 bg-opacity-50 z-50 fixed flex justify-center items-center" >{/* entire page */}
 
             {/* shareProject component */}
-            <section className="rounded-2xl bg-white w-[470px] h-[365px] flex flex-col items-center">
+            <section className="rounded-2xl bg-white w-[470px] min-h-[365px] flex flex-col items-center">
 
                 {/* share project name & exit */}
                 <article className="w-[90%] h-[50px] flex flex-row justify-end items-end">
@@ -23,7 +48,7 @@ export const ShareProject = ({show,setShow}) => {
 
                 {/* email input & button */}
                 <article className="w-[90%] h-auto flex flex-row mt-10 justify-center">
-                    <InviteUser />
+                    <InviteUser fetchMembers={fetchMembers} id={id} />
                 </article>
 
                 {/* link */}
@@ -56,7 +81,13 @@ export const ShareProject = ({show,setShow}) => {
                         </div>
 
                         {/* shared with other */}
-                        <SharedWith profileImg={otherProfile} userName="sararahimi@gmail.com" />
+                         {
+                            memberDetails.map((item)=>{
+                                return item.role!= "owner" && <SharedWith deleteProjectMember={deleteProjectMember} firstname={item.user.firstname} lastname={item.user.lastname} key={item.user._id} userid={item.user._id}  userName={item.user.email} />
+                            })
+
+                         }
+                       
                     </div>
                 </article>
             </section>
