@@ -10,7 +10,7 @@ import { InviteUser } from "./InviteUser";
 export const ShareProject = ({show,setShow}) => {
 
     return(
-        <div className="w-screen h-screen bg-gray-600 bg-opacity-50 z-40 fixed flex justify-center items-center" style={{visibility:show ? "visible":"hidden"}}>{/* entire page */}
+        <div className="w-screen h-screen inset-0 bg-gray-600 bg-opacity-50 z-50 fixed flex justify-center items-center" style={{visibility:show ? "visible":"hidden"}}>{/* entire page */}
 
             {/* shareProject component */}
             <section className="rounded-2xl bg-white w-[470px] h-[365px] flex flex-col items-center">

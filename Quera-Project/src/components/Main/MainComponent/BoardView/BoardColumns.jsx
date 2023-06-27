@@ -3,13 +3,24 @@
 import AddIcon from '@mui/icons-material/Add';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { Tooltip, Button, Fade } from '@mui/material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import EditModal from './EditModal';
 import { EditBoard } from './EditBoard';
+import axios from 'axios';
+import { useAuth } from '../../../ContextApi/AuthContext';
+import { baseurl } from '../../../../assets/baseUrl';
+import { useParams } from 'react-router-dom';
 
-export const BoardColumns = ({ name, children, color,id,deleteBoard,editBoard }) => {
+
+export const BoardColumns = ({ name, children, color,boardid,deleteBoard,editBoard,position,dragref,updateBoard }) => {
     const [showModal, setShowModal] = useState(false);
+    const {id} = useParams()
     const [edit,setEdit]=useState(false)
+    const {token}=useAuth()
+ 
+    
+    
+   
 
     function openModal() {
         setShowModal(true);
@@ -17,9 +28,19 @@ export const BoardColumns = ({ name, children, color,id,deleteBoard,editBoard })
     function closeModal() {
         setShowModal(false);
     }
+    function boardSort(){
+        
+      axios.put(baseurl+ `/board/${boardid}/position/${dragref.current}`,{},{headers:{"x-auth-token":token}})
+      .then((response)=>{
+        updateBoard(id)
+      })
+      .catch((error)=>{
+        console.log(error)
+      })
+    }
 
     return !edit ?(
-        <div  className="w-[260px] h-[599px] left-[788px] gap-5 mt-[17px] flex flex-col items-center p-0 flex-none order-5 flex-grow-0" dir='ltr'>
+        <div draggable onDragOver={(e)=>{e.preventDefault()}} onDragEnter={()=>dragref.current=position} onDragEnd={boardSort}   className="w-[260px]  left-[788px] gap-5 mt-[17px] flex flex-col items-center p-0 flex-none order-5 flex-grow-0" dir='ltr'>
 
             {/* column header  */}
             <div style={{borderColor:color}} className={`bg-white w-[250px] h-[41px] flex flex-row items-center justify-between border-t-[1px]  shadow-md rounded p-2 gap-1`}>
@@ -39,7 +60,7 @@ export const BoardColumns = ({ name, children, color,id,deleteBoard,editBoard })
                         <AddIcon fontSize='' className="w-[24px] h-[24px] flex-none order-0 flex-grow-0"></AddIcon>
                     </Tooltip>
                     <MoreHorizIcon fontSize='' onClick={openModal}></MoreHorizIcon>
-                    {showModal && <EditModal setEdit={setEdit} id={id} deleteBoard={deleteBoard} />}
+                    {showModal && <EditModal setEdit={setEdit} id={boardid} deleteBoard={deleteBoard} />}
                 </div>
             </div>
 
@@ -48,5 +69,5 @@ export const BoardColumns = ({ name, children, color,id,deleteBoard,editBoard })
                 {children}
             </div>
         </div>
-    ):<EditBoard editBoard={editBoard} setEdit={setEdit} id={id} name={name}/>;
+    ):<EditBoard editBoard={editBoard} setEdit={setEdit} id={boardid} name={name}/>;
 }

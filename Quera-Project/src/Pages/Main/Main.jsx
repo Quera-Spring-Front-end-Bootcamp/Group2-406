@@ -1,42 +1,24 @@
 /* eslint-disable no-const-assign */
 /* eslint-disable no-unused-vars */
-import { Aside, Footer,Newworkspace ,MainComponent, ShareProject, ShareWorkspace, ShareTask, NewTask } from "../../components";
+import { Aside, Footer,Newworkspace ,MainComponent, ShareTask, NewTask } from "../../components";
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
-import axios from "axios";
-import { baseurl } from "../../assets/baseUrl";
 import { useAuth } from "../../components/ContextApi/AuthContext";
 export const Main = () => {
-    const {token}=useAuth()
+    const {token,fetchData}=useAuth()
     const [showWork,setWork]=useState(false);
     // sample=[{id:1,nameLesson:"abcde",members:[],colorSquare:"#ffff",edit:false,projects:[{id:1,nameProject:"abcde",boards:[{id:1 ,name:"pending",color:"#ffff",tasks:[]}]}]}]
     const [Mylesson, setMylesson] = useState([])
     const [boards,setBoards]=useState([])
-    const fetchData=async()=>{
-      await axios.get(baseurl+"/workspace/get-all",{headers:{"x-auth-token":token}})
-       .then((response)=>{
-        console.log(response)
-        const workspaces=response.data.data
-        setMylesson(workspaces.map((item)=>{
-          return {id:item._id,nameLesson:item.name,members:item.members,colorSquare:item.color,edit:false,projects:item.projects.map((p)=>{
-            return ({id:p._id,nameProject:p.name,members:p.members,boards:p.boards})
-          })}
-        }))
-       })
-       .catch((error)=>{
-        console.log(error)
-       })
-    }
+    
     useEffect(()=>{
-       fetchData()    
+       fetchData(setMylesson)    
     },[])
     
     const [TagDetails,setDetails]=useState([{id:1,tag:"درس",bgcolor:"#EBC8C8"},{id:2,tag:"کار",bgcolor:"#C3B7F2"},{id:3,tag:"پروژه",bgcolor:"#7FFAFA"}])
     const [showShareProject,setShareProject] = useState(false);
-    const [showShareWorkspace,setShareWorkspace] = useState(false);
+    
     const [showShareTask,setShareTask] = useState(false);
-
-    const [nameProjects, setNameProjects] = useState([]);
 
     const [ShowNewTask,setShowNewTask] = useState(false);
 
@@ -67,12 +49,10 @@ export const Main = () => {
       {/* new workspace page*/}
       <Newworkspace Mylesson={Mylesson} setMylesson={setMylesson}  show={showWork} setshow={setWork}/>
 
-      {/* share project page*/}
-      <ShareProject show={showShareProject} setShow={setShareProject}/>
+      
       {/* <ShareProject2 show={showShareProject} setShow={setShareProject}/> */}
 
-      {/* share workspace page*/} 
-      <ShareWorkspace show={showShareWorkspace} setShow={setShareWorkspace} nameProjects={nameProjects} />
+      
 
       {/* share task page*/}
       <ShareTask show={showShareTask} setShow={setShareTask} />
@@ -86,14 +66,14 @@ export const Main = () => {
             
               
 
-              <MainComponent fetchData={fetchData} setBoards={setBoards} boards={boards} showShareProject={showShareProject} setShareProject={setShareProject} Mylesson={Mylesson} TagDetails={TagDetails} boardViewVisible={boardViewVisible} listViewVisible={listViewVisible} calenderViewVisible={calenderViewVisible} />
+              <MainComponent setMylesson={setMylesson}  setBoards={setBoards} boards={boards} showShareProject={showShareProject} setShareProject={setShareProject} Mylesson={Mylesson} TagDetails={TagDetails} boardViewVisible={boardViewVisible} listViewVisible={listViewVisible} calenderViewVisible={calenderViewVisible} />
 
               <Footer show={ShowNewTask} setShow={setShowNewTask}  />
           </div>
 
           {/* right content */}
           <div className="w-[330] h-auto">
-              <Aside setBoards={setBoards} setNameProjects={setNameProjects} Mylesson={Mylesson} setMylesson={setMylesson} setShareProject={setShareProject} setShareWorkspace={setShareWorkspace}  setWork={setWork} />
+              <Aside setBoards={setBoards} Mylesson={Mylesson} setMylesson={setMylesson} setShareProject={setShareProject}   setWork={setWork} />
           </div>
       </div>
     </>:<Navigate to="/"/>);

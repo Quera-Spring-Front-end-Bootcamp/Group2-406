@@ -15,8 +15,8 @@ export const Projects = ({projectName,showInner,RemoveProject,id,setSharepr,Myle
     const fetchBoards=()=>{
           axios.get(baseurl+"/board/"+id,{headers:{"x-auth-token":token}})
           .then((response)=>{
-            console.log(response)
             setBoards(response.data.data)
+            setBoards(perv=>perv.sort((a,b)=>(a.position < b.position) ? 1 : (a.position > b.position) ? -1 : 0))
           })
     }
     return(

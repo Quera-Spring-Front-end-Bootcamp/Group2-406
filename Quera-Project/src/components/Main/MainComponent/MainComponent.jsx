@@ -21,14 +21,15 @@ export const MainComponent = ({
   ShowNewTask,
   setShowNewTask,
   setnewboard,
-  fetchData,
   boards,
-  setBoards
+  setBoards,
+  setMylesson
  
 }) => {
   const {token}=useAuth()
   const newBoard=(data)=>{
     setBoards([...boards,{name:data.name,_id:data._id,color:data.color,position:data.position,project:data.project}])
+    setBoards(perv=>perv.sort((a,b)=>(a.position < b.position) ? 1 : (a.position > b.position) ? -1 : 0))
   }
   const editBoard=(id,value,setEdit)=>{
     if(value){
@@ -43,6 +44,14 @@ export const MainComponent = ({
     })
     }
     
+  }
+  const updateBoard=async(id)=>{
+    axios.get(baseurl+"/board/"+id,{headers:{"x-auth-token":token}})
+          .then((response)=>{
+            console.log(response)
+            setBoards(response.data.data)
+            setBoards(perv=>perv.sort((a,b)=>(a.position < b.position) ? 1 : (a.position > b.position) ? -1 : 0))
+          })
   }
   const deleteBoard=(id)=>{
     axios.delete(baseurl+"/board/"+ id,{headers:{"x-auth-token":token}})
@@ -63,9 +72,9 @@ export const MainComponent = ({
       </header>
       <section>
         <Routes>
-         <Route path="/:id" element={<TaskLayout setShowNewTask={setShowNewTask} ShowNewTask={ShowNewTask} Mylesson={Mylesson} showShareProject={showShareProject} setShareProject={setShareProject} TagDetails={TagDetails}/>}>
+         <Route path="/:id" element={<TaskLayout setMylesson={setMylesson} setShowNewTask={setShowNewTask} ShowNewTask={ShowNewTask} Mylesson={Mylesson} showShareProject={showShareProject} setShareProject={setShareProject} TagDetails={TagDetails}/>}>
           <Route path="/:id/ColumnView" element={<ProjectsBoard/>} />
-          <Route path="/:id/BoardView" element={<BoardView boards={boards} deleteBoard={deleteBoard} editBoard={editBoard}  setShow={setnewboard} newBoard={newBoard} />}/>
+          <Route path="/:id/BoardView" element={<BoardView updateBoard={updateBoard} boards={boards} deleteBoard={deleteBoard} editBoard={editBoard}  setShow={setnewboard} newBoard={newBoard} />}/>
           <Route path="/:id/Calendar" element={  <Calendar/>}/>
          </Route>
         
