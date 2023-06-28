@@ -14,17 +14,17 @@ export const ProfileAside=()=>{
          </section>
          <div className='flex flex-col  ml-6 gap-8'>
             <section onClick={()=>{Navigate("./Personal")}} 
-            style={{backgroundColor: location.pathname=="/Profile/Personal" ? "#C5FFFF":"transparent",fontWeight:location.pathname=="/Profile/Personal" ? "600":"500s"}} 
+            style={{backgroundColor: location.pathname=="/Profile/Personal" ? "#C5FFFF":"transparent",fontWeight:location.pathname=="/Profile/Personal" ? "600":"500"}} 
             className='  rounded cursor-pointer flex flex-row font-dana pr-2 py-1  transition-all duration-300  gap-[11px]'><ManageAccountsIcon/>
                <p>اطلاعات فردی</p>
             </section>
             <section onClick={()=>{Navigate("./Verify")}} 
-            style={{backgroundColor: location.pathname=="/Profile/Verify"? "#C5FFFF":"transparent",fontWeight: location.pathname=="/Profile/Verify"? "600":"500s"}} 
+            style={{backgroundColor: location.pathname=="/Profile/Verify"? "#C5FFFF":"transparent",fontWeight: location.pathname=="/Profile/Verify"? "600":"500"}} 
             className='cursor-pointer flex rounded flex-row font-dana pr-2 py-1 transition-all duration-300 gap-[11px]'><VerifiedUserIcon/>
                <p>اطلاعات حساب</p>
             </section>
             <section onClick={()=>{Navigate("./Settings")}} 
-            style={{backgroundColor:location.pathname=="/Profile/Settings" ? "#C5FFFF":"transparent",fontWeight: location.pathname=="/Profile/Settings"? "600":"500s"}} 
+            style={{backgroundColor:location.pathname=="/Profile/Settings" ? "#C5FFFF":"transparent",fontWeight: location.pathname=="/Profile/Settings"? "600":"500"}} 
             className='cursor-pointer flex rounded flex-row font-dana pr-2 py-1 transition-all duration-300 gap-[11px]'><SettingsIcon/>
                <p>تنظیمات</p>
             </section>

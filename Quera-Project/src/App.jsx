@@ -8,7 +8,7 @@ function App() {
 
   return (
     <>
-      <div className='bg-white'>
+      <div className='bg-white font-dana'>
         <AuthProvider>
         <Routes >
           <Route path='/' element={<Layout />}>

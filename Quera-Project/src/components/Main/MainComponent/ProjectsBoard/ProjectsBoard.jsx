@@ -1,14 +1,12 @@
 /* eslint-disable no-unused-vars */
 
-import ExpandCircleDownOutlinedIcon from "@mui/icons-material/ExpandCircleDownOutlined";
 
-import { Pending } from "./Pending";
-import { InProgress } from "./InProgress";
-import { Done } from "./Done";
+import ExpandCircleDownOutlinedIcon from "@mui/icons-material/ExpandCircleDownOutlined";
+import { BoardList } from "./BoardList";
 import { useState } from "react";
 import React from "react";
 
-export const ProjectsBoard = () => {
+export const ProjectsBoard = ({boards}) => {
   const [showProcess, setShowProcess] = useState(true);
 
 
@@ -23,49 +21,26 @@ export const ProjectsBoard = () => {
       </section>
       {/* Pending */}
       <span className="w-full" >
-        {showProcess && (
-          <Pending
-            Icon={
-              <ExpandCircleDownOutlinedIcon  className="text-gray-700"></ExpandCircleDownOutlinedIcon>
-            }
-            ProcessName="Pending"
-            TaskNumber="۲ تسک"
-            Member="اعضا"
-            Deadline="ددلاین"
-            Priority="اولویت"
-            Description="توضیحات"
+        {showProcess && 
+          boards.map((item)=>{
+            return (
+              <BoardList
+              key={item._id}
+           
+            
+           
+            ProcessName={item.name}
+            color={item.color}
+            tasks={item.tasks}
           />
-        )}
+            )
+          })}
+          
+        
       </span>
-      {/* In Progress */}
-      <span className="w-full">
-        {showProcess && (
-          <InProgress
-            ProcessName="InProgress"
-            TaskNumber="۲ تسک"
-            Member="اعضا"
-            Deadline="ددلاین"
-            Priority="اولویت"
-            Description="توضیحات"
-          />
-        )}
-      </span>
-      {/* Done */}
-      <span className="w-full">
-        {showProcess && (
-          <Done
-            Icon={
-              <ExpandCircleDownOutlinedIcon className="text-gray-700"></ExpandCircleDownOutlinedIcon>
-            }
-            ProcessName="Done"
-            TaskNumber="۲ تسک"
-            Member="اعضا"
-            Deadline="ددلاین"
-            Priority="اولویت"
-            Description="توضیحات"
-          />
-        )}
-      </span>
+      
+      
+      
     </main>
   );
 };

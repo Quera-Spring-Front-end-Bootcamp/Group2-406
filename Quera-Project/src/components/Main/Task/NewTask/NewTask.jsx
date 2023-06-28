@@ -16,23 +16,29 @@ import { TaskName } from "./TaskName";
 import { ProjectInput } from "./ProjectInput";
 import { Description } from "./Description";
 
-export const NewTask = ({ TagDetails,setDetails,show, setShow, id, selectTag}) => {
+export const NewTask = ({ TagDetails,setDetails,show, setShow, id, selectTag,boards,setBoards}) => {
   const [showTask, setShowTask] = useState(false);
   const [showTag, setShowTag] = useState(false);
   const [showCalendar, setShowCalendar] = useState(false);
   const [showInput, setShowInput] = useState(false);
   const [value, setValue] = useState("عنوان تسک");
   const [selectedTag, setSelectedTag] = useState([]);
+  const [Datevalue, setDateValue] = useState(new Date());
+  const [BoardId,setBoardId]=useState(boards[0]._id)
   
   const createTask = () =>{
     setShow(!show);
     setSelectedTag([])
     setDetails([...TagDetails,...selectedTag]);
   }
+  const onsubmit=()=>{
+
+  }
 
   return (
     <div className="w-screen h-screen fixed flex z-40 justify-center items-center" style={{ visibility: show ? "visible" : "hidden" }}>
-      <section className="w-[1166px] h-[576px] shadow-newTaskShadow rounded-3xl bg-white flex flex-col p-10">
+      <form onSubmit={onsubmit}>
+        <section className="w-[1166px] h-[576px] shadow-newTaskShadow rounded-3xl bg-white flex flex-col p-10">
         {/* task name & exit */}
         <article className="flex flex-row-reverse w-full h-[80px] justify-between">
           <div className="flex flex-row-reverse justify-end">
@@ -56,7 +62,7 @@ export const NewTask = ({ TagDetails,setDetails,show, setShow, id, selectTag}) =
         <article className="font-dana flex flex-row-reverse justify-start items-center h-[35px]">
           <p>در</p>
 
-          <ProjectInput />
+          <ProjectInput boards={boards} selectedBoard={BoardId} setSelectedBoard={setBoardId} />
   
           <p>برای</p>
           <span className="border-dashed border-1 border-gray-400 h-[33px] w-[33px] rounded-full mr-2 flex justify-center items-center cursor-pointer">
@@ -66,11 +72,10 @@ export const NewTask = ({ TagDetails,setDetails,show, setShow, id, selectTag}) =
 
         {/* description of task */}
         <article className="w-full h-auto mt-11">
-          <form className="w-full">
+          
             <label className="w-full flex flex-wrap">
               <Description />
             </label>
-          </form>
         </article>
 
         {/* upload file */}
@@ -121,6 +126,8 @@ export const NewTask = ({ TagDetails,setDetails,show, setShow, id, selectTag}) =
               <CalendarTask
                 showCalendar={showCalendar}
                 setShowCalendar={setShowCalendar}
+                value={Datevalue}
+                setValue={setDateValue}
               />
             </span>
 
@@ -139,11 +146,12 @@ export const NewTask = ({ TagDetails,setDetails,show, setShow, id, selectTag}) =
               <VisibilityOutlinedIcon className="text-neutral-400 !text-5xl"></VisibilityOutlinedIcon>
             </span>
           </div>
-          <button onClick={createTask} className="text-white bg-footBtn font-dana font-medium text-xs w-[125px] h-[32px] rounded">
-            ساختن تسک
-          </button>
+          <input type="submit" value="ساختن تسک" className="text-white bg-footBtn font-dana font-medium text-xs w-[125px] h-[32px] rounded"/>
+           
+         
         </article>
       </section>
+      </form>
     </div>
   );
 }
