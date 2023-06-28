@@ -1,7 +1,10 @@
 /* eslint-disable react/prop-types */
 import CloseIcon from '@mui/icons-material/Close';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
+import { Profilepicture } from '../../../ProfilePic/ProfilePicture';
+import { useAuth } from '../../../ContextApi/AuthContext';
 export const Phase3=({setshow,setphase,watch})=>{
+const {userdata}=useAuth()
     return (
     <>
         <div className="w-full flex flex-row mb-10"><CloseIcon className=' cursor-pointer' onClick={()=>{setshow(false)}} />
@@ -24,7 +27,7 @@ export const Phase3=({setshow,setphase,watch})=>{
 
                 <div className=" flex flex-row items-center justify-between">
                     <p className="font-dana font-semibold  tracking-tight text-sm">اعضا</p>
-                    <div style={{backgroundColor:watch("color")}} className="  rounded-full h-7 w-7 "></div>
+                    <Profilepicture firstname={userdata.firstname} lastname={userdata.lastname}/>
                 </div>
             </div>
         </div>

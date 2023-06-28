@@ -4,24 +4,26 @@ import { useAuth } from "../../components/ContextApi/AuthContext";
 import { baseurl } from "../../assets/baseUrl";
 import axios from "axios";
 import { useState } from "react";
-useForm
 export const Personal=()=>{
   const [resultMessage,setResultMessage]=useState({})
   const {token,userdata,userId,updateuser}=useAuth()
+  console.log(userdata)
   const {
       register,
       handleSubmit,
       formState: { errors },
     } = useForm({defaultValues:{
       name:userdata.firstname,
-      lastname:userdata.lastname
+      lastname:userdata.lastname,
+      phone:userdata.phone
     }});
    
     const onsubmit=async(data)=>{
         await axios.put(baseurl+"/users/"+userId,{
           firstname:data.name,
           lastname:data.lastname,
-          email:userdata.email
+          email:userdata.email,
+          phone:data.phone
         },{headers:{"x-auth-token":token}}).then((response)=>{
          console.log(response)
          setResultMessage({message:"اطلاعات با موفقیت ذخیره شد",color:"#208D8E"})
@@ -90,12 +92,10 @@ export const Personal=()=>{
                 <label htmlFor="phone" className="mb-2 text-sm font-dana">شماره موبایل</label>
                 <input id="phone" type="tel"
                 {...register("phone", {
-                  
-                  pattern: {
-                    value:
-                      /^(0|\+98)?([ ]|-|[()]){0,2}9[1|2|3|4]([ ]|-|[()]){0,2}(?:[0-9]([ ]|-|[()]){0,2}){8}/,
-                    message: "شماره وارد شده صحیح نمی باشد",
-                  },
+                  minLength:{
+                    value:11,
+                    message: "شماره وارد شده صحیح نمی باشد"
+                  }
                 })}
                 className="     border border-inputBorder font-dana focus-visible:outline-none rounded-md px-2   h-10 "
                 />

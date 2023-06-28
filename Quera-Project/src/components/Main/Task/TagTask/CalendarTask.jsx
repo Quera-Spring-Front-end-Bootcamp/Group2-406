@@ -2,14 +2,14 @@
 /* eslint-disable react/prop-types */
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Calendar } from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
-
 import "react-datepicker/dist/react-datepicker.css";
-export const CalendarTask = ({ showCalendar, setShowCalendar }) => {
-  const [value, setValue] = useState(new Date());
+import { preventDefault } from "@fullcalendar/core/internal";
+export const CalendarTask = ({ showCalendar, setShowCalendar,value,setValue }) => {
+  
   const [startDate, setStartDate] = useState(new Date());
   const mydate = new Date();
   const getday = mydate.getDate();
@@ -44,6 +44,7 @@ export const CalendarTask = ({ showCalendar, setShowCalendar }) => {
   return (
     <div
       className=" bg-gray-100  fixed "
+      onMouseDown={(e)=>{e.preventDefault()}}
       style={{ visibility: showCalendar ? "visible" : "hidden" }}
     >
       <section
@@ -123,6 +124,8 @@ export const CalendarTask = ({ showCalendar, setShowCalendar }) => {
               className=" h-0  px-4"
               calendar={persian}
               locale={persian_fa}
+              value={value}
+              onChange={setValue}
             />
             {/* <Calendar
               className=" h-0  px-4"
