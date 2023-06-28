@@ -11,9 +11,6 @@ import { baseurl } from "../../../assets/baseUrl";
 import { useAuth } from "../../ContextApi/AuthContext";
 
 export const MainComponent = ({
-  boardViewVisible,
-  listViewVisible,
-  calenderViewVisible,
   TagDetails,
   Mylesson,
   setShareProject,
@@ -72,8 +69,8 @@ export const MainComponent = ({
       </header>
       <section>
         <Routes>
-         <Route path="/:id" element={<TaskLayout setMylesson={setMylesson} setShowNewTask={setShowNewTask} ShowNewTask={ShowNewTask} Mylesson={Mylesson} showShareProject={showShareProject} setShareProject={setShareProject} TagDetails={TagDetails}/>}>
-          <Route path="/:id/ColumnView" element={<ProjectsBoard/>} />
+         <Route path="/:id" element={<TaskLayout boards={boards} setBoards={setBoards} setMylesson={setMylesson} setShowNewTask={setShowNewTask} ShowNewTask={ShowNewTask} Mylesson={Mylesson} showShareProject={showShareProject} setShareProject={setShareProject} TagDetails={TagDetails}/>}>
+          <Route path="/:id/ColumnView" element={<ProjectsBoard boards={boards}/>} />
           <Route path="/:id/BoardView" element={<BoardView updateBoard={updateBoard} boards={boards} deleteBoard={deleteBoard} editBoard={editBoard}  setShow={setnewboard} newBoard={newBoard} />}/>
           <Route path="/:id/Calendar" element={  <Calendar/>}/>
          </Route>

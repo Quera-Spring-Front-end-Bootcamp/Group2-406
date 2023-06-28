@@ -3,19 +3,16 @@
 import FormatAlignRightIcon from "@mui/icons-material/FormatAlignRight";
 import SquareRoundedIcon from "@mui/icons-material/SquareRounded";
 import OutlinedFlagIcon from "@mui/icons-material/OutlinedFlag";
+import ExpandCircleDownOutlinedIcon from "@mui/icons-material/ExpandCircleDownOutlined";
 import girlImg from "../../../../assets/img/girl.png";
 import boyImg from "../../../../assets/img/boy.png";
 import { useState } from "react";
 import { Task } from "./Task";
 
-export const Pending = ({
-  Icon,
+export const BoardList = ({
+  tasks,
   ProcessName,
-  TaskNumber,
-  Member,
-  Deadline,
-  Priority,
-  Description,
+  color
 }) => {
   const [showTask, setShowTask] = useState(true);
 
@@ -24,33 +21,35 @@ export const Pending = ({
     <>
       <section className="w-full flex flex-row-reverse  justify-between  mt-7  font-dana">
         <article className="w-1/2 flex  items-center  flex-row-reverse  mr-10">
-          <span className="flex" onClick={()=>{setShowTask(!showTask)}}>
-            {Icon}
-          </span>
-          <span className="text-xl  p-1 mr-1  bg-pink-500 rounded text-white text tracking-wider">
+          { tasks.length != 0 &&<span className="flex" onClick={()=>{setShowTask(!showTask)}}>
+          <ExpandCircleDownOutlinedIcon  className="text-gray-700"></ExpandCircleDownOutlinedIcon>
+          </span>}
+          <span style={{backgroundColor:color}} className="text-xl  p-1 mr-1  rounded text-white text tracking-wider">
             {ProcessName}
           </span>
           <span className="mr-3 font-dana  text-base font-semibold tracking-tighter">
             <span className="" dir="rtl">
-              {TaskNumber}
+              {tasks.length+" تسک"}
             </span>
           </span>
         </article>
 
-        <article className="w-1/2  flex mr-5 flex-row-reverse items-center ">
+        { tasks.length !=0 && <article className="w-1/2  flex mr-5 flex-row-reverse items-center ">
           <span className="w-1/4 font-dana text-base font-semibold tracking-tighter">
-            {Member}
+          <p>اعضا</p>
           </span>
           <span className="w-1/4 font-dana  text-base font-semibold tracking-tighter">
-            {Deadline}
+          <p>ددلاین</p>
           </span>
           <span className="w-1/4 font-dana  text-base font-semibold tracking-tighter">
-            {Priority}
+          <p>اولویت</p>
           </span>
           <span className="w-1/4 font-dana  text-base font-semibold tracking-tighter">
-            {Description}
+            <p>
+              توضیحات
+            </p>
           </span>
-        </article>
+        </article>}
       </section>
       <span className="w-full">
         {" "}

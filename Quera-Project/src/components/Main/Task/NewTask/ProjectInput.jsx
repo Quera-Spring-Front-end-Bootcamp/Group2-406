@@ -1,17 +1,20 @@
 /* eslint-disable no-unused-vars */
-import { useState } from "react";
 
 
-export function ProjectInput() {
-    const [projectVal, setProjectVal] = useState("پروژه اول");
-    const [workspaceVal, setWorkspaceVal] = useState("مدیریت پروژه");
+export function ProjectInput({boards,selectedBoard,setSelectedBoard}) {
+   
 
   return (
     <>
-        <select className="mx-2 w-[158px] h-[33px] border-1 border-gray-300 rounded-md  pr-1 text-base font-normal text-gray-800 font-dana" name="project-select" dir="rtl">
-            <optgroup label={workspaceVal}>
-                <option value={projectVal} onClick={()=>{setProjectVal(projectVal), setWorkspaceVal(workspaceVal)}}>{projectVal.toString()}</option>
-            </optgroup>
+        <select value={selectedBoard}onChange={(e)=>setSelectedBoard(e.target.value)} className="mx-2 w-[158px] h-[33px] border-1 border-gray-300 rounded-md  pr-1 text-base font-normal text-gray-800 font-dana" name="project-select" dir="rtl">
+           
+              {
+                boards.map((item)=>{
+                 return  <option value={item._id} key={item._id}    >{item.name}</option>
+                })
+              }
+                
+           
         </select>
     
     </>

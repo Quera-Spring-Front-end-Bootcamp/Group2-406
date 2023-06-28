@@ -1,6 +1,7 @@
 import { createContext, useContext, useState } from "react";
 import { baseurl } from "../../assets/baseUrl";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const AuthContext = createContext()
@@ -17,6 +18,7 @@ export const AuthProvider = ({ children }) => {
     const [token, setToken] = useState(() => {
         return localStorage.token ? localStorage.token : "";
     });
+    const navigate=useNavigate()
     const login = (token, refreshToken,userdata) => {
         localStorage.setItem("token", token);
         localStorage.setItem("userId", userdata._id);
@@ -28,7 +30,7 @@ export const AuthProvider = ({ children }) => {
         setRefreshToken(refreshToken);
     };
    const updateuser=(data)=>{
-    const newdata={...userdata,firstname:data.firstname,lastname:data.lastname}
+    const newdata={...userdata,firstname:data.firstname,lastname:data.lastname,phone:data.phone}
         setUserdata(newdata)
         localStorage.setItem("userdata",JSON.stringify(newdata))
    }
@@ -59,6 +61,24 @@ export const AuthProvider = ({ children }) => {
         }
        refreshToken && refresh();
     }, []);
+    const firstfetch=async(setMylesson)=>{
+        await axios.get(baseurl+"/workspace/get-all",{headers:{"x-auth-token":token}})
+         .then((response)=>{
+          console.log(response)
+          const workspaces=response.data.data
+          navigate(`/Main/${workspaces[0].projects[0]._id}/ColumnView`)
+          setMylesson(workspaces.map((item)=>{
+            return {id:item._id,nameLesson:item.name,members:item.members,colorSquare:item.color,edit:false,projects:item.projects.map((p)=>{
+              return ({id:p._id,nameProject:p.name,members:p.members,boards:p.boards})
+            })}
+          }))
+         })
+         .catch((error)=>{
+          console.log(error)
+         })
+      }
+
+
     const fetchData=async(setMylesson)=>{
         await axios.get(baseurl+"/workspace/get-all",{headers:{"x-auth-token":token}})
          .then((response)=>{
@@ -77,7 +97,7 @@ export const AuthProvider = ({ children }) => {
 
     
     return (
-        <AuthContext.Provider value={{ token, setToken, refreshToken, login, logout,userId,userdata,updateuser,fetchData }}>
+        <AuthContext.Provider value={{ token, setToken, refreshToken, login, logout,userId,userdata,updateuser,fetchData,firstfetch }}>
             {children}
         </AuthContext.Provider>
     );
