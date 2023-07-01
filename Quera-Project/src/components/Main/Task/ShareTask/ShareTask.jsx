@@ -9,14 +9,25 @@ import { useAuth } from "../../../ContextApi/AuthContext";
 import { useState,useEffect } from "react";
 import axios from "axios";
 import { baseurl } from "../../../../assets/baseUrl";
+import { useTheme } from "../../../ThemeContext/ThemeContext";
+import { useParams } from "react-router-dom";
 
-export const ShareTask = ({show,setShow,id}) => {
+export const ShareTask = ({show,setShow,taskid,updateBoard}) => {
+    const {Themecolor}=useTheme()
     const {token}=useAuth()
+    const {id}=useParams()
     const[error,setError]=useState("")
     const [value,setValue]=useState("")
     const [memberDetails,setMemberDetails]=useState([])
+    const fetchMembers=async()=>{
+        await axios.get(baseurl+`/task/${taskid}`,{headers:{"x-auth-token":token}})
+        .then((response)=>{
+            updateBoard(id)
+            setMemberDetails(response.data.data.taskAssigns)
+        })
+        }
     const assignUser = async() => {
-       await axios.put(baseurl+`/task/${id}/assign/${value}`,{},{headers:{'x-auth-token':token}})
+       await axios.put(baseurl+`/task/${taskid}/assign/${value}`,{},{headers:{'x-auth-token':token}})
 
         .then(function (response) {
         fetchMembers()
@@ -26,15 +37,9 @@ export const ShareTask = ({show,setShow,id}) => {
             error.response.data.code == 404 ? setError("این نام کاربری وجود ندارد"):error.response.data.code == 400 && setError("این کاربر قبلا اضافه شده")
         })
     }
-    const fetchMembers=async()=>{
-        await axios.get(baseurl+`/task/${id}`,{headers:{"x-auth-token":token}})
-        .then((response)=>{
-            console.log(response)
-            setMemberDetails(response.data.data.taskAssigns)
-        })
-        }
+   
         async function deleteProjectMember(userid){
-            await  axios.delete(baseurl+`/task/${id}/assign/${userid}`,{headers:{"x-auth-token":token}})
+            await  axios.delete(baseurl+`/task/${taskid}/assign/${userid}`,{headers:{"x-auth-token":token}})
               .then((response)=>{
                   console.log(response)
                   fetchMembers()
@@ -62,7 +67,7 @@ export const ShareTask = ({show,setShow,id}) => {
                 {/* email input & button */}
                 <article className="w-[90%] h-auto flex flex-row mt-10 justify-center">
                     <form onSubmit={(e)=>e.preventDefault()}>
-                        <button onClick={assignUser} className="text-sm font-medium font-dana text-white bg-sendEmailBtn w-[80px] h-[40px] rounded-s-md">ارسال</button>
+                        <button style={{backgroundColor:Themecolor}} onClick={assignUser} className="text-sm font-medium font-dana text-white bg-sendEmailBtn w-[80px] h-[40px] rounded-s-md">ارسال</button>
                         <input value={value} onChange={(e)=>setValue(e.target.value)}   dir="rtl" className="font-dana outline-none pr-2 rounded-r-md border-none bg-neutral-100 w-[340px] h-[40px]" type="text" placeholder=" دعوت با نام کاربری"/>
                         <p className=" float-right mt-1 font-dana font-semibold text-xs text-red-600">{error}</p>
                     </form>

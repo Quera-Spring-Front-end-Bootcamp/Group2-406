@@ -15,12 +15,14 @@ import { TaskLog } from './TaskLog';
 import { ShareTask } from '../ShareTask/ShareTask';
 import { CommentSection } from './CommentSection';
 import { toJalaali } from 'jalaali-js';
+import { useTheme } from '../../../ThemeContext/ThemeContext';
 
 
-export const TaskInfo = ({ show, setShow,description,id,name,deadline,setTaskEdit }) => {
+export const TaskInfo = ({ show, setShow,description,id,name,deadline,setTaskEdit,updateBoard }) => {
 
     const [shareTask, setShareTask] = useState(false);
     const date=new Date(deadline)
+    const {Themecolor}=useTheme()
     const { jm, jd } = toJalaali(date);
         
     const shareShow = () => {
@@ -80,7 +82,7 @@ export const TaskInfo = ({ show, setShow,description,id,name,deadline,setTaskEdi
                             {/* task log */}
                             <div className="bg-white w-full mt-[48px] h-fit overflow-y-scroll snap-y scrollbar-hide">
                                 <div className=" bg-white w-full h-[25px] pr-5 pl-9 mb-5 flex justify-between flex-row items-center self-stretch" dir='rtl'>
-                                    <p className="ml-1 font-dana font-normal text-base text-right text-black"><span className=" text-teal-600">شما </span>این تسک را ساختید</p>
+                                    <p className="ml-1 font-dana font-normal text-base text-right text-black"><span style={{color:Themecolor}} className=" text-teal-600">شما </span>این تسک را ساختید</p>
                                     <p className="font-dana font-normal text-xs text-right text-gray-400">۱ ساعت پیش</p>
                                 </div>
 
@@ -105,7 +107,7 @@ export const TaskInfo = ({ show, setShow,description,id,name,deadline,setTaskEdi
 
                                     <span className="w-auto h-5 mr-2 flex items-center">{<ShareOutlinedIcon className="text-gray-400 " fontSize='small'></ShareOutlinedIcon>}</span>
                                 </article>
-                                <label onClick={()=>{setShow(false),setTaskEdit(true)}} className=' text-white p-1 text-xs rounded-md cursor-pointer  hover:shadow-md bg-submitColor'>ویرایش تسک</label>
+                                <label style={{color:Themecolor,borderColor:Themecolor}} onClick={()=>{setShow(false),setTaskEdit(true)}} className=' text-white border font-medium p-1 text-xs rounded-md cursor-pointer  hover:opacity-70'>ویرایش تسک</label>
                             </div>
 
                             <div className="bg-white w-[335px] h-[34px] flex justify-between items-center">
@@ -169,7 +171,7 @@ export const TaskInfo = ({ show, setShow,description,id,name,deadline,setTaskEdi
                     </div>
                 </div>
             </div>
-            { shareTask &&<ShareTask id={id} show={shareTask} setShow={setShareTask} />}
+            { shareTask &&<ShareTask updateBoard={updateBoard} taskid={id} show={shareTask} setShow={setShareTask} />}
         </div>
     );
 }

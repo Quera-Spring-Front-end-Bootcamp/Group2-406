@@ -11,10 +11,12 @@ import axios from "axios";
 import { useAuth } from "../../../ContextApi/AuthContext";
 import { baseurl } from "../../../../assets/baseUrl";
 import { useParams } from "react-router-dom";
+import { useTheme } from "../../../ThemeContext/ThemeContext";
 
 
 export const EditTask = ({taskid,description,name,deadline,setShow,setBoards}) => {
     const date=new Date(deadline)
+    const {Themecolor}=useTheme()
   const [Datevalue,setDateValue]=useState(date)
   const {token}=useAuth()
   const {id}=useParams()
@@ -119,13 +121,13 @@ export const EditTask = ({taskid,description,name,deadline,setShow,setBoards}) =
             </span>
             <span className="relative flex flex-row justify-center z-50 -translate-y-[300px] items-end ">{ showCalendar && <Editcalendar value={Datevalue} setValue={setDateValue} />}</span>
             <span className="h-[60px] w-[50px] cursor-pointer flex items-end relative">
-              <span className="bg-teal-500 w-[26px] h-[26px] rounded-full flex justify-center items-center right-0 top-0 absolute">
+              <span style={{backgroundColor:Themecolor}} className="bg-teal-500 w-[26px] h-[26px] rounded-full flex justify-center items-center right-0 top-0 absolute">
                 2
               </span>
               <VisibilityOutlinedIcon className="text-neutral-400 !text-5xl"></VisibilityOutlinedIcon>
             </span>
           </div>
-          <input type="submit" value="ویرایش تسک " className="text-white bg-footBtn font-dana font-medium text-xs w-[125px] h-[32px] rounded"/>
+          <input style={{backgroundColor:Themecolor}} type="submit" value="ویرایش تسک " className="text-white bg-footBtn font-dana font-medium text-xs w-[125px] h-[32px] rounded"/>
            
          
         </article>

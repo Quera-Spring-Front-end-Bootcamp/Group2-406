@@ -14,7 +14,11 @@ export const ManageProjects = ({showInner,id,Addhandle,RemoveProject,nameProject
              }))
         }
         else(
-            RemoveProject(id)
+            setMylesson(perv=>perv.map((item)=>{
+                return {...item,projects:item.projects.filter((p)=>{
+                    return p.id != id
+                })}
+            }))
         )
     }
     

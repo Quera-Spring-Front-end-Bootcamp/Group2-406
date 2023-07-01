@@ -6,7 +6,9 @@ import { useState } from 'react';
 import axios from 'axios';
 import { baseurl } from '../../../../assets/baseUrl';
 import { useAuth } from '../../../ContextApi/AuthContext';
+import { useTheme } from '../../../ThemeContext/ThemeContext';
 export const Comments=({createdAt,text,id,fetchComments})=>{
+    const {Themecolor}=useTheme()
     const time=new Date(createdAt)
                     const { jm, jd } = toJalaali(time);
                     const {token}=useAuth()
@@ -48,7 +50,7 @@ export const Comments=({createdAt,text,id,fetchComments})=>{
                         <div className='bg-white w-[572px] h-[104px] flex flex-col items-end p-4 gap-2 border-1 border-solid border-gray-300 rounded-xl flex-grow flex-none'>
                             <div className='bg-white w-[528px] h-[25px] flex flex-row justify-between items-center'>
                                 <div className='bg-white w-[105px] h-[25px] order-1 flex-grow-0 flex flex-row justify-end items-center p-0 gap-1'>
-                                    <label className='text-teal-500 font-dana font-semibold text-base text-right order-1'>شما </label>
+                                    <label style={{color:Themecolor}} className='text-teal-500 font-dana font-semibold text-base text-right order-1'>شما </label>
                                     <label className='text-gray-400 font-dana font-normal text-xs flex-grow-0 flex-none'>کامنت گذاشتید</label>
                                 </div>
                                 <div className='flex flex-row '>

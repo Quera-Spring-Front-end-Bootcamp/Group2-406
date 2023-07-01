@@ -47,7 +47,7 @@ export const Main = () => {
               
 
               <MainComponent TagDetails={TagDetails} setDetails={setDetails} ShowNewTask={ShowNewTask} setShowNewTask={setShowNewTask} setMylesson={setMylesson}  setBoards={setBoards} boards={boards} showShareProject={showShareProject} setShareProject={setShareProject} Mylesson={Mylesson} />
-              <Footer show={ShowNewTask} setShow={setShowNewTask}  />
+              { boards.length>0 && <Footer show={ShowNewTask} setShow={setShowNewTask}  />}
           </div>
 
           {/* right content */}

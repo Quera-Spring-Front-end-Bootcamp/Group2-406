@@ -18,8 +18,10 @@ import { TaskName } from "./TaskName";
 import { ProjectInput } from "./ProjectInput";
 import { Description } from "./Description";
 import { baseurl } from "../../../../assets/baseUrl";
+import { useTheme } from "../../../ThemeContext/ThemeContext";
 
 export const NewTask = ({ TagDetails,setDetails,show, setShow,boards,setBoards,boardid}) => {
+  const {Themecolor}=useTheme()
   const [showTask, setShowTask] = useState(false);
   const [showTag, setShowTag] = useState(false);
   const {token}=useAuth()
@@ -117,9 +119,9 @@ export const NewTask = ({ TagDetails,setDetails,show, setShow,boards,setBoards,b
         {/* upload file */}
         <article className="w-full h-[80px] flex flex-row-reverse justify-start items-center font-dana">
           <p>افزودن پیوست</p>
-          <button className="mr-2 border-2 border-teal-500 rounded flex flex-row-reverse w-[115px] h-[33px] justify-center items-center">
+          <button style={{borderColor:Themecolor}} className="mr-2 border-2 border-teal-500 rounded flex flex-row-reverse w-[115px] h-[33px] justify-center items-center">
             <span>
-              <InsertLinkOutlinedIcon className="text-teal-600 ml-1"></InsertLinkOutlinedIcon>
+              <InsertLinkOutlinedIcon style={{color:Themecolor}} className=" ml-1"></InsertLinkOutlinedIcon>
             </span>
             <p>آپلود فایل</p>
           </button>
@@ -176,13 +178,13 @@ export const NewTask = ({ TagDetails,setDetails,show, setShow,boards,setBoards,b
             <span className="flex justify-center ml-6 z-20 items-end relative">{showTag && <TagDrop selectedTag={selectedTag} setSelectedTag={setSelectedTag} TagDetails={TagDetails} setDetails={setDetails} showTag={showTag} setShowTag={setShowTag}/>}</span> 
             
             <span className="h-[60px] w-[50px] cursor-pointer flex items-end relative">
-              <span className="bg-teal-500 w-[26px] h-[26px] rounded-full flex justify-center items-center right-0 top-0 absolute">
+              <span style={{backgroundColor:Themecolor}} className="bg-teal-500 w-[26px] h-[26px] rounded-full flex justify-center items-center right-0 top-0 absolute">
                 2
               </span>
               <VisibilityOutlinedIcon className="text-neutral-400 !text-5xl"></VisibilityOutlinedIcon>
             </span>
           </div>
-          <input onClick={onsubmit}  type="button" value="ساختن تسک" className="text-white bg-footBtn font-dana font-medium text-xs w-[125px] h-[32px] rounded"/>
+          <input onClick={onsubmit} style={{backgroundColor:Themecolor}}  type="button" value="ساختن تسک" className="text-white bg-footBtn font-dana font-medium text-xs w-[125px] h-[32px] rounded"/>
            
          
         </article>

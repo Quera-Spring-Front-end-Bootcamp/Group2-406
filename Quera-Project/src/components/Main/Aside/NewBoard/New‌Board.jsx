@@ -7,12 +7,15 @@ import { useAuth } from "../../../ContextApi/AuthContext"
 import axios from "axios"
 import { baseurl } from "../../../../assets/baseUrl"
 import { useParams } from "react-router-dom"
+import { useTheme } from "../../../ThemeContext/ThemeContext"
+
 
 export const NewBoard=({show,setshow,setMylesson,Mylesson,newBoard})=>{
     
     const {watch,register,reset,formState:{errors},handleSubmit}=useForm({defaultValues:{color:"#7D828C"}});
     const [phase,setphase]=useState(1);
     const {id}=useParams()
+    const {Themecolor}=useTheme()
      const {token,userId} = useAuth()
     const onsubmit= async(data)=>{
         console.log(data)
@@ -50,7 +53,7 @@ export const NewBoard=({show,setshow,setMylesson,Mylesson,newBoard})=>{
                     <BoardPhase2 watch={watch} register={register} setshow={setshow} setphase={setphase}/>
                     }
 
-                    <div className="w-full flex flex-row justify-center self-end  px-1 items-center"><input type="submit" value={phase!=2 ? "ادامه":"ساختن برد"}  className="w-full h-10  text-center text-sm rounded-md font-dana bg-submitColor text-white"/></div>
+                    <div className="w-full flex flex-row justify-center self-end  px-1 items-center"><input style={{backgroundColor:Themecolor}} type="submit" value={phase!=2 ? "ادامه":"ساختن برد"}  className="w-full h-10  text-center text-sm rounded-md font-dana text-white"/></div>
                 </div>
 
                 <div className="flex mt-10 flex-row">

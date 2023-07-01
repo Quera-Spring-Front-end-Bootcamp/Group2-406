@@ -149,7 +149,7 @@ export const Tasks = ({ imageExist,taskref, projectCategory,boards, lessonsCateg
 
             
         </div>
-        { showTaskInfo &&<TaskInfo id={taskid} setTaskEdit={setTaskEdit} name={name} deadline={deadline} description={description} show={showTaskInfo} setShow={setShowTaskInfo}></TaskInfo>}
+        { showTaskInfo &&<TaskInfo updateBoard={updateBoard} id={taskid} setTaskEdit={setTaskEdit} name={name} deadline={deadline} description={description} show={showTaskInfo} setShow={setShowTaskInfo}></TaskInfo>}
         {showTaskEdit && <EditTask setShow={setTaskEdit} taskid={taskid} name={name} deadline={deadline} description={description} setBoards={setBoards} />}
         </>
     )

@@ -5,6 +5,8 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../../../ContextApi/AuthContext';
 import { baseurl } from '../../../../assets/baseUrl';
+import { Profilepicture } from '../../../ProfilePic/ProfilePicture';
+
 
 export const Task = ({
   ColorIcon,
@@ -17,11 +19,12 @@ export const Task = ({
   imageExist2,
   showTask,
   description,
-  updateBoard,taskid,taskref,position
+  updateBoard,taskid,taskref,position,members
 }) => {
   const monthNames = [
     "فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد", "شهریور", "مهر", "آبان", "آذر", "دی", "بهمن", "اسفند"
 ];
+
 const {id}=useParams()
 const {token}=useAuth()
 async  function tasksort(){
@@ -59,13 +62,14 @@ function convertToPersianNumbers(input) {
       </article>
 
       <article className="w-1/2 px-4 pr-1  flex mr-5 flex-row-reverse items-center ">
-        <span className="w-1/4 font-dana flex text-xs mr-2">
-          <span className={imageExist1?"rounded-full ml-3  w-[25px] h-[25px]  flex ":'rounded-full  w-[25px] h-[25px]  flex '}>
-            {memberBoy}
-          </span>
-          <span className={imageExist2?"rounded-full bg-purple-950 w-[25px] h-[25px]  flex mr-3":'rounded-full  w-[25px] h-[25px]  flex'}>
-            {memberGirl}
-          </span>
+        <span className="w-1/4 font-dana flex flex-row items-center mr-2">
+          
+          {members.map((item)=>{
+          return <Profilepicture firstname={item.firstname} lastname={item.lastname} />
+           
+        })}
+          
+         
         </span>
         <span
           className="w-1/4 font-dana text-md  tracking-tighter tex"

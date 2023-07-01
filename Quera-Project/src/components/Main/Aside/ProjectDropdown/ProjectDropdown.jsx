@@ -5,9 +5,10 @@ import EditRoundedIcon from '@mui/icons-material/EditRounded';
 import InsertLinkRoundedIcon from '@mui/icons-material/InsertLinkRounded';
 import DeleteTwoToneIcon from '@mui/icons-material/DeleteTwoTone';
 import ShareIcon from '@mui/icons-material/Share';
+import { useTheme } from '../../../ThemeContext/ThemeContext';
 
 export const ProjectDropdown=({show,setShow,id,RemoveProject,setSharepr,Mylesson,setMylesson})=>{
-    
+    const {Themecolor}=useTheme()
      return (
           <div dir="rtl" onMouseDown={(e)=>{e.preventDefault(0)}} style={{visibility:show ? "visible":"hidden",width:'190px',height:show ? "190px":"0",}}  className=" overflow-hidden flex transition-all flex-col absolute  gap-3  shadow-lg rounded-lg p-3 bg-white">
                <div className=" flex flex-row  cursor-pointer items-center gap-2">
@@ -32,7 +33,7 @@ export const ProjectDropdown=({show,setShow,id,RemoveProject,setSharepr,Mylesson
                     <span className=" text-red-600 font-dana text-sm">حذف</span>
                </div>
 
-               <div onClick={()=>{setShow(false),setSharepr(true)}} className=" flex flex-row  cursor-pointer bg-submitColor h-9 items-center px-3 rounded-md gap-2">
+               <div style={{backgroundColor:Themecolor}} onClick={()=>{setShow(false),setSharepr(true)}} className=" flex flex-row  cursor-pointer bg-submitColor h-9 items-center px-3 rounded-md gap-2">
                     <ShareIcon className='text-white !text-lg '/>
                     <span className=" font-dana text-white text-sm">اشتراک‌گذاری </span>
                </div>
