@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import { StatusHeader } from "./StatusHeader/StatusHeader";
 import { ProjectsBoard } from "./ProjectsBoard/ProjectsBoard";
 import { BoardView } from "./BoardView/BoardView";
 import { Calendar } from "./FullCalendar/Calendar";
@@ -12,6 +11,7 @@ import { useAuth } from "../../ContextApi/AuthContext";
 
 export const MainComponent = ({
   TagDetails,
+  setDetails,
   Mylesson,
   setShareProject,
   showShareProject,
@@ -25,7 +25,7 @@ export const MainComponent = ({
 }) => {
   const {token}=useAuth()
   const newBoard=(data)=>{
-    setBoards([...boards,{name:data.name,_id:data._id,color:data.color,position:data.position,project:data.project}])
+    setBoards([...boards,{name:data.name,_id:data._id,color:data.color,position:data.position,project:data.project,tasks:data.tasks}])
     setBoards(perv=>perv.sort((a,b)=>(a.position < b.position) ? 1 : (a.position > b.position) ? -1 : 0))
   }
   const editBoard=(id,value,setEdit)=>{
@@ -67,11 +67,11 @@ export const MainComponent = ({
       <header>
         
       </header>
-      <section>
+      <section className="h-auto">
         <Routes>
          <Route path="/:id" element={<TaskLayout boards={boards} setBoards={setBoards} setMylesson={setMylesson} setShowNewTask={setShowNewTask} ShowNewTask={ShowNewTask} Mylesson={Mylesson} showShareProject={showShareProject} setShareProject={setShareProject} TagDetails={TagDetails}/>}>
-          <Route path="/:id/ColumnView" element={<ProjectsBoard boards={boards}/>} />
-          <Route path="/:id/BoardView" element={<BoardView updateBoard={updateBoard} boards={boards} deleteBoard={deleteBoard} editBoard={editBoard}  setShow={setnewboard} newBoard={newBoard} />}/>
+          <Route path="/:id/ColumnView" element={<ProjectsBoard updateBoard={updateBoard} boards={boards}/>} />
+          <Route path="/:id/BoardView" element={<BoardView TagDetails={TagDetails} setDetails={setDetails} updateBoard={updateBoard} setBoards={setBoards} boards={boards} deleteBoard={deleteBoard} editBoard={editBoard}  setShow={setnewboard} newBoard={newBoard} />}/>
           <Route path="/:id/Calendar" element={  <Calendar/>}/>
          </Route>
         

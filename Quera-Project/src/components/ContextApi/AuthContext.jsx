@@ -66,7 +66,6 @@ export const AuthProvider = ({ children }) => {
          .then((response)=>{
           console.log(response)
           const workspaces=response.data.data
-          navigate(`/Main/${workspaces[0].projects[0]._id}/ColumnView`)
           setMylesson(workspaces.map((item)=>{
             return {id:item._id,nameLesson:item.name,members:item.members,colorSquare:item.color,edit:false,projects:item.projects.map((p)=>{
               return ({id:p._id,nameProject:p.name,members:p.members,boards:p.boards})

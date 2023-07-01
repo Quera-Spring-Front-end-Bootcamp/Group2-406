@@ -1,11 +1,14 @@
 /* eslint-disable react/prop-types */
 
+import { useTheme } from "../../../ThemeContext/ThemeContext";
+
 export const TaskLog = ({ fromName, fromColor, toColor, toName }) => {
+    const {Themecolor}=useTheme()
     return (
         <>
             <div className=" bg-white snap-start w-full h-[25px] pr-5 pl-9 mb-5 flex justify-between flex-row items-center self-stretch" dir='rtl'>
                 <div className="flex">
-                    <span className=" text-teal-600 ml-1 font-dana font-normal text-base text-right">شما </span>
+                    <span style={{color:Themecolor}} className="  ml-1 font-dana font-normal text-base text-right">شما </span>
                     <p className="ml-1 font-dana font-normal text-base text-right text-black">این تسک را از</p>
 
                     <div className="flex items-center ml-1">

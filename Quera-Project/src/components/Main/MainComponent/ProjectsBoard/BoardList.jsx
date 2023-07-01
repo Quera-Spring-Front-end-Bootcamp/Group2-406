@@ -6,16 +6,19 @@ import OutlinedFlagIcon from "@mui/icons-material/OutlinedFlag";
 import ExpandCircleDownOutlinedIcon from "@mui/icons-material/ExpandCircleDownOutlined";
 import girlImg from "../../../../assets/img/girl.png";
 import boyImg from "../../../../assets/img/boy.png";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Task } from "./Task";
+
 
 export const BoardList = ({
   tasks,
   ProcessName,
-  color
+  color,
+  updateBoard
 }) => {
   const [showTask, setShowTask] = useState(true);
-
+  const sortedTasks=tasks.sort((a,b)=>(a.position > b.position) ? 1 : (a.position < b.position) ? -1 : 0)
+  const taskref=useRef()
 
   return (
     <>
@@ -53,15 +56,23 @@ export const BoardList = ({
       </section>
       <span className="w-full">
         {" "}
-        {showTask && (
-          <Task
+        {sortedTasks.map((item)=>{
+          return <Task
+          members={item.taskAssigns}
+          key={item._id}
+          position={item.position}
+          updateBoard={updateBoard}
+          taskid={item._id}
             ColorIcon={
-              <SquareRoundedIcon className="text-pink-500"></SquareRoundedIcon>
+              <SquareRoundedIcon style={{color:color}}></SquareRoundedIcon>
             }
-            taskText="این یک تیتر برای این تسک است."
+            taskref={taskref}
+            showTask={showTask}
+            description={item.description}
+            taskText={item.name}
             memberBoy={<img src={boyImg} alt="" />}
             memberGirl={<img src={girlImg} alt="" />}
-            taskTime="۶ آبان "
+            taskTime={item.deadline}
             prioritySign={
               <OutlinedFlagIcon className="text-red-600"></OutlinedFlagIcon>
             }
@@ -69,28 +80,12 @@ export const BoardList = ({
               <FormatAlignRightIcon className="text-stone-400"></FormatAlignRightIcon>
             }
           />
-        )}
+        })
+          
+         
+        }
       </span>
-      <span className="w-full">
-        {showTask && (
-          <Task
-            imageExist1={true}
-            imageExist2={false}
-            ColorIcon={
-              <SquareRoundedIcon className="text-pink-500"></SquareRoundedIcon>
-            }
-            taskText="این یک تیتر برای این تسک است."
-            memberBoy={<img src={boyImg} alt="" />}
-            taskTime="۶ آبان "
-            prioritySign={
-              <OutlinedFlagIcon className="text-red-600"></OutlinedFlagIcon>
-            }
-            descIcon={
-              <FormatAlignRightIcon className="text-stone-400"></FormatAlignRightIcon>
-            }
-          />
-        )}
-      </span>
+      
     </>
   );
 };

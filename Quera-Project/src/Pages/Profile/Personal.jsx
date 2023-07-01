@@ -4,10 +4,11 @@ import { useAuth } from "../../components/ContextApi/AuthContext";
 import { baseurl } from "../../assets/baseUrl";
 import axios from "axios";
 import { useState } from "react";
+import { useTheme } from "../../components/ThemeContext/ThemeContext";
 export const Personal=()=>{
   const [resultMessage,setResultMessage]=useState({})
   const {token,userdata,userId,updateuser}=useAuth()
-  console.log(userdata)
+  const {Themecolor}=useTheme()
   const {
       register,
       handleSubmit,
@@ -45,7 +46,7 @@ export const Personal=()=>{
             <div className="flex gap-4 items-center flex-row">
               <span className="rounded-full bg-yellow-200 w-[100px] h-[100px] font-medium ml-2 flex justify-center items-center  text-[34px]">{userdata.lastname[0] ? userdata.firstname[0] + " " + userdata.lastname[0]:userdata.firstname[0] }</span>
               <div className="flex flex-col gap-3   items-start">  
-                <div className=" p-[10px]  border border-[#208D8E] rounded-lg cursor-pointer text-[#208D8E] text-xl">ویرایش تصویر پروفایل</div>
+                <div style={{color:Themecolor,borderColor:Themecolor}} className=" p-[10px]  border border-[#208D8E] rounded-lg cursor-pointer text-[#208D8E] text-xl">ویرایش تصویر پروفایل</div>
                 <p className=" text-[#8A8989]  text-xs">این تصویر برای عموم قابل نمایش است.</p>
               </div>
             </div>
@@ -105,7 +106,7 @@ export const Personal=()=>{
             <p className=" font-semibold text-sm mt-1 font-dana" style={{color:resultMessage.color}}>{resultMessage.message}</p>
           </div>
           <div className="flex flex-col mt-auto ">
-            <input className="  cursor-pointer w-full  h-[38px] text-sm rounded-md font-dana bg-submitColor text-white  " value="ثبت تغییرات" type="submit"/>
+            <input style={{backgroundColor:Themecolor}} className="  cursor-pointer w-full  h-[38px] text-sm rounded-md font-dana text-white  " value="ثبت تغییرات" type="submit"/>
           </div>
         </div> 
       </form>

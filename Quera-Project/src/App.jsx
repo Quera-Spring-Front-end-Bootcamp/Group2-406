@@ -3,6 +3,7 @@ import { AuthProvider } from './components/ContextApi/AuthContext';
 import { Routes, Route } from "react-router-dom";
 import { Forget, Login, Reset, Register, Main, Profile } from "./Pages";
 import { Layout } from "./components/Layout/Layout";
+import { ThemeProvider } from './components/ThemeContext/ThemeContext';
 
 function App() {
 
@@ -10,6 +11,7 @@ function App() {
     <>
       <div className='bg-white font-dana'>
         <AuthProvider>
+          <ThemeProvider>
         <Routes >
           <Route path='/' element={<Layout />}>
             <Route index element= {<Login />}  />
@@ -20,6 +22,7 @@ function App() {
             <Route path="Profile/*" element={<Profile />} />
            </Route>
         </Routes>
+        </ThemeProvider>
         </AuthProvider>
       </div>
     </>

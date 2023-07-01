@@ -6,29 +6,20 @@ import ColorLensRoundedIcon from '@mui/icons-material/ColorLensRounded';
 import InsertLinkRoundedIcon from '@mui/icons-material/InsertLinkRounded';
 import DeleteTwoToneIcon from '@mui/icons-material/DeleteTwoTone';
 import ShareIcon from '@mui/icons-material/Share';
-import axios from 'axios';
-import { baseurl } from '../../../../assets/baseUrl';
-import { useAuth } from '../../../ContextApi/AuthContext';
+import { useTheme } from '../../../ThemeContext/ThemeContext';
+
 
 export const Dropdown=({dropdown,setShow,setMylesson,setInner,Mylesson,Removehandler,setShareW,id})=>{
-    const {token}=useAuth()
-     const Addhandler=async()=>{
-          setShow(false),setInner(true)
-          console.log(id)
-          axios.post(baseurl+"/projects",{
-               name:id,
-               workspaceId:id
-          },{headers:{"x-auth-token":token}})
-          .then((response)=>{
-               console.log(response)
+    const {Themecolor}=useTheme()
+     const Addhandler=()=>{
+         setInner(true)
+         setShow(false)
                  setMylesson(Mylesson.map((item)=>{
-             return  {...item,projects:id == item.id ?[...item.projects,{id:response.data.data._id,members:response.data.data.members,nameProject:id,edit:false}]: item.projects}
+             return  {...item,projects:id == item.id ?[...item.projects,{id:Date.now(),members:[],nameProject:"",edit:false}]: item.projects}
                
           }));
-          })
-          .catch((error)=>{
-               console.log(error)
-          })
+          
+          
         
      }
      const workSpaceToggle=()=>{
@@ -64,7 +55,7 @@ export const Dropdown=({dropdown,setShow,setMylesson,setInner,Mylesson,Removehan
                     <DeleteTwoToneIcon  className=' text-red-600 !text-lg'/><div className=" text-red-600 font-dana text-sm">حذف</div>
                </div>
 
-               <div onClick={share} className=" flex flex-row  cursor-pointer bg-submitColor h-9 items-center px-3  rounded-md   gap-2">
+               <div onClick={share} style={{backgroundColor:Themecolor}} className=" flex flex-row  cursor-pointer  h-9 items-center px-3  rounded-md   gap-2">
                     <ShareIcon className='text-white !text-lg '/><div className=" font-dana text-white text-sm">اشتراک‌گذاری </div>
                </div>
           </div>

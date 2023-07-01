@@ -16,9 +16,9 @@ export function Lessons({id,setBoards,Mylesson,setMylesson,lessonName,showLesson
     const [showShareWorkspace,setShareWorkspace] = useState(false);
     const [showInner,setInner]=useState(false);
     const [show,setShow]=useState(false);
-    const {token}=useAuth()
+    const {token,fetchData}=useAuth()
     const Removehandler=async()=>{
-        axios.delete(baseurl+"/workspace/"+id,{
+       await axios.delete(baseurl+"/workspace/"+id,{
 headers:{"x-auth-token":token}
         }).then((response)=>{
              setMylesson(Mylesson.filter((item)=>{
@@ -30,8 +30,8 @@ headers:{"x-auth-token":token}
         })
        
     }
-    const RemoveProject=(id)=>{
-        axios.delete(baseurl +"/projects/"+id,
+    const RemoveProject=async(id)=>{
+       await axios.delete(baseurl +"/projects/"+id,
           {headers:{"x-auth-token":token}})
           .then((response)=>{
             setMylesson(Mylesson.map((item)=>{
@@ -46,21 +46,33 @@ headers:{"x-auth-token":token}
           })
        
     }
-    const Addhandle=(id,value,setvalue)=>{
-      axios.put(baseurl +"/projects/"+id,{
-        name:value
+    const Addhandle=async(id,value,setvalue)=>{
+        if(value.trim()!= "" || value==id)
+     await axios.post(baseurl +"/projects",{
+        name:value,
+        workspaceId:id,
+        color:"#ffff"
       },{headers:{"x-auth-token":token}})
       .then((response)=>{
-        console.log(response)
-        setMylesson(Mylesson.map((item)=>{
-            return {...item,projects:item.projects.map((p)=>{
-               return {...p,nameProject: id == p.id ? value:p.nameProject,edit:id==p.id ? false: p.edit }
-            })}
-             
-         }))
+        fetchData(setMylesson)
       })
       
       setvalue("")
+    }
+    const editHandle=async(id,value,setvalue)=>{
+        if(value.trim()!= "" || value==id)
+       await axios.put(baseurl +"/projects/"+id,{
+          name:value,
+        
+        },{headers:{"x-auth-token":token}})
+        .then((response)=>{
+            setMylesson(Mylesson.map((item)=>{
+                return {...item,projects:item.projects.map((p)=>{
+                   return {...p,nameProject: id == p.id ? value:p.nameProject,edit:id==p.id ? false: p.edit }
+                })}
+            }))
+        })
+        setvalue("")
     }
     
     return (
@@ -84,8 +96,8 @@ headers:{"x-auth-token":token}
             {/* projects */}
             <div className="flex flex-col mr-7">
                 {projectname.map((item) => {
-                    return(item.nameProject != id && !item.edit ?<Projects setBoards={setBoards} setMylesson={setMylesson}  Mylesson={Mylesson} setSharepr={setSharepr} key={item.id} RemoveProject={RemoveProject} showInner={showInner} id={item.id} projectName={item.nameProject} />
-                    :<ManageProjects setMylesson={setMylesson} edit={item.edit} nameProject={item.nameProject}  Addhandle={Addhandle} workspaceId={id} id={item.id} RemoveProject={RemoveProject} key={item.id} showInner={showInner} />
+                    return( item.nameProject!= ""&& !item.edit ?<Projects setBoards={setBoards} setMylesson={setMylesson}  Mylesson={Mylesson} setSharepr={setSharepr} key={item.id} RemoveProject={RemoveProject} showInner={showInner} id={item.id} projectName={item.nameProject} />
+                    :<ManageProjects editHandle={editHandle} setMylesson={setMylesson} edit={item.edit} nameProject={item.nameProject}  Addhandle={Addhandle} workspaceId={id} id={item.id} RemoveProject={RemoveProject} key={item.id} showInner={showInner} />
                     );
                 })}
             </div>

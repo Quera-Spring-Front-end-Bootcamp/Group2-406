@@ -5,11 +5,55 @@ import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import LinkOutlinedIcon from '@mui/icons-material/LinkOutlined';
 import myProfile from"../../../../assets/images/p2.jpg";
 import otherProfile from"../../../../assets/images/p1.jpg";
+import { useAuth } from "../../../ContextApi/AuthContext";
+import { useState,useEffect } from "react";
+import axios from "axios";
+import { baseurl } from "../../../../assets/baseUrl";
+import { useTheme } from "../../../ThemeContext/ThemeContext";
+import { useParams } from "react-router-dom";
 
-export const ShareTask = ({show,setShow}) => {
+export const ShareTask = ({show,setShow,taskid,updateBoard}) => {
+    const {Themecolor}=useTheme()
+    const {token}=useAuth()
+    const {id}=useParams()
+    const[error,setError]=useState("")
+    const [value,setValue]=useState("")
+    const [memberDetails,setMemberDetails]=useState([])
+    const fetchMembers=async()=>{
+        await axios.get(baseurl+`/task/${taskid}`,{headers:{"x-auth-token":token}})
+        .then((response)=>{
+            updateBoard(id)
+            setMemberDetails(response.data.data.taskAssigns)
+        })
+        }
+    const assignUser = async() => {
+       await axios.put(baseurl+`/task/${taskid}/assign/${value}`,{},{headers:{'x-auth-token':token}})
+
+        .then(function (response) {
+        fetchMembers()
+        setError("")
+        })
+        .catch((error)=>{
+            error.response.data.code == 404 ? setError("این نام کاربری وجود ندارد"):error.response.data.code == 400 && setError("این کاربر قبلا اضافه شده")
+        })
+    }
+   
+        async function deleteProjectMember(userid){
+            await  axios.delete(baseurl+`/task/${taskid}/assign/${userid}`,{headers:{"x-auth-token":token}})
+              .then((response)=>{
+                  console.log(response)
+                  fetchMembers()
+              })
+              .catch((error)=>{
+                  console.log(error)
+              })
+          }
+    useEffect(()=>{
+        fetchMembers()
+    },[])
 
     return(
-        <div className="w-screen h-screen bg-gray-600 bg-opacity-50 z-40 fixed flex justify-center items-center" style={{visibility:show ? "visible":"hidden"}}>{/* entire page */}
+        <div className="w-screen h-screen bg-gray-600 bg-opacity-50 z-50 inset-0 fixed flex justify-center items-center" >{/* entire page */}
 
             {/* shareProject component */}
             <section className="rounded-2xl bg-white w-[470px] h-[365px] flex flex-col items-center">
@@ -22,9 +66,10 @@ export const ShareTask = ({show,setShow}) => {
 
                 {/* email input & button */}
                 <article className="w-[90%] h-auto flex flex-row mt-10 justify-center">
-                    <form>
-                        <button className="text-sm font-medium font-dana text-white bg-sendEmailBtn w-[80px] h-[40px] rounded-s-md">ارسال</button>
-                        <input  dir="rtl" className="font-dana outline-none pr-2 rounded-r-md border-none bg-neutral-100 w-[340px] h-[40px]" type="text" placeholder=" دعوت با نام کاربری"/>
+                    <form onSubmit={(e)=>e.preventDefault()}>
+                        <button style={{backgroundColor:Themecolor}} onClick={assignUser} className="text-sm font-medium font-dana text-white bg-sendEmailBtn w-[80px] h-[40px] rounded-s-md">ارسال</button>
+                        <input value={value} onChange={(e)=>setValue(e.target.value)}   dir="rtl" className="font-dana outline-none pr-2 rounded-r-md border-none bg-neutral-100 w-[340px] h-[40px]" type="text" placeholder=" دعوت با نام کاربری"/>
+                        <p className=" float-right mt-1 font-dana font-semibold text-xs text-red-600">{error}</p>
                     </form>
                 </article>
 
@@ -58,7 +103,12 @@ export const ShareTask = ({show,setShow}) => {
                         </div>
 
                         {/* shared with other */}
-                        <SharedWith profileImg={otherProfile} userName="sararahimi@gmail.com" />
+                        {
+                            memberDetails.map((item)=>{
+                                return  <SharedWith deleteProjectMember={deleteProjectMember} firstname={item.user.firstname} lastname={item.user.lastname} key={item.user._id} userid={item.user._id}  userName={item.user.email} />
+                            })
+
+                         }
                     </div>
                 </article>
             </section>
