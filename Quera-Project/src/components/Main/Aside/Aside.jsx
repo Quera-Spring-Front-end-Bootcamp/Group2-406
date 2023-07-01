@@ -18,7 +18,7 @@ export const Aside = ({setWork,Mylesson,setMylesson,setShareProject, setNameProj
     const [showLessons,SetShowLessons]=useState(true) 
     const {token,userId,userdata}=useAuth()
     const workspaceHandle=async(id,value)=>{
-     if(value){
+     if(value.trim()!= ""){
         await axios.patch(baseurl + "/workspace/"+id,{
             name:value,
             usernameOrId: userId,

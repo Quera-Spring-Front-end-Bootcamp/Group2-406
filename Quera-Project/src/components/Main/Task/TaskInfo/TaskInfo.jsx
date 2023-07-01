@@ -14,15 +14,29 @@ import profile from "../../../../assets/img/girl.png"
 import { TaskLog } from './TaskLog';
 import { ShareTask } from '../ShareTask/ShareTask';
 import { CommentSection } from './CommentSection';
+import { toJalaali } from 'jalaali-js';
+import { useTheme } from '../../../ThemeContext/ThemeContext';
 
 
-export const TaskInfo = ({ show, setShow }) => {
+export const TaskInfo = ({ show, setShow,description,id,name,deadline,setTaskEdit,updateBoard }) => {
 
     const [shareTask, setShareTask] = useState(false);
-
+    const date=new Date(deadline)
+    const {Themecolor}=useTheme()
+    const { jm, jd } = toJalaali(date);
+        
     const shareShow = () => {
-        setShareTask(!shareTask);
-        setShow(!show);
+        setShareTask(true);
+    }
+    const monthNames = [
+        "فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد", "شهریور", "مهر", "آبان", "آذر", "دی", "بهمن", "اسفند"
+    ];
+
+    function convertToPersianNumbers(input) {
+        var persianNumbers = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"];
+        return input.replace(/[0-9]/g, function (match) {
+            return persianNumbers[parseInt(match)];
+        });
     }
 
     return (
@@ -42,12 +56,13 @@ export const TaskInfo = ({ show, setShow }) => {
                                     <RemoveRedEyeOutlinedIcon className=" absolute top-[6px] text-gray-400 z-10" fontSize='large' />
                                 </div>
 
-                                <div className="w-[381px] h-[57px] mr-5 flex justify-between items-center">
-
-                                    <div className="w-[51px] h-[48px] flex flex-col justify-between">
+                                <div className="min-w-[381px] h-[57px] mr-5 flex justify-between items-center">
+ 
+                                    <div className=" h-[48px] flex flex-col justify-between">
                                         <label className=" font-dana font-medium  text-xs text-right text-gray-400 flex-grow-0 float-none" dir='rtl'>ددلاین</label>
-                                        <label className=" font-dana font-medium text-base text-right text-gray-800 order-1 flex-grow-0 flex-none" dir='rtl'>پس‌فردا</label>
+                                        <label className=" font-dana font-medium text-base text-right text-gray-800 order-1  flex-none" dir='rtl'>{convertToPersianNumbers(jd.toString())} {monthNames[jm - 1]}</label>
                                     </div>
+                                   
 
                                     <div className="w-[109px] h-[48px] flex flex-col justify-between">
                                         <label className=" font-dana font-medium  text-xs text-right text-gray-400 flex-grow-0 float-none" dir='rtl'>زمان</label>
@@ -67,7 +82,7 @@ export const TaskInfo = ({ show, setShow }) => {
                             {/* task log */}
                             <div className="bg-white w-full mt-[48px] h-fit overflow-y-scroll snap-y scrollbar-hide">
                                 <div className=" bg-white w-full h-[25px] pr-5 pl-9 mb-5 flex justify-between flex-row items-center self-stretch" dir='rtl'>
-                                    <p className="ml-1 font-dana font-normal text-base text-right text-black"><span className=" text-teal-600">شما </span>این تسک را ساختید</p>
+                                    <p className="ml-1 font-dana font-normal text-base text-right text-black"><span style={{color:Themecolor}} className=" text-teal-600">شما </span>این تسک را ساختید</p>
                                     <p className="font-dana font-normal text-xs text-right text-gray-400">۱ ساعت پیش</p>
                                 </div>
 
@@ -77,7 +92,7 @@ export const TaskInfo = ({ show, setShow }) => {
                                 <TaskLog fromName={"Done"} fromColor={"bg-green-500"} toName={"Pending"} toColor={"bg-yellow-500"} />
                             </div>
                         </div>
-                        <CommentSection />
+                        <CommentSection id={id} />
                     </div>
 
                     {/* right side */}
@@ -92,6 +107,7 @@ export const TaskInfo = ({ show, setShow }) => {
 
                                     <span className="w-auto h-5 mr-2 flex items-center">{<ShareOutlinedIcon className="text-gray-400 " fontSize='small'></ShareOutlinedIcon>}</span>
                                 </article>
+                                <label style={{color:Themecolor,borderColor:Themecolor}} onClick={()=>{setShow(false),setTaskEdit(true)}} className=' text-white border font-medium p-1 text-xs rounded-md cursor-pointer  hover:opacity-70'>ویرایش تسک</label>
                             </div>
 
                             <div className="bg-white w-[335px] h-[34px] flex justify-between items-center">
@@ -133,10 +149,10 @@ export const TaskInfo = ({ show, setShow }) => {
                             </div>
                             {/* task discription */}
                             <div className="bg-white w-full h-[154px] flex flex-col justify-between" dir='rtl'>
-                                <h1 className=" font-dana font-semibold text-2xl text-right text-black">عنوان تسک</h1>
+                                <h1 className=" font-dana font-semibold text-2xl text-right text-black">{name}</h1>
                                 <div className='bg-white w-[617px] h-[96px] flex flex-row justify-end items-start p-3 gap-[10px] border-1 rounded-xl border-gray-300 order-1 self-stretch'>
                                     <p className="font-dana font-normal text-base text-right text-black flex-grow"
-                                    >لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، </p>
+                                    >{description}</p>
                                 </div>
                             </div>
 
@@ -155,7 +171,7 @@ export const TaskInfo = ({ show, setShow }) => {
                     </div>
                 </div>
             </div>
-            <ShareTask show={shareTask} setShow={setShareTask} />
+            { shareTask &&<ShareTask updateBoard={updateBoard} taskid={id} show={shareTask} setShow={setShareTask} />}
         </div>
     );
 }

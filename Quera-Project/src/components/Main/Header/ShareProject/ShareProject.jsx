@@ -4,14 +4,15 @@ import { SharedWith } from "./SharedWith";
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import LinkOutlinedIcon from '@mui/icons-material/LinkOutlined';
 import myProfile from"../../../../assets/images/p2.jpg";
-import otherProfile from"../../../../assets/images/p1.jpg";
 import { InviteUser } from "./InviteUser";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useAuth } from "../../../ContextApi/AuthContext";
 import { baseurl } from "../../../../assets/baseUrl";
 import { useParams } from "react-router-dom";
-export const ShareProject = ({show,setShow,userid}) => {
+import { useTheme } from "../../../ThemeContext/ThemeContext";
+export const ShareProject = ({show,setShow}) => {
+    const {Themecolor}=useTheme()
     const {id}=useParams()
     const {token}=useAuth()
     const [memberDetails,setMemberDetails]=useState([])

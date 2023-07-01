@@ -6,12 +6,14 @@ import { Phase3 } from "./Phase3"
 import { useForm } from "react-hook-form"
 import { useAuth } from "../../../ContextApi/AuthContext"
 import axios from "axios"
+import { useTheme } from "../../../ThemeContext/ThemeContext"
 
 export const Newworkspace=({show,setshow,setMylesson,Mylesson})=>{
     
     const {watch,register,reset,formState:{errors},handleSubmit}=useForm({defaultValues:{color:"#7D828C"}});
     const [phase,setphase]=useState(1);
      const {token,userId} = useAuth()
+     const {Themecolor}=useTheme()
     const onsubmit= async(data)=>{
         console.log(data)
         if(phase<3){
@@ -47,7 +49,7 @@ export const Newworkspace=({show,setshow,setMylesson,Mylesson})=>{
                     <Phase2 watch={watch} register={register} setshow={setshow} setphase={setphase}/>
                     :<Phase3 watch={watch} setshow={setshow} setphase={setphase}/>}
 
-                    <div className="w-full flex flex-row justify-center self-end  px-1 items-center"><input type="submit" value={phase!=3 ? "ادامه":"ساختن ورک‌اسپیس"}  className="w-full h-10  text-center text-sm rounded-md font-dana bg-submitColor text-white"/></div>
+                    <div className="w-full flex flex-row justify-center self-end  px-1 items-center"><input style={{backgroundColor:Themecolor}} type="submit" value={phase!=3 ? "ادامه":"ساختن ورک‌اسپیس"}  className="w-full h-10  text-center text-sm rounded-md font-dana text-white"/></div>
                 </div>
 
                 <div className="flex mt-10 flex-row">

@@ -5,10 +5,11 @@ import ExpandCircleDownOutlinedIcon from "@mui/icons-material/ExpandCircleDownOu
 import { BoardList } from "./BoardList";
 import { useState } from "react";
 import React from "react";
+import { useProject } from "../TaskLayout/TaskLayout";
 
-export const ProjectsBoard = ({boards}) => {
+export const ProjectsBoard = ({boards,updateBoard}) => {
   const [showProcess, setShowProcess] = useState(true);
-
+  const project=useProject()
 
   return (
     <main className="w-[1080px] mt-6 flex flex-col justify-start items-end">
@@ -17,7 +18,7 @@ export const ProjectsBoard = ({boards}) => {
         <span className="mt-0.5" >
           <ExpandCircleDownOutlinedIcon onClick={()=>{setShowProcess(!showProcess)}}></ExpandCircleDownOutlinedIcon>
         </span>
-        <span className="mr-2 font-extrabold">پروژه اول</span>
+        <span className="mr-2 font-extrabold">{project.nameProject}</span>
       </section>
       {/* Pending */}
       <span className="w-full" >
@@ -28,7 +29,7 @@ export const ProjectsBoard = ({boards}) => {
               key={item._id}
            
             
-           
+              updateBoard={updateBoard}
             ProcessName={item.name}
             color={item.color}
             tasks={item.tasks}
