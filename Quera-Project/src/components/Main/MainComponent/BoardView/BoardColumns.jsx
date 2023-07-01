@@ -46,7 +46,7 @@ export const BoardColumns = ({ name, children, color,boardid,deleteBoard,boards,
     }
 
     return !edit ?(
-        <div    className="w-[260px]    left-[788px] gap-5 mt-[17px] flex flex-col items-center p-0 flex-none order-5 flex-grow-0" dir='ltr'>
+        <div    className="w-[260px]    left-[788px] z-10 gap-5 mt-[17px] flex flex-col items-center p-0 flex-none order-5 flex-grow-0" dir='ltr'>
              { show && <NewTask TagDetails={TagDetails} boards={boards} setBoards={setBoards} boardid={boardid} show={show} setShow={setshow} setDetails={setDetails} />}
             {/* column header  */}
             <div draggable onDragOver={(e)=>{e.preventDefault()}} onDragEnter={()=>dragref.current=position} onDragEnd={boardSort} style={{borderColor:color}} className={`bg-white w-[250px] group h-[41px] flex flex-row items-center justify-between border-t-[1px]  shadow-md rounded p-2 gap-1`}>
