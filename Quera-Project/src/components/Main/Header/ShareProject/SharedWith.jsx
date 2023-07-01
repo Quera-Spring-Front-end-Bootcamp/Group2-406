@@ -40,14 +40,16 @@ export const SharedWith = ({ userName,firstname,lastname,deleteProjectMember,use
                 })}
             </div>   
             </div>
+            <span className="flex flex-row">
+            
             <button id="btn" className="font-dana font-normal text-xs w-[111px] h-[27px] border-1 border-gray-200 rounded-md flex flex-row-reverse justify-center items-center" onClick={() => {setShow(!Show)}}>
                 {Acc}
                 <KeyboardArrowDownOutlinedIcon className='!text-sm mr-2'></KeyboardArrowDownOutlinedIcon>
             </button>
+            <DeleteOutlineOutlinedIcon className=" cursor-pointer block" onClick={()=>deleteProjectMember(userid)}/>
+             </span>
             
             </section>
-             
-            <DeleteOutlineOutlinedIcon className=" cursor-pointer" onClick={()=>deleteProjectMember(userid)}/>
         </div>
     );
 }

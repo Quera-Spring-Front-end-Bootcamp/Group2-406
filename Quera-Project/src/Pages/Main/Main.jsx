@@ -16,7 +16,7 @@ export const Main = () => {
        firstfetch(setMylesson)
     },[])
     
-    const [TagDetails,setDetails]=useState([{id:1,tag:"درس",bgcolor:"#EBC8C8"},{id:2,tag:"کار",bgcolor:"#C3B7F2"},{id:3,tag:"پروژه",bgcolor:"#7FFAFA"}])
+    const [TagDetails,setDetails]=useState([])
     const [showShareProject,setShareProject] = useState(false);
     
     const [showShareTask,setShareTask] = useState(false);
@@ -35,7 +35,7 @@ export const Main = () => {
       
 
       {/* share task page*/}
-      <ShareTask show={showShareTask} setShow={setShareTask} />
+      
 
       {/* new task page*/}
       { ShowNewTask &&<NewTask boards={boards} setBoards={setBoards} TagDetails={TagDetails} setDetails={setDetails} show={ShowNewTask} setShow={setShowNewTask}/>}
@@ -46,8 +46,7 @@ export const Main = () => {
             
               
 
-              <MainComponent setMylesson={setMylesson}  setBoards={setBoards} boards={boards} showShareProject={showShareProject} setShareProject={setShareProject} Mylesson={Mylesson} TagDetails={TagDetails} />
-
+              <MainComponent TagDetails={TagDetails} setDetails={setDetails} ShowNewTask={ShowNewTask} setShowNewTask={setShowNewTask} setMylesson={setMylesson}  setBoards={setBoards} boards={boards} showShareProject={showShareProject} setShareProject={setShareProject} Mylesson={Mylesson} />
               <Footer show={ShowNewTask} setShow={setShowNewTask}  />
           </div>
 

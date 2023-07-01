@@ -9,7 +9,15 @@ export const ThemeProvider=({children})=>{
     const [color,setColor]=useState(()=>{
         return localStorage.color ? localStorage.color:"#208D8E"
     })
-   return <Theme.Provider value={{color,setColor,darkTheme,setDarkTheme}} >
+    const colorChange=(value)=>{
+        setColor(value)
+        localStorage.color=value
+    }
+    const darkmodeChange=(value)=>{
+        setDarkTheme(value)
+        localStorage.darkTheme=value
+    }
+   return <Theme.Provider value={{color,darkTheme,colorChange,darkmodeChange}} >
     {children}
    </Theme.Provider>
 }

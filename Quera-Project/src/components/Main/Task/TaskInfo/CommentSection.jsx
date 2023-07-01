@@ -5,50 +5,46 @@ import InsertDriveFileOutlinedIcon from '@mui/icons-material/InsertDriveFileOutl
 import AttachFileOutlinedIcon from '@mui/icons-material/AttachFileOutlined';
 import AlternateEmailOutlinedIcon from '@mui/icons-material/AlternateEmailOutlined';
 import MessageOutlinedIcon from '@mui/icons-material/MessageOutlined';
-import profile from "../../../../assets/img/girl.png"
-import { toJalaali } from "jalaali-js";
+import { Comments } from './Comments';
 
-
-
-
-
-
-export const CommentSection = () => {
-
-    // comment date 
-    const today = new Date();
-    const { jm, jd } = toJalaali(today);
-    const monthNames = [
-        "فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد", "شهریور", "مهر", "آبان", "آذر", "دی", "بهمن", "اسفند"
-    ];
-
-    function convertToPersianNumbers(input) {
-        var persianNumbers = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"];
-        return input.replace(/[0-9]/g, function (match) {
-            return persianNumbers[parseInt(match)];
-        });
-    }
+import axios from 'axios';
+import { baseurl } from '../../../../assets/baseUrl';
+import { useAuth } from '../../../ContextApi/AuthContext';
+export const CommentSection = ({id}) => {
+    const {token}=useAuth()
 
     // set comment
     const [inputValue, setInputValue] = useState('');
     const initialComment = "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است. "
-    const [comments, setComments] = useState(() => {
-        const storedComments = localStorage.getItem('comments');
-        return storedComments ? JSON.parse(storedComments) : [initialComment];
-    });
-
-    const addComment = () => {
+    const [comments, setComments] = useState([]);
+    const fetchComments=async()=>{
+        await axios.get(baseurl+`/comments/task/${id}`,{headers:{"x-auth-token":token}})
+        .then((response)=>{
+            setComments(response.data.data)
+        })
+        .catch((error)=>{
+           console.log(error)
+        })
+   }
+    const addComment = async() => {
         if (inputValue.trim() !== '') {
             const newComment = `${inputValue}`;
             const comment = newComment;
-            setComments([...comments, comment]);
+           await axios.post(baseurl+"/comments/",{
+                text:inputValue,
+                taskId:id
+            },{headers:{"x-auth-token":token}})
+            .then((response)=>{
+               fetchComments()
+            })
+            
             setInputValue('');
         }
     };
-
+    
     useEffect(() => {
-        localStorage.setItem('comments', JSON.stringify(comments));
-    }, [comments]);
+       fetchComments()
+    },[]);
 
     // up on click 
     const [marginTop, setMarginTop] = useState("217px");
@@ -63,7 +59,7 @@ export const CommentSection = () => {
     };
 
     return (
-        <div className="relative">
+        <div className="relative z-30">
             {/* comment input  */}
             <div className="bg-white border-2 border-gray-200 rounded-t-xl w-[659px] h-[157px] absolute top-0 left-0 flex justify-between transition-all duration-500 z-10" onClick={handleClick} style={{ marginTop, boxShadow: isUp ? '0 -4px 12px rgba(0, 0, 0, 0.25)' : '' }}>
                 <MessageOutlinedIcon className="mt-[13px] ml-[36px] text-gray-400" />
@@ -92,21 +88,9 @@ export const CommentSection = () => {
             <div className="bg-white mt-4 relative z-0 h-[208px] w-full flex flex-col overflow-y-auto snap-y scrollbar-hide">
 
                 {/*comment */}
-                {comments.map((comment, index) => (
-                    <div key={index} className="bg-white snap-start mt-2 w-full h-[104px] flex flex-row justify-end items-start gap-3 px-5">
-                        <img className="w-[35px] h-[34px] rounded-full flex items-start justify-end flex-none order-1" src={profile} />
-                        <div className='bg-white w-[572px] h-[104px] flex flex-col items-end p-4 gap-2 border-1 border-solid border-gray-300 rounded-xl flex-grow flex-none'>
-                            <div className='bg-white w-[528px] h-[25px] flex flex-row justify-between items-center'>
-                                <div className='bg-white w-[105px] h-[25px] order-1 flex-grow-0 flex flex-row justify-end items-center p-0 gap-1'>
-                                    <label className='text-teal-500 font-dana font-semibold text-base text-right order-1'>شما </label>
-                                    <label className='text-gray-400 font-dana font-normal text-xs flex-grow-0 flex-none'>کامنت گذاشتید</label>
-                                </div>
-                                <label className='text-gray-400 font-dana font-normal text-xs text-right flex-grow-0' dir='rtl'>{convertToPersianNumbers(jd.toString())} {monthNames[jm - 1]}</label>
-                            </div>
-                            <label className='font-dana font-normal text-xs text-right text-black order-1' dir='rtl' >{comment} </label>
-                        </div>
-                    </div>
-                ))}
+                {comments.map((item) => {
+                  return  <Comments fetchComments={fetchComments} text={item.text} createdAt={item.createdAt} id={item._id} key={item._id}/>
+                    })}
 
             </div>
         </div>

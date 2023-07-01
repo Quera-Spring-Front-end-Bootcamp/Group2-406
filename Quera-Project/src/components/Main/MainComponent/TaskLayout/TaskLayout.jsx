@@ -2,12 +2,13 @@ import { Outlet, useParams,useOutletContext,Navigate } from "react-router-dom"
 import { Header } from "../../Header/Header"
 import { StatusHeader } from "../StatusHeader/StatusHeader"
 import { ShareProject } from "../../Header/ShareProject/ShareProject"
+import { Footer } from "../../Footer/Footer"
 import { useEffect } from "react"
 import axios from "axios"
 import { useAuth } from "../../../ContextApi/AuthContext"
 import { baseurl } from "../../../../assets/baseUrl"
 import { Loading } from "../../../Loading/Loading"
-export const TaskLayout=({Mylesson,setMylesson,showShareProject,setShareProject,TagDetails,setBoards})=>{
+export const TaskLayout=({Mylesson,setMylesson,showShareProject,setShareProject,TagDetails,setBoards,ShowNewTask,setShowNewTask})=>{
   let {id}= useParams()
  let SelectedWorkspace= Mylesson.filter((item)=>{
     return item.projects.some((p)=>{
@@ -40,6 +41,7 @@ export const TaskLayout=({Mylesson,setMylesson,showShareProject,setShareProject,
    <Header id={id} show={showShareProject} setShow={setShareProject} projectname={project.nameProject}  />
    <StatusHeader TagDetails={TagDetails} />
 <Outlet context={project} />
+
     </>
     
 }
