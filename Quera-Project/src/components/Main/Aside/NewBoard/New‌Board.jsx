@@ -18,12 +18,10 @@ export const NewBoard=({show,setshow,setMylesson,Mylesson,newBoard})=>{
     const {Themecolor}=useTheme()
      const {token,userId} = useAuth()
     const onsubmit= async(data)=>{
-        console.log(data)
         if(phase<2){
             setphase(phase+1);
         }
         else{
-            console.log(token)
             await axios.post(baseurl+"/board/",{
                 name:watch("name"),
                 color:watch("color"),

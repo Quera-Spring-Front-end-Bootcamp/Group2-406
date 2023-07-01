@@ -16,7 +16,7 @@ export const Main = () => {
        firstfetch(setMylesson)
     },[])
     
-    const [TagDetails,setDetails]=useState([])
+    const [TagDetails,setDetails]=useState([{id:1,tag:"درس",bgcolor:"#EBC8C8"},{id:2,tag:"کار",bgcolor:"#C3B7F2"},{id:3,tag:"پروژه",bgcolor:"#7FFAFA"}])
     const [showShareProject,setShareProject] = useState(false);
     
     const [showShareTask,setShareTask] = useState(false);
