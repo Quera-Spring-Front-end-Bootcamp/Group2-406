@@ -6,6 +6,7 @@ import axios from 'axios';
 import { useAuth } from '../../../ContextApi/AuthContext';
 import { baseurl } from '../../../../assets/baseUrl';
 import { Profilepicture } from '../../../ProfilePic/ProfilePicture';
+import myprof from '../../../../assets/images/p2.jpg'
 
 
 export const Task = ({
@@ -27,6 +28,7 @@ export const Task = ({
 
 const {id}=useParams()
 const {token}=useAuth()
+const {userdata}=useAuth()
 async  function tasksort(){
   if(taskref.current != position){
      console.log(taskref.current)
@@ -63,9 +65,9 @@ function convertToPersianNumbers(input) {
 
       <article className="w-1/2 px-4 pr-1  flex mr-5 flex-row-reverse items-center ">
         <span className="w-1/4 font-dana flex flex-row items-center mr-2">
-          
+          <img src={myprof} className=' rounded-full w-[32px] h-[32px]'/>
           {members.map((item)=>{
-          return <Profilepicture firstname={item.firstname} lastname={item.lastname} />
+          return <Profilepicture key={item._id} firstname={item.firstname} lastname={item.lastname} />
            
         })}
           

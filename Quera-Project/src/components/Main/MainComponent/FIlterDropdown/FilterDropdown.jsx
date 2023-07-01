@@ -2,8 +2,10 @@
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import { useState } from 'react';
 import { ChooseFilter } from './ChooseFilter';
+import { useTheme } from '../../../ThemeContext/ThemeContext';
 
  export const FilterDropdown=({show,setShow,TagDetails})=>{
+   const {Themecolor}=useTheme()
    const [filter,setFilter]=useState([{id:1,tagid:"",type:"انتخاب کنید",decide:"است"}])
    
    function selectDecide(id,value){
@@ -36,7 +38,7 @@ import { ChooseFilter } from './ChooseFilter';
             return <ChooseFilter TagDetails={TagDetails} color={item.color} DeleteFilter={DeleteFilter} selectTag={selectTag} selectType={selectType} selectDecide={selectDecide} id={item.id} key={item.id} tagid={item.tagid} type={item.type} decide={item.decide} />
          })}
             
-         <article className=' mb-[55px] inline text-[#208D8E] text-sm'><small onClick={()=>{ filter.length<= 3 && setFilter([...filter,{id:Date.now(),tag:"انتخاب کنید",type:"انتخاب کنید",decide:"است"}])}} className='cursor-pointer font-semibold '>افزودن فیلتر جدید</small></article>
+         <article style={{color:Themecolor}} className=' mb-[55px] inline text-[#208D8E] text-sm'><small onClick={()=>{ filter.length<= 3 && setFilter([...filter,{id:Date.now(),tag:"انتخاب کنید",type:"انتخاب کنید",decide:"است"}])}} className='cursor-pointer font-semibold '>افزودن فیلتر جدید</small></article>
       </section>
    );
 

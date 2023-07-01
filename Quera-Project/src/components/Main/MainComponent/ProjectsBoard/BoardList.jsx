@@ -57,7 +57,6 @@ export const BoardList = ({
       <span className="w-full">
         {" "}
         {sortedTasks.map((item)=>{
-          console.log(item)
           return <Task
           members={item.taskAssigns}
           key={item._id}

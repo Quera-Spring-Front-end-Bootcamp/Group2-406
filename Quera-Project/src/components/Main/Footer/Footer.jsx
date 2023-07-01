@@ -5,11 +5,11 @@ import { useTheme } from '../../ThemeContext/ThemeContext';
 export const Footer = ({show, setShow}) => {
 const {Themecolor}=useTheme()
     return(
-        <footer className="w-full h-[70px]  flex flex-row justify-start items-start relative z-20">
-                <button style={{backgroundColor:Themecolor}} className=" w-[118px] h-[40px] absolute rounded-md font-bold text-sm text-white font-dana" onClick={()=>{setShow(!show)}}>
+        <div className=" float-left h-[70px] w-[150px] flex flex-row justify-start z-20 items-start relative">
+                <button style={{backgroundColor:Themecolor}} className="  z-20 w-[118px] h-[40px] absolute rounded-md font-bold text-sm text-white font-dana" onClick={()=>{setShow(!show)}}>
                     تسک جدید
                     <AddBoxOutlinedIcon className="ml-1"></AddBoxOutlinedIcon>
                 </button>
-        </footer>
+        </div>
     );
 }

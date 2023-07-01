@@ -15,12 +15,10 @@ export const Newworkspace=({show,setshow,setMylesson,Mylesson})=>{
      const {token,userId} = useAuth()
      const {Themecolor}=useTheme()
     const onsubmit= async(data)=>{
-        console.log(data)
         if(phase<3){
             setphase(phase+1);
         }
         else{
-            console.log(token)
             await axios.post("http://localhost:3000/api/workspace/create",{
                 name:watch("name"),
                 color:watch("color")

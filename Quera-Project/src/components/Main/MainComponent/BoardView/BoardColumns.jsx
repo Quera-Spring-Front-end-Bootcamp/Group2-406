@@ -46,21 +46,21 @@ export const BoardColumns = ({ name, children, color,boardid,deleteBoard,boards,
     }
 
     return !edit ?(
-        <div    className="w-[260px]  left-[788px] gap-5 mt-[17px] flex flex-col items-center p-0 flex-none order-5 flex-grow-0" dir='ltr'>
+        <div    className="w-[260px]    left-[788px] z-10 gap-5 mt-[17px] flex flex-col items-center p-0 flex-none order-5 flex-grow-0" dir='ltr'>
              { show && <NewTask TagDetails={TagDetails} boards={boards} setBoards={setBoards} boardid={boardid} show={show} setShow={setshow} setDetails={setDetails} />}
             {/* column header  */}
-            <div draggable onDragOver={(e)=>{e.preventDefault()}} onDragEnter={()=>dragref.current=position} onDragEnd={boardSort} style={{borderColor:color}} className={`bg-white w-[250px] h-[41px] flex flex-row items-center justify-between border-t-[1px]  shadow-md rounded p-2 gap-1`}>
-                <div className="bg-white max-w-[140px] h-[25px] gap-1 flex flex-row-reverse items-center p-0 flex-none order-1 flex-grow-0">
+            <div draggable onDragOver={(e)=>{e.preventDefault()}} onDragEnter={()=>dragref.current=position} onDragEnd={boardSort} style={{borderColor:color}} className={`bg-white w-[250px] group h-[41px] flex flex-row items-center justify-between border-t-[1px]  shadow-md rounded p-2 gap-1`}>
+                <div className="bg-white  max-w-[140px] h-[25px] gap-1 flex flex-row-reverse items-center p-0 flex-none order-1 flex-grow-0">
                     <label className="w-fit font-dana font-medium text-base text-right text-gray-800">
                         {name}
                     </label>
                     <div className="flex flex-col justify-center items-center pt-[3px] pr-[4px] pb-[2px] pl-[2px]  gap-10 w-[13px] h-[17px] bg-gray-100 rounded-full">
-                        <p className="w-[5px] h-[15px] font-dana font-medium not-italic text-xs">۰</p>
+                        <p className="w-[5px] h-[15px] font-dana font-medium not-italic text-xs">{tasks.length}</p>
                     </div>
                 </div>
 
                 {/* hidden  */}
-                <div className="w-[48px] h-[24px] gap-1 flex flex-row items-center p-0 flex-none flex-grow-0 transition ease-in-out delay-150 duration-300 opacity-0 hover:opacity-100"
+                <div className="w-[48px] h-[24px] gap-1 flex flex-row items-center p-0 flex-none flex-grow-0 transition ease-in-out delay-150 duration-300 opacity-0 group-hover:opacity-100"
                 onMouseLeave={closeModal}>
                     <Tooltip title="افزودن تسک جدید" TransitionComponent={Fade} TransitionProps={{ timeout: 600 }} placement="top" arrow >
                         <AddIcon onClick={()=>{setshow(true)}} fontSize='' className="w-[24px] h-[24px] flex-none order-0 flex-grow-0"></AddIcon>
