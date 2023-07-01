@@ -2,12 +2,11 @@
 /* eslint-disable react/prop-types */
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Calendar } from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
 import "react-datepicker/dist/react-datepicker.css";
-import { preventDefault } from "@fullcalendar/core/internal";
 export const CalendarTask = ({ showCalendar, setShowCalendar,value,setValue }) => {
   
   const [startDate, setStartDate] = useState(new Date());

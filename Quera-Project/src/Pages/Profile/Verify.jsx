@@ -1,7 +1,9 @@
 import { useForm } from "react-hook-form";
+import { useTheme } from "../../components/ThemeContext/ThemeContext";
 
 export const Verify=()=>{
   const {register,handleSubmit, formState:{errors}}=useForm()
+  const {Themecolor}=useTheme()
   const onsubmit=(data)=>{
   console.log(data)
   }
@@ -49,7 +51,7 @@ export const Verify=()=>{
                 />
                 <p className=" text-xxs mt-1 font-dana text-red-700">{errors.password?.message}</p>
               </div>
-              <button className=" bottom-[5px] left-0 rounded w-[109px] text-white absolute bg-[#208D8E] text-sm font-bold h-[38px] ">احراز هویت</button>
+              <button style={{backgroundColor:Themecolor}} className=" bottom-[5px] left-[1px] rounded w-[109px] text-white absolute text-sm font-bold h-[38px] ">احراز هویت</button>
             </div>
             <div className="flex flex-col mb-12 ">
               <label htmlFor="email" className="  mb-2 text-sm font-dana">نام کاربری</label>
@@ -67,7 +69,7 @@ export const Verify=()=>{
             </div>
           </section>
           <section>
-            <input type="submit" value="ثبت تغییرات" className="  cursor-pointer w-full  h-[38px] text-sm rounded-md font-dana bg-submitColor text-white  "/>
+            <input style={{backgroundColor:Themecolor}} type="submit" value="ثبت تغییرات" className="  cursor-pointer w-full  h-[38px] text-sm rounded-md font-dana bg-submitColor text-white  "/>
           </section>
         </form>
       </article>

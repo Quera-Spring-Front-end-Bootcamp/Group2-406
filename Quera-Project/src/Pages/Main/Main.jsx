@@ -35,7 +35,7 @@ export const Main = () => {
       
 
       {/* share task page*/}
-      <ShareTask show={showShareTask} setShow={setShareTask} />
+      
 
       {/* new task page*/}
       { ShowNewTask &&<NewTask boards={boards} setBoards={setBoards} TagDetails={TagDetails} setDetails={setDetails} show={ShowNewTask} setShow={setShowNewTask}/>}
@@ -46,9 +46,8 @@ export const Main = () => {
             
               
 
-              <MainComponent setMylesson={setMylesson}  setBoards={setBoards} boards={boards} showShareProject={showShareProject} setShareProject={setShareProject} Mylesson={Mylesson} TagDetails={TagDetails} />
-
-              <Footer show={ShowNewTask} setShow={setShowNewTask}  />
+              <MainComponent TagDetails={TagDetails} setDetails={setDetails} ShowNewTask={ShowNewTask} setShowNewTask={setShowNewTask} setMylesson={setMylesson}  setBoards={setBoards} boards={boards} showShareProject={showShareProject} setShareProject={setShareProject} Mylesson={Mylesson} />
+              { boards.length>0 && <Footer show={ShowNewTask} setShow={setShowNewTask}  />}
           </div>
 
           {/* right content */}

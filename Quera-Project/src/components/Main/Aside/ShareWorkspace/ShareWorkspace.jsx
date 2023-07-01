@@ -8,12 +8,14 @@ import {  useState } from "react";
 import axios from "axios";
 import { useAuth } from "../../../ContextApi/AuthContext";
 import { baseurl } from "../../../../assets/baseUrl";
+import { useTheme } from "../../../ThemeContext/ThemeContext";
 
 export const ShareWorkspace = ({show,id, setShow, nameProjects,members,setMylesson}) => {
     const [value,setValue]=useState("")
     const [Pro, setPro] = useState("همه پروژه ها");
     const {token,fetchData}=useAuth()
     const [errorMessage,setError]=useState("")
+    const {Themecolor}=useTheme()
     function exit(){
         setShow(!show);
         setPro("همه پروژه ها")
@@ -55,7 +57,7 @@ export const ShareWorkspace = ({show,id, setShow, nameProjects,members,setMyless
 
                 {/* email input & button */}
                 <article className="w-[90%] h-auto flex flex-row mt-10 justify-center">
-                        <button onClick={addMember} className="text-sm font-medium font-dana text-white bg-sendEmailBtn w-[90px] h-[40px] rounded-s-md">ارسال</button>
+                        <button style={{backgroundColor:Themecolor}}  onClick={addMember} className="text-sm font-medium font-dana text-white w-[90px] h-[40px] rounded-s-md">ارسال</button>
                         <input value={value} onChange={(e)=>{setValue(e.target.value)}}  dir="rtl" className="font-dana outline-none pr-2 rounded-r-md border-none bg-neutral-100 w-[400px] h-[40px]" type="text" placeholder=" دعوت با نام کاربری"/>
                        
                 </article> 
