@@ -4,7 +4,6 @@ import CheckBoxOutlinedIcon from '@mui/icons-material/CheckBoxOutlined';
 import OutlinedFlagRoundedIcon from '@mui/icons-material/OutlinedFlagRounded';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import TaskAltOutlinedIcon from '@mui/icons-material/TaskAltOutlined';
-import EditModal from './EditModal'
 import { useState } from 'react';
 import projectPic from "../../../../assets/images/tasks/project.jpg"
 import { TaskInfo } from '../../Task/TaskInfo/TaskInfo';
