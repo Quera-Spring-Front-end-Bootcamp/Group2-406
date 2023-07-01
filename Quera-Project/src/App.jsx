@@ -1,8 +1,8 @@
 import './App.module.css';
 import { AuthProvider } from './components/ContextApi/AuthContext';
-import { Routes, Route} from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { Forget, Login, Reset, Register, Main, Profile } from "./Pages";
-import {Layout} from "./components/Layout/Layout";
+import { Layout } from "./components/Layout/Layout";
 import { ThemeProvider } from './components/ThemeContext/ThemeContext';
 
 function App() {
