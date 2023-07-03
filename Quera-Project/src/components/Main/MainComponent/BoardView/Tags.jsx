@@ -18,8 +18,8 @@ export const TagsinTask=({id,color,tagName,fetchTags,taskid})=>{
           color:color
       },{headers:{'x-auth-token':token}})
       .then((res)=>{
-          fetchTags()
           setEdit(false)
+          window.location.reload()
       })
       .catch((error)=>{
         console.log(error)

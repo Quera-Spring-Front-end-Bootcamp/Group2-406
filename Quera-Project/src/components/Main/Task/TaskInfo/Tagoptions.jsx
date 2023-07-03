@@ -17,11 +17,17 @@ export const Tagoptions=({  id,setEdit,tagOptions,tagName,fetchTags,taskid })=>{
            .then((res)=>{
             fetchTags()
            })
+           .catch((error)=>{
+            console.log(error)
+          })
        }
       const Tagdelete=()=>{
         axios.delete(baseurl+'/tags/'+tagName,{headers:{'x-auth-token':token}})
         .then((res)=>{
-            fetchTags()
+            window.location.reload()
+        })
+        .catch((error)=>{
+          console.log(error)
         })
       }
       const TagColorChange=async(id,value)=>{
@@ -30,7 +36,10 @@ export const Tagoptions=({  id,setEdit,tagOptions,tagName,fetchTags,taskid })=>{
             color:value
         },{headers:{'x-auth-token':token}})
         .then((res)=>{
-            fetchTags()
+            window.location.reload()
+        })
+        .catch((error)=>{
+          console.log(error)
         })
       
       }
