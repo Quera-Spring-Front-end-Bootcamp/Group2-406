@@ -10,9 +10,10 @@ import { Comments } from './Comments';
 import axios from 'axios';
 import { baseurl } from '../../../../assets/baseUrl';
 import { useAuth } from '../../../ContextApi/AuthContext';
+import { useTheme } from '../../../ThemeContext/ThemeContext';
 export const CommentSection = ({id}) => {
     const {token}=useAuth()
-
+    const {Themecolor}=useTheme()
     // set comment
     const [inputValue, setInputValue] = useState('');
     const initialComment = "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است. "
@@ -71,7 +72,7 @@ export const CommentSection = ({id}) => {
                 />
                 <div className='bg-white w-full h-[60px] absolute bottom-0 flex flex-row justify-between items-center gap-5 px-5'>
 
-                    <button className='bg-teal-500 w-[78px] h-[31px] rounded-md flex flex-row justify-center items-center gap-1 py-[6px] px-3 ' onClick={addComment}>
+                    <button style={{backgroundColor:Themecolor}} className='bg-teal-500 w-[78px] h-[31px] rounded-md flex flex-row justify-center items-center gap-1 py-[6px] px-3 ' onClick={addComment}>
                         <label className="font-dana font-semibold text-xs text-right text-white cursor-pointer">ثبت کامنت</label>
                     </button>
                     <div className='bg-white w-[156px] h-[24px] order-1 flex flex-row justify-end items-center p-0 gap-5 '>

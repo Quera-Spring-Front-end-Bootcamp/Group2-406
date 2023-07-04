@@ -1,11 +1,12 @@
 import { createContext, useContext, useState } from "react";
 import { baseurl } from "../../assets/baseUrl";
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useLocation } from "react-router-dom";
 import axios from "axios";
 
 const AuthContext = createContext()
 export const AuthProvider = ({ children }) => {
+    const {pathname}=useLocation()
     const [userId,setUserId]=useState(()=>{
        return localStorage.userId ? localStorage.userId:""
     })
@@ -66,6 +67,10 @@ export const AuthProvider = ({ children }) => {
          .then((response)=>{
           console.log(response)
           const workspaces=response.data.data
+          if(pathname == '/Main'){
+             navigate('/Main/'+workspaces[0].projects[0]._id+'/ColumnView')
+          }
+         
           setMylesson(workspaces.map((item)=>{
             return {id:item._id,nameLesson:item.name,members:item.members,colorSquare:item.color,edit:false,projects:item.projects.map((p)=>{
               return ({id:p._id,nameProject:p.name,members:p.members,boards:p.boards})

@@ -14,9 +14,7 @@ export const BoardView = ({newBoard,boards,deleteBoard,editBoard,updateBoard,set
         <>
         <NewBoard newBoard={newBoard} setshow={setShow} show={show}/>
         <div className="parent w-[1080px] overflow-x-scroll scrollbar-hide" dir='rtl'>
-            <div className="main-part w-fit h-[820px] gap-5 flex flex-row-reverse justify-end items-start p-0 flex-none order-3 flex-grow-0 z-10">
-                
-                
+            <div className="main-part w-fit h-[820px] gap-5 flex flex-row-reverse justify-end items-start p-0 flex-none order-3 flex-grow-0 z-10">                
                 {
                   
                    boards.map((p)=>{
@@ -24,11 +22,6 @@ export const BoardView = ({newBoard,boards,deleteBoard,editBoard,updateBoard,set
                     })
                   
                 }
-
-                
-
-                
-
                 {/* ساختن برد جدید */}
                 <div onClick={()=>{setShow(true)}} className="bg-white w-[250px] h-[41px] gap-5 mt-[17px] ml-1 flex flex-col items-start p-0 flex-none order-0 flex-grow-0 border-t-[1px] shadow-md rounded-md" >
                     <div className="bg-white w-[150px] h-[25px] ml-[100px] my-auto gap-1 flex flex-row justify-end items-center p-0 flex-none order-1 flex-grow-0 ">
