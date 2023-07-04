@@ -37,7 +37,6 @@ export const NewTask = ({ TagDetails,setDetails,show, setShow,boards,setBoards,b
   const onsubmit=async(e)=>{
     if(value.trim() && desvalue.trim()){
       const date=new Date(Datevalue)
-    console.log(BoardId)
         e.preventDefault()
      await axios.post(baseurl+`/task/`,{
         name:value,

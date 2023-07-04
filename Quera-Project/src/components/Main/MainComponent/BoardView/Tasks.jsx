@@ -86,7 +86,6 @@ export const Tasks = ({ imageExist, taskref, projectCategory, boards, lessonsCat
                     <img className={imageExist ? 'bg-black w-[230px] h-[134px] mb-[18px]' : ' invisible w-0 h-0'} src={projectPic}></img>
                 </div>
 
-
                 {/* top div  */}
                 <div className=" w-[230px] h-[42px] flex flex-col items-end gap-[9px] mb-[18px] p-0 flex-none order-2 self-stretch flex-grow-0">
                     <article className="flex flex-row-reverse items-center w-full cursor-pointer justify-between">
@@ -128,7 +127,7 @@ export const Tasks = ({ imageExist, taskref, projectCategory, boards, lessonsCat
                 <div className={hovered ? 'transition ease-in-out delay-150 duration-300 opacity-100 w-[230px] h-[28px] relative mt-[18px] order-5 border-t border-gray-200 flex flex-row justify-between items-center pt-4' : "transition ease-in-out delay-150 duration-300 opacity-0 h-[0px]"}>
                     {/* ChangeBoard Dropdown */}
                     {hovered && showChangeBoard &&
-                        <section dir='rtl' className='absolute left-[60px] min-w-[120px] rounded-lg shadow-md  py-2  font-dana  z-50 bg-white text-xs flex flex-col items-start justify-center'>
+                        <section dir='rtl' onMouseDown={(e)=>{e.preventDefault()}} className='absolute left-[60px] min-w-[120px] rounded-lg shadow-md  py-2  font-dana  z-50 bg-white text-xs flex flex-col items-start justify-center'>
                             <span className='mx-2'><p>انتقال به برد:</p></span>
                             <hr className=' border-0.5 mb-1 w-full' ></hr>
                             {filteredboard.map((item) => {
@@ -139,7 +138,7 @@ export const Tasks = ({ imageExist, taskref, projectCategory, boards, lessonsCat
                     <button onClick={() => { setShowTaskInfo(true) }}><MoreHorizIcon fontSize='small' htmlColor='#323232' className={hovered ? "opacity-100" : "opacity-0"}></MoreHorizIcon></button>
                     <span>
                         {hovered && <DeleteOutlineOutlinedIcon onClick={deleteTask} className=' cursor-pointer text-red-500 opacity-50 active:opacity-100' />}
-                        <TaskAltOutlinedIcon style={{ cursor: "pointer" }} onClick={() => { setChangeBoard(!showChangeBoard) }} fontSize='small' htmlColor='#323232' className={hovered ? "opacity-100" : "opacity-0"}></TaskAltOutlinedIcon>
+                        <TaskAltOutlinedIcon style={{ cursor: "pointer",outline:'none' }} tabIndex={1} onBlur={()=> setChangeBoard(false)} onClick={() => { setChangeBoard(!showChangeBoard) }} fontSize='small' htmlColor='#323232' className={hovered ? "opacity-100" : "opacity-0"}></TaskAltOutlinedIcon>
                     </span>
 
 

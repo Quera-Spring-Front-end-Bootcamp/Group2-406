@@ -48,7 +48,9 @@ export const SharedWithOther = ({ userName,nameProjects, pro, setPro,firstname,l
             </div>
 
             {/* buttons div */}
+            <div>
             <div className="flex flex-row-reverse">
+            <DeleteOutlineOutlinedIcon onClick={()=>deleteMember(id)} className=" cursor-pointer "/>
                 <button className="font-dana font-normal text-xs w-[111px] h-[27px] border-1 border-gray-200 rounded-md flex flex-row-reverse justify-center items-center ml-2" onClick={() => {setShowAcc(!ShowAcc)}}>
                     {Acc}
                     <KeyboardArrowDownOutlinedIcon className='!text-sm mr-2'></KeyboardArrowDownOutlinedIcon>
@@ -70,6 +72,7 @@ export const SharedWithOther = ({ userName,nameProjects, pro, setPro,firstname,l
             </div>  
 
             {/* access project div */}
+            
             <div className="relative">
             <div className="w-[150px] h-auto z-20 flex flex-col gap-3 shadow-lg rounded-lg p-3 bg-white absolute left-0" style={{visibility: ShowPro ? "visible":"hidden"}} onMouseDown={(e)=>{e.preventDefault()}}>
                 <AccessProject ProValue={ProValue} levelProject={"همه پروژه ها"} />
@@ -80,7 +83,8 @@ export const SharedWithOther = ({ userName,nameProjects, pro, setPro,firstname,l
                 })}
             </div> 
             </div>
-            <DeleteOutlineOutlinedIcon onClick={()=>deleteMember(id)} className=" cursor-pointer "/>
+            </div>
+           
         </div>
     );
 }

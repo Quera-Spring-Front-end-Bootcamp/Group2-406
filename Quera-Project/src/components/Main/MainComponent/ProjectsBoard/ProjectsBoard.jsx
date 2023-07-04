@@ -12,7 +12,7 @@ export const ProjectsBoard = ({boards,updateBoard}) => {
   const project=useProject()
 
   return (
-    <main className="w-[1080px] mt-6 flex flex-col justify-start items-end">
+    <main className="w-[1080px] scr h-screen overflow-y-scroll mt-6 flex flex-col justify-start items-end">
       {/* First-Project area */}
       <section className=" w-full mr-5 flex flex-row-reverse text-lg font-dana   tracking-tight  text-end">
         <span className="mt-0.5" >
