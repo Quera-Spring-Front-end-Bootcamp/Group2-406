@@ -12,30 +12,35 @@ import { useAuth } from "../../../ContextApi/AuthContext";
 import { baseurl } from "../../../../assets/baseUrl";
 import { useParams } from "react-router-dom";
 import { useTheme } from "../../../ThemeContext/ThemeContext";
+
 export const ShareProject = ({show,setShow}) => {
-    const {Themecolor}=useTheme()
-    const {id}=useParams()
-    const {token}=useAuth()
-    const [memberDetails,setMemberDetails]=useState([])
+    const {Themecolor}=useTheme();
+    const {id}=useParams();
+    const {token}=useAuth();
+    const [memberDetails,setMemberDetails]=useState([]);
+
     const fetchMembers=async()=>{
         await axios.get(baseurl+"/projects/"+ id,{headers:{"x-auth-token":token}})
         .then((response)=>{
             setMemberDetails(response.data.data.members)
         })
-        }
-        async function deleteProjectMember(userid){
-            await  axios.delete(baseurl+`/projects/${id}/members/${userid}`,{headers:{"x-auth-token":token}})
-              .then((response)=>{
-                  console.log(response)
-                  fetchMembers()
-              })
-              .catch((error)=>{
-                  console.log(error)
-              })
-          }
+    }
+
+    async function deleteProjectMember(userid){
+        await  axios.delete(baseurl+`/projects/${id}/members/${userid}`,{headers:{"x-auth-token":token}})
+            .then((response)=>{
+                console.log(response)
+                fetchMembers()
+            })
+            .catch((error)=>{
+                console.log(error)
+            })
+    }
+
     useEffect(()=>{
         fetchMembers()
-    },[])
+    },[]);
+
     return(
         <div className="w-screen h-screen inset-0 bg-gray-600 bg-opacity-50 z-50 fixed flex justify-center items-center" >{/* entire page */}
 
@@ -83,13 +88,10 @@ export const ShareProject = ({show,setShow}) => {
                         </div>
 
                         {/* shared with other */}
-                         {
-                            memberDetails.map((item)=>{
-                                return item.role!= "owner" && <SharedWith deleteProjectMember={deleteProjectMember} firstname={item.user.firstname} lastname={item.user.lastname} key={item.user._id} userid={item.user._id}  userName={item.user.email} />
-                            })
-
-                         }
-                       
+                        {memberDetails.map((item)=>{
+                            return item.role!= "owner" && <SharedWith deleteProjectMember={deleteProjectMember} firstname={item.user.firstname} 
+                            lastname={item.user.lastname} key={item.user._id} userid={item.user._id}  userName={item.user.email} />
+                        })}
                     </div>
                 </article>
             </section>
